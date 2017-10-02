@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -161,6 +162,10 @@
     <Compile Include="Migrations\201710021606309_added Vendor model.cs" />
     <Compile Include="Migrations\201710021606309_added Vendor model.Designer.cs">
       <DependentUpon>201710021606309_added Vendor model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710021751335_added foreign key Vendor to Product.cs" />
+    <Compile Include="Migrations\201710021751335_added foreign key Vendor to Product.Designer.cs">
+      <DependentUpon>201710021751335_added foreign key Vendor to Product.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
@@ -219,6 +224,11 @@
     <Content Include="Views\Vendors\Details.cshtml" />
     <Content Include="Views\Vendors\Edit.cshtml" />
     <Content Include="Views\Vendors\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -242,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710021606309_added Vendor model.resx">
       <DependentUpon>201710021606309_added Vendor model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021751335_added foreign key Vendor to Product.resx">
+      <DependentUpon>201710021751335_added foreign key Vendor to Product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

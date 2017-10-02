@@ -95,3 +95,4 @@ C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.pdb
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.initialization.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.csproj.GenerateResource.Cache
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedVendormodel.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedforeignkeyVendortoProduct.resources
