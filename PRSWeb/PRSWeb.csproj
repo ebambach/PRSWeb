@@ -150,6 +150,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\PurchaseRequestLineItemsController.cs" />
+    <Compile Include="Controllers\PurchaseRequestsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +169,14 @@
     <Compile Include="Migrations\201710021751335_added foreign key Vendor to Product.Designer.cs">
       <DependentUpon>201710021751335_added foreign key Vendor to Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021807240_added PurchaseRequest and PurchaseRequestLineItems controllers.cs" />
+    <Compile Include="Migrations\201710021807240_added PurchaseRequest and PurchaseRequestLineItems controllers.Designer.cs">
+      <DependentUpon>201710021807240_added PurchaseRequest and PurchaseRequestLineItems controllers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710021825148_altered variables.cs" />
+    <Compile Include="Migrations\201710021825148_altered variables.Designer.cs">
+      <DependentUpon>201710021825148_altered variables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PRSWebContext.cs" />
@@ -176,6 +186,9 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\JsonNetResult.cs" />
+    <Compile Include="Utility\JsonReturnMessage.cs" />
+    <Compile Include="Utility\Msg.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -229,6 +242,16 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\PurchaseRequests\Create.cshtml" />
+    <Content Include="Views\PurchaseRequests\Delete.cshtml" />
+    <Content Include="Views\PurchaseRequests\Details.cshtml" />
+    <Content Include="Views\PurchaseRequests\Edit.cshtml" />
+    <Content Include="Views\PurchaseRequests\Index.cshtml" />
+    <Content Include="Views\PurchaseRequestLineItems\Create.cshtml" />
+    <Content Include="Views\PurchaseRequestLineItems\Delete.cshtml" />
+    <Content Include="Views\PurchaseRequestLineItems\Details.cshtml" />
+    <Content Include="Views\PurchaseRequestLineItems\Edit.cshtml" />
+    <Content Include="Views\PurchaseRequestLineItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +278,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710021751335_added foreign key Vendor to Product.resx">
       <DependentUpon>201710021751335_added foreign key Vendor to Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021807240_added PurchaseRequest and PurchaseRequestLineItems controllers.resx">
+      <DependentUpon>201710021807240_added PurchaseRequest and PurchaseRequestLineItems controllers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021825148_altered variables.resx">
+      <DependentUpon>201710021825148_altered variables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

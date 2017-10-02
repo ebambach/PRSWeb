@@ -96,3 +96,5 @@ C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.initialization.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.csproj.GenerateResource.Cache
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedVendormodel.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedforeignkeyVendortoProduct.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedPurchaseRequestandPurchaseRequestLineItemscontrollers.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.alteredvariables.resources

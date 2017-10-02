@@ -33,8 +33,56 @@ namespace PRSWeb.Migrations
 				new User { UserName = "admin", Password = "admin",
 					FirstName = "System", LastName = "Admin",
 					Phone = "555-867-5309", Email = "system@admin.com",
-					IsReviewer = true, IsAdmin = true }
+					IsReviewer = true, IsAdmin = true },
+				
+				new User {
+					UserName = "user",
+					Password = "user",
+					FirstName = "Normal",
+					LastName = "User",
+					Phone = "555-482-9712",
+					Email = "normal@user.com",
+					IsReviewer = false,
+					IsAdmin = false
+				}
 			);
-        }
+
+			context.Vendors.AddOrUpdate(
+				v => v.Name,
+				new Vendor {
+					Code = "AAPL",
+					Name = "Apple",
+					Address = "1 Infinite Loop",
+					City = "Cupertino",
+					State = "CA",
+					Zip = "95014",
+					Phone = "408-974–2042",
+					Email = "info@apple.com",
+					PreApproved = true
+				},
+				new Vendor {
+					Code = "GOOGL",
+					Name = "Google",
+					Address = "1600 Amphitheatre Parkway",
+					City = "Mountain View",
+					State = "CA",
+					Zip = "94043",
+					Phone = "877-355-5787",
+					Email = "info@google.com",
+					PreApproved = true
+				},
+				new Vendor {
+					Code = "MSFT",
+					Name = "Microsoft",
+					Address = "1 Microsoft Way",
+					City = "Redmond",
+					State = "WA",
+					Zip = "98052",
+					Phone = "425-882-8080",
+					Email = "info@microsoft.com",
+					PreApproved = true
+				}
+			);
+		}
     }
 }
