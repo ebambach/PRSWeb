@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PRSWeb.Models;
 using Utility;
+using System.Web.Http;
 
 namespace PRSWeb.Controllers
 {
@@ -40,6 +41,31 @@ namespace PRSWeb.Controllers
 			}
 		}
 
+		//[FromBody] uses web api as a substitute for [Bind(Include = "Id,UserName,Password,FirstName,LastName,Phone,Email,IsReviewer,IsAdmin")] 
+		public ActionResult Add([FromBody] User user) {
+			//Let's make sure we have a valid user
+			if (user == null || user.UserName == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
+			}
+			//If we have a valid user, we can add the user to the Users table in the database.
+			db.Users.Add(user);
+			//Although we used Add() to add the user, the changes we make don't stay changed.
+			db.SaveChanges();
+			return Json(new Msg { Result = "Success", Message = $"The entered user, {user} was added to the table of users." }, JsonRequestBehavior.AllowGet);
+		}
+
+		/*public ActionResult Change([FromBody] User user) {
+			if (user == null || user.UserName == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+		public ActionResult Remove([FromBody] User user) {
+			if (user == null || user.UserName == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
+			}
+		}*/
+
 		#region MVC Methods
 		// GET: Users
 		public ActionResult Index()
@@ -71,7 +97,7 @@ namespace PRSWeb.Controllers
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserName,Password,FirstName,LastName,Phone,Email,IsReviewer,IsAdmin")] User user)
         {
@@ -103,7 +129,7 @@ namespace PRSWeb.Controllers
         // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,UserName,Password,FirstName,LastName,Phone,Email,IsReviewer,IsAdmin")] User user)
         {
@@ -132,7 +158,7 @@ namespace PRSWeb.Controllers
         }
 
         // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

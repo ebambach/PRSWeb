@@ -98,3 +98,7 @@ C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedVendormodel.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedforeignkeyVendortoProduct.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.addedPurchaseRequestandPurchaseRequestLineItemscontrollers.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.alteredvariables.resources
+C:\repos\PRSWeb\PRSWeb\bin\System.Net.Http.Formatting.dll
+C:\repos\PRSWeb\PRSWeb\bin\System.Web.Http.dll
+C:\repos\PRSWeb\PRSWeb\bin\System.Net.Http.Formatting.xml
+C:\repos\PRSWeb\PRSWeb\bin\System.Web.Http.xml
