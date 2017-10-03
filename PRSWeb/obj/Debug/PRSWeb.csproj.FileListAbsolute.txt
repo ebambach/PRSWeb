@@ -103,3 +103,6 @@ C:\repos\PRSWeb\PRSWeb\bin\System.Web.Http.dll
 C:\repos\PRSWeb\PRSWeb\bin\System.Net.Http.Formatting.xml
 C:\repos\PRSWeb\PRSWeb\bin\System.Web.Http.xml
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedChangeandRemovetoUsersController.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedListGetAddChangeandRemovetoUsersController.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedListGetAddChangeandRemovetoProductsController.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.Addedtestproductstoconfiguration.resources

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,7 @@ namespace PRSWeb.Models {
 
 		[StringLength(12)]
 		[Required]
+		[Index(IsUnique = true)]
 		public string Code { get; set; }
 
 		[StringLength(30)]
@@ -42,5 +44,9 @@ namespace PRSWeb.Models {
 
 		[Required]
 		public bool PreApproved { get; set; }
+
+		public static implicit operator Vendor(string v) {
+			throw new NotImplementedException();
+		}
 	}
 }

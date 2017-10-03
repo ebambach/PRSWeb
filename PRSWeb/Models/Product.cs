@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PRSWeb.Models {
 	public class Product {
@@ -10,6 +11,7 @@ namespace PRSWeb.Models {
 
 		[StringLength(50)]
 		[Required]
+		[Index(IsUnique = true)]
 		public string VendorPartNumber { get; set; }
 
 		[StringLength(50)]
@@ -27,6 +29,6 @@ namespace PRSWeb.Models {
 		public string Photopath { get; set; }
 
 		public int VendorId { get; set; }
-		public Vendor Vendor { get; set; }
+		public virtual Vendor Vendor { get; set; }
 	}
 }

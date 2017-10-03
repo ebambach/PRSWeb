@@ -187,6 +187,18 @@
     <Compile Include="Migrations\201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.Designer.cs">
       <DependentUpon>201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710031601372_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to UsersController.cs" />
+    <Compile Include="Migrations\201710031601372_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to UsersController.Designer.cs">
+      <DependentUpon>201710031601372_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to UsersController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710031611477_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to ProductsController.cs" />
+    <Compile Include="Migrations\201710031611477_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to ProductsController.Designer.cs">
+      <DependentUpon>201710031611477_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to ProductsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710031807364_Added test products to configuration.cs" />
+    <Compile Include="Migrations\201710031807364_Added test products to configuration.Designer.cs">
+      <DependentUpon>201710031807364_Added test products to configuration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PRSWebContext.cs" />
@@ -297,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.resx">
       <DependentUpon>201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710031601372_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to UsersController.resx">
+      <DependentUpon>201710031601372_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to UsersController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710031611477_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to ProductsController.resx">
+      <DependentUpon>201710031611477_Added List%28%29, Get%28%29, Add%28%29, Change%28%29 and Remove%28%29 to ProductsController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710031807364_Added test products to configuration.resx">
+      <DependentUpon>201710031807364_Added test products to configuration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
