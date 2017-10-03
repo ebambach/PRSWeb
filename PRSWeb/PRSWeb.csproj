@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201710021825148_altered variables.Designer.cs">
       <DependentUpon>201710021825148_altered variables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.cs" />
+    <Compile Include="Migrations\201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.Designer.cs">
+      <DependentUpon>201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PRSWebContext.cs" />
@@ -290,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710021825148_altered variables.resx">
       <DependentUpon>201710021825148_altered variables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.resx">
+      <DependentUpon>201710031537580_Added Change%28%29 and Remove%28%29 to UsersController.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

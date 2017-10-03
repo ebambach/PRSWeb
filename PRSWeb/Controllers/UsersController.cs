@@ -51,20 +51,52 @@ namespace PRSWeb.Controllers
 			db.Users.Add(user);
 			//Although we used Add() to add the user, the changes we make don't stay changed.
 			db.SaveChanges();
-			return Json(new Msg { Result = "Success", Message = $"The entered user, {user} was added to the table of users." }, JsonRequestBehavior.AllowGet);
+			return Json(new Msg { Result = "Success", Message = "The entered user was added to the table of users." }, JsonRequestBehavior.AllowGet);
 		}
 
-		/*public ActionResult Change([FromBody] User user) {
+		public ActionResult Change([FromBody] User user) {
 			if (user == null || user.UserName == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
 			}
+			//As with the Add(), provided we have valid data, it is time to update the user
+			//First, we'll make a temporary copy of the user we are changing
+			User tempUser = db.Users.Find(user.Id);
+			if (tempUser == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
+			}
+			tempUser.UserName = user.UserName;
+			tempUser.Password = user.Password;
+			tempUser.FirstName = user.FirstName;
+			tempUser.LastName = user.LastName;
+			tempUser.Phone = user.Phone;
+			tempUser.Email = user.Email;
+			tempUser.IsReviewer = user.IsReviewer;
+			tempUser.IsAdmin = user.IsAdmin;
+			//After we make entity framework track all of the fields we may or may not be
+			//changing, we use SaveChanges().
+			db.SaveChanges();
+			return Json(new Msg { Result = "Success", Message = "The entered user was changed." }, JsonRequestBehavior.AllowGet);
 		}
 
+		//To maintain consistency with the above methods, we are going to pass in the whole
+		//user (instead of just the user.Id, which is all we really need to delete).
 		public ActionResult Remove([FromBody] User user) {
-			if (user == null || user.UserName == null) {
+			//This being a way of deleting information, we do not care about the UserName
+			//like we did in the above methods, so let's make sure that the User.Id is valid.
+			if (user == null || user.Id <= 0) {
 				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
 			}
-		}*/
+			//As with the Change(), we want to make sure entity framework is keeping
+			//track of the user we want to delete (and we do just want the Id here).
+			User tempUser = db.Users.Find(user.Id);
+			if (tempUser == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered user was invalid." }, JsonRequestBehavior.AllowGet);
+			}
+			//Time to save the changes, and remove that user!
+			db.Users.Remove(tempUser);
+			db.SaveChanges();
+			return Json(new Msg { Result = "Success", Message = "The entered user was removed from the table of users." }, JsonRequestBehavior.AllowGet);
+		}
 
 		#region MVC Methods
 		// GET: Users
