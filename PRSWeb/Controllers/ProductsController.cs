@@ -48,6 +48,12 @@ namespace PRSWeb.Controllers
 			if (product == null || product.Name == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered product was invalid." }, JsonRequestBehavior.AllowGet);
 			}
+			//A product has a foreign key tying it into a vendor, let's make sure that a valid
+			//key was assigned.
+			Vendor vendor = db.Vendors.Find(product.Vendor.Id);
+			if (vendor == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered product lacks a valid vendor." }, JsonRequestBehavior.AllowGet);
+			}
 			//If we have a valid product, we can add the product to the Products table in the database.
 			db.Products.Add(product);
 			//Although we used Add() to add the product, the changes we make don't stay changed.
@@ -58,6 +64,12 @@ namespace PRSWeb.Controllers
 		public ActionResult Change([FromBody] Product product) {
 			if (product == null || product.Name == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered product was invalid." }, JsonRequestBehavior.AllowGet);
+			}
+			//A product has a foreign key tying it into a vendor, let's make sure that a valid
+			//key was assigned.
+			Vendor vendor = db.Vendors.Find(product.Vendor.Id);
+			if (vendor == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered product lacks a valid vendor." }, JsonRequestBehavior.AllowGet);
 			}
 			//As with the Add(), provided we have valid data, it is time to update the product
 			//First, we'll make a temporary copy of the product we are changing

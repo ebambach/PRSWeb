@@ -8,13 +8,20 @@ namespace PRSWeb.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<PRSWeb.Models.PRSWebContext>
     {
-        public Configuration()
+		public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+			
         }
 
 		protected override void Seed(PRSWeb.Models.PRSWebContext context)
         {
+			//These variables will be used for the test PurchaseRequest, taking
+			//the current time when the "update-database" command is used in the
+			//package manager console for "now," and taking the same value + 7
+			//days for "later"
+			var now = DateTime.Now;
+			var later = DateTime.Now.AddDays(7);
 			//  This method will be called after migrating to the latest version.
 
 			//  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -159,6 +166,20 @@ namespace PRSWeb.Migrations
 					Unit = "Box",
 					Photopath = "C:/repos/PRSWeb/images/oneM8.png",
 					VendorId = 3
+				}
+			);
+			//Test PurchaseRequest
+			context.PurchaseRequests.AddOrUpdate(
+				p => p.Description,
+				new PurchaseRequest {
+					Description = "Test",
+					Justification = "I do what I want",
+					DateNeeded = now,
+					DeliveryMode = "UPS",
+					Status = "New",
+					Total = 100.00,
+					SubmittedDate = later,
+					UserId = 1
 				}
 			);
 		}

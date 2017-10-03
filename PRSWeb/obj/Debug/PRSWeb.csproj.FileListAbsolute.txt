@@ -106,3 +106,4 @@ C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedChangeandRemovetoUsersCo
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedListGetAddChangeandRemovetoUsersController.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedListGetAddChangeandRemovetoProductsController.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.Addedtestproductstoconfiguration.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.updatedPurchaseRequestscontroller.resources
