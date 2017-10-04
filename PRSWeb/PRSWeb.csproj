@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201710031954530_updated PurchaseRequests controller.Designer.cs">
       <DependentUpon>201710031954530_updated PurchaseRequests controller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710041255123_Updated PurchaseRequestLineItems controller.cs" />
+    <Compile Include="Migrations\201710041255123_Updated PurchaseRequestLineItems controller.Designer.cs">
+      <DependentUpon>201710041255123_Updated PurchaseRequestLineItems controller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PRSWebContext.cs" />
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710031954530_updated PurchaseRequests controller.resx">
       <DependentUpon>201710031954530_updated PurchaseRequests controller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710041255123_Updated PurchaseRequestLineItems controller.resx">
+      <DependentUpon>201710041255123_Updated PurchaseRequestLineItems controller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

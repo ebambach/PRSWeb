@@ -182,6 +182,16 @@ namespace PRSWeb.Migrations
 					UserId = 1
 				}
 			);
+
+			context.PurchaseRequestLineItems.AddOrUpdate(
+				p => p.Quantity,
+				new PurchaseRequestLineItem {
+					Quantity = 2,
+					PurchaseRequestId = 1,
+					ProductId = 1
+				}
+			);
+
 		}
     }
 }
