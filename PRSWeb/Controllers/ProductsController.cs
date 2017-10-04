@@ -50,7 +50,7 @@ namespace PRSWeb.Controllers
 			}
 			//A product has a foreign key tying it into a vendor, let's make sure that a valid
 			//key was assigned.
-			Vendor vendor = db.Vendors.Find(product.Vendor.Id);
+			Vendor vendor = db.Vendors.Find(product.VendorId);
 			if (vendor == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered product lacks a valid vendor." }, JsonRequestBehavior.AllowGet);
 			}
@@ -67,7 +67,7 @@ namespace PRSWeb.Controllers
 			}
 			//A product has a foreign key tying it into a vendor, let's make sure that a valid
 			//key was assigned.
-			Vendor vendor = db.Vendors.Find(product.Vendor.Id);
+			Vendor vendor = db.Vendors.Find(product.VendorId);
 			if (vendor == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered product lacks a valid vendor." }, JsonRequestBehavior.AllowGet);
 			}

@@ -108,3 +108,4 @@ C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedListGetAddChangeandRemov
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.Addedtestproductstoconfiguration.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.updatedPurchaseRequestscontroller.resources
 C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.UpdatedPurchaseRequestLineItemscontroller.resources
+C:\repos\PRSWeb\PRSWeb\obj\Debug\PRSWeb.Migrations.AddedtestmethodforPurchaseRequestLineItemsController.resources

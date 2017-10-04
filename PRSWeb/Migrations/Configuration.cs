@@ -169,28 +169,64 @@ namespace PRSWeb.Migrations
 				}
 			);
 			//Test PurchaseRequest
-			context.PurchaseRequests.AddOrUpdate(
-				p => p.Description,
-				new PurchaseRequest {
-					Description = "Test",
-					Justification = "I do what I want",
-					DateNeeded = now,
-					DeliveryMode = "UPS",
-					Status = "New",
-					Total = 100.00,
-					SubmittedDate = later,
-					UserId = 1
-				}
-			);
+			//context.PurchaseRequests.AddOrUpdate(
+			//	p => p.Description,
+			//	new PurchaseRequest {
+			//		Description = "Test",
+			//		Justification = "Time to test the code",
+			//		DateNeeded = later,
+			//		DeliveryMode = "UPS",
+			//		Status = "New",
+			//		Total = 0.00,
+			//		SubmittedDate = now,
+			//		UserId = 1
+			//	},
+			//	new PurchaseRequest {
+			//		Description = "Microsoft",
+			//		Justification = "I have a permit",
+			//		DateNeeded = later,
+			//		DeliveryMode = "UPS",
+			//		Status = "New",
+			//		Total = 0.00,
+			//		SubmittedDate = now,
+			//		UserId = 1
+			//	}
+			//);
 
-			context.PurchaseRequestLineItems.AddOrUpdate(
-				p => p.Quantity,
-				new PurchaseRequestLineItem {
-					Quantity = 2,
-					PurchaseRequestId = 1,
-					ProductId = 1
-				}
-			);
+			//context.PurchaseRequestLineItems.AddOrUpdate(
+			//	p => p.Quantity,
+			//	new PurchaseRequestLineItem {
+			//		Quantity = 1,
+			//		PurchaseRequestId = 10,
+			//		ProductId = 1
+			//	},
+			//	new PurchaseRequestLineItem {
+			//		Quantity = 2,
+			//		PurchaseRequestId = 10,
+			//		ProductId = 2
+			//	},
+			//	new PurchaseRequestLineItem {
+			//		Quantity = 3,
+			//		PurchaseRequestId = 10,
+			//		ProductId = 3
+			//	},
+
+			//	new PurchaseRequestLineItem {
+			//		Quantity = 1,
+			//		PurchaseRequestId = 11,
+			//		ProductId = 1
+			//	},
+			//	new PurchaseRequestLineItem {
+			//		Quantity = 2,
+			//		PurchaseRequestId = 11,
+			//		ProductId = 2
+			//	},
+			//	new PurchaseRequestLineItem {
+			//		Quantity = 3,
+			//		PurchaseRequestId = 11,
+			//		ProductId = 3
+			//	}
+			//);
 
 		}
     }
