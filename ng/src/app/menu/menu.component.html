@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+  	<!-- Uses a foreach type loop to generate an unordered list of list elements, consisting of
+  	an anchor and display for each menu of menus -->
+  	<li *ngFor="let menu of menus"><a href = "{{menu.href}}">{{menu.display}}</a></li>
+  </ul>
+</nav>
+<!-- <p>
+	{{hello}}
+</p> -->

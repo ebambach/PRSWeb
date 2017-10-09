@@ -76,22 +76,23 @@ namespace PRSWeb.Controllers
 		//purchaserequest.
 		public ActionResult GetById(int? id) {
 			//If the id is a null value, return an error message saying so
-			//if (id == null) {
-			//	return Json(new Msg { Result = "Failure", Message = "Id is null." }, JsonRequestBehavior.AllowGet);
-			//}
-			//else {
-			//	//The id was not null, time to set up a purchaserequestlineitem variable
-			//	PurchaseRequestLineItem purchaserequestlineitem = db.PurchaseRequestLineItems.Find(id);
+			if (id == null) {
+				return Json(new Msg { Result = "Failure", Message = "Id is null." }, JsonRequestBehavior.AllowGet);
+			}
+			else {
+				//The id was not null, time to set up a purchaserequestlineitem variable
+				PurchaseRequest purchaserequest = db.PurchaseRequests.Find(id);
 
-			//	//If the id used for the purchaserequestlineitem variable is incorrect, return an error message saying so
-			//	if (purchaserequestlineitem == null) {
-			//		return Json(new Msg { Result = "Failure", Message = $"The entered id, {id}, was not found." }, JsonRequestBehavior.AllowGet);
-			//	}
-			//	else {
-					var purchaserequest = db.PurchaseRequestLineItems.Where(p => p.PurchaseRequestId == id);
-					return new JsonNetResult { Data = purchaserequest };
-			//	}
-			//}
+				//If the id used for the purchaserequestlineitem variable is incorrect, return an error message saying so
+				if (purchaserequest == null) {
+					return Json(new Msg { Result = "Failure", Message = $"The entered id, {id}, was not found." }, JsonRequestBehavior.AllowGet);
+				}
+				else {
+					//everylineitem is "every line item that belongs to the purchase request"
+					var everylineitem = db.PurchaseRequestLineItems.Where(p => p.PurchaseRequestId == id);
+					return new JsonNetResult { Data = everylineitem };
+				}
+			}
 		}
 
 		//[FromBody] uses web api as a substitute for [Bind(Include = "Id,PurchaseRequestId,ProductId,Quantity")]
