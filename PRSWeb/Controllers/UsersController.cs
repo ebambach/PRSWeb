@@ -16,6 +16,14 @@ namespace PRSWeb.Controllers
     {
         private PRSWebContext db = new PRSWebContext();
 
+		public ActionResult Login(string UserName, string Password) {
+			//We'll create a users variable that reads the database for that UserName && Password
+				//If successful, it returns an array with that user
+				//It will return an empty array if the UserName and Password combination is not found
+			var users = db.Users.Where(u => u.UserName == UserName && u.Password == Password);
+			return Json(users, JsonRequestBehavior.AllowGet);
+		}
+
 		//Returns all of the users as an array
 		public ActionResult List() {
 			return Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);

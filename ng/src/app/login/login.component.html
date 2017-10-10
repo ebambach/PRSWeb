@@ -1,0 +1,38 @@
+<!-- *ngIf="user" If the user variable does not have data in it, skip this stuff -->
+<br>
+<div class="form-horizontal" style="margin: 20px auto; width:70%;">
+	
+	<!-- This tag lets the user hit "enter" instead of actually clicking the button -->
+	<form>
+
+	<!--This grouping of code will be used for the UserName field  -->
+	<div class='form-group'>
+		<label class='col-md-2 control-label' for="user-UserName">User Name</label>
+		<div class='col-md-4'>
+			<input class='form-control' name='UserName' type="text" id="user-UserName"			
+			[(ngModel)]='username' placeholder="User Name">	
+			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
+				variable that the login.component.ts uses for the UserName-->
+		</div>
+	</div>
+
+	<!--This grouping of code will be used for the Password field  -->
+	<div class='form-group'>
+		<label class='col-md-2 control-label' for="user-Password">Password</label>
+		<div class='col-md-4'>
+			<input class='form-control' name='Password' type="Password" id="user-Password" 
+			[(ngModel)]='password' placeholder="Password">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<button (click)="login()" id="Login" class="col-md-11 col-md-offset-1 btn btn-primary">Login</button>
+	</div>
+
+	<div class='form-group'>
+		<label class="col-md-10 col-md-offset-1 text-left">{{message}}&nbsp;</label>
+	</div>
+
+	</form>
+
+</div>
