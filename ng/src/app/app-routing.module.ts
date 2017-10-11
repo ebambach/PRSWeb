@@ -13,6 +13,7 @@ import {UserDetailComponent} from './user/user-detail/user-detail.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UserAddComponent} from './user/user-add/user-add.component';
 import {VendorListComponent} from './vendor/vendor-list/vendor-list.component';
+import {VendorDetailComponent} from './vendor/vendor-detail/vendor-detail.component';
 
 const routes: Routes = [
 	//Redirects to home if blank
@@ -27,7 +28,8 @@ const routes: Routes = [
 	{path:"Products", component:ProductComponent},
 	{path:"Requests", component:RequestComponent},
 	{path:"Reviews", component:ReviewComponent},
-	{path:"Vendors", component:VendorListComponent}
+	{path:"Vendors", component:VendorListComponent},
+	{path:"Vendors/Detail/:id", component:VendorDetailComponent}
 ];
 //Because the NgModule needs to now about the routing, this gets
 //exported to the NgModule, as it's class name, AppRoutingModule
