@@ -1,0 +1,43 @@
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">User List</span>
+	</div>
+
+	<div class='form-group'>
+		<a routerLink="/Users/Add" class="col-md-1 btn btn-primary" role="button">Add a User</a>
+	</div>
+	<!-- This makes an asynchronous call to the users[] in user-list.component.ts
+		If the users[] is not null, then we can do something with it -->
+	<table class="table" *ngIf="users">
+		<tr>
+			<!-- Table headers -->
+			<th>Name</th>
+			<th>User name</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Reviewer</th>
+			<th>Admin</th>
+			<th>Action</th>
+		</tr>
+
+		<tr *ngFor="let user of users">
+			<!-- These table data entries are straightforward, we are calling the user data -->
+			<td>{{user.FirstName}} {{user.LastName}}</td>
+			<td>{{user.UserName}}</td>
+			<td>{{user.Phone}}</td>
+			<td>{{user.Email}}</td>
+			<!-- If the user is, or is not, a reviewer/admin will determine what is shown under those headers-->
+			<td *ngIf="user.IsReviewer">Yes</td>
+			<td *ngIf="!user.IsReviewer">&nbsp;</td>
+			<td *ngIf="user.IsAdmin">Yes</td>
+			<td *ngIf="!user.IsAdmin">&nbsp;</td>
+			<!-- We'll use the anchors below to set up the Detail and Edit links -->
+			<td>
+				<a routerLink="/Users/Detail/{{user.Id}}">Detail</a>
+				<a routerLink="/Users/Edit/{{user.Id}}">Edit</a>
+			</td>
+		</tr>		
+	</table>
+</div>
+

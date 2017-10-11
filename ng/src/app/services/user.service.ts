@@ -25,8 +25,43 @@ export class UserService {
   	let parms = "UserName=" + username + "&Password=" + password;
   	return this.http.get(url+'Login?'+parms)
   		.toPromise()
-  		//The .then determines what a Promise returns
+  		//The .then determines what a Promise returns, in this case, the user
   		.then(resp => resp.json() as User[])
+  		.catch(this.handleError);
+  }
+
+  list():Promise<User[]>{
+  	return this.http.get(url+'List')
+  		.toPromise()
+  		//This .then returns a list of the users
+  		.then(resp => resp.json() as User[])
+  		.catch(this.handleError);
+  }
+
+  get(id): Promise<User>{
+  	return this.http.get(url+'Get/'+ id)
+  		.toPromise()
+  		//The .then determines what a Promise returns, in this case, a specified user
+  		.then(resp => resp.json() as User)
+  		.catch(this.handleError);
+  }
+
+  change(user: User): Promise<User>{
+  	// This function requires the user to be passed in, so we can change it
+  		//Because we are making a change, just like when we use the Postman app,
+  		//we need to use "post" instead of "get"
+	return this.http.post(url+'Change', user)
+  		.toPromise()
+  		//The .then determines what a Promise returns, in this case, a specified user
+  		.then(resp => resp.json() || {})
+  		.catch(this.handleError);
+  }
+
+  add(user: User): Promise<User>{
+  	return this.http.post(url+'Add', user)
+  		.toPromise()
+  		//The .then determines what a Promise returns, in this case, a specified user
+  		.then(resp => resp.json() || {})
   		.catch(this.handleError);
   }
   

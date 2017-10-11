@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">User Details</span>
+	</div>
+
+	<!-- This makes an asynchronous call to the users[] in user-list.component.ts
+		If the users[] is not null, then we can do something with it -->
+	<table class="table" *ngIf="user">
+			<!-- These table data entries are straightforward, we are calling the user data -->
+			<tr><th>Name:</th><td>{{user.FirstName}} {{user.LastName}}</td></tr>
+			<tr><th>User name:</th><td>{{user.UserName}}</td></tr>
+			<tr><th>Phone:</th><td>{{user.Phone}}</td></tr>
+			<tr><th>Email:</th><td>{{user.Email}}</td></tr>
+			<!-- If the user is, or is not, a reviewer/admin will determine what is shown under those headers-->
+			<tr><th>Reviewer?</th><td>{{user.IsReviewer}}</td></tr>
+			<tr><th>Admin?</th><td>{{user.IsAdmin}}</td></tr>
+			<!-- We'll use the anchors below to set up the Detail and Edit links -->
+			<tr>
+				<a routerLink="/Users/Edit/{{user.Id}}" class="col-md-1 btn btn-primary" role="button">Edit</a>
+			</tr>
+	</table>
+</div>
+

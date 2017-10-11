@@ -21,6 +21,10 @@ import { ReviewComponent } from './review/review.component';
 //This is a service that can be used by multiple components, so it
 //needs to be list below, in the providers
 import {UserService} from './services/user.service';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
 
 
 //In Angular, anything with @ is a decorator.  Unlike almost
@@ -30,7 +34,7 @@ import {UserService} from './services/user.service';
 @NgModule({
   //These declared classes are visible within the module but invisible to components in a different 
   //module unless they are exported from this module and the other module imports this one.
-  declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, UserComponent, LoginComponent, VendorComponent, ProductComponent, RequestComponent, ReviewComponent],
+  declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, UserComponent, LoginComponent, VendorComponent, ProductComponent, RequestComponent, ReviewComponent, UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 
   //component templates declared in this module.
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpModule],

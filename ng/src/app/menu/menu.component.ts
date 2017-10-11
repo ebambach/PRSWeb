@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
 	//"What the link says when you hover over it with the mouse(also the href),"
 	//and the tooltip)
 	new Menu("Home", "/Home", "Home menu item"),
-	new Menu("User", "/User", "User menu item"),
+	new Menu("Users", "/Users", "Users menu item"),
 	new Menu("Vendor", "/Vendor", "Vendor menu item"),
 	new Menu("Product", "/Product", "Product menu item"),
 	new Menu("Request", "/Request", "Request menu item"),

@@ -49,9 +49,9 @@ export class LoginComponent implements OnInit {
 	//Else, the user information will be logged to the console.
 	checkData(users: User[]): void{
 		if(users.length > 0){
-			this.user = users[0];
+			//this.user = users[0];
 			
-			this.router.navigateByUrl("/home");
+			this.router.navigateByUrl("/Home");
 		}else{
 			this.message = "This User Name and Password combination was not found";
 		}
