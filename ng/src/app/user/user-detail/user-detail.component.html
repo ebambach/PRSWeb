@@ -6,6 +6,7 @@
 
 	<!-- This makes an asynchronous call to the users[] in user-list.component.ts
 		If the users[] is not null, then we can do something with it -->
+	<div>
 	<table class="table" *ngIf="user">
 			<!-- These table data entries are straightforward, we are calling the user data -->
 			<tr><th>Name:</th><td>{{user.FirstName}} {{user.LastName}}</td></tr>
@@ -20,5 +21,10 @@
 				<a routerLink="/Users/Edit/{{user.Id}}" class="col-md-1 btn btn-primary" role="button">Edit</a>
 			</tr>
 	</table>
+	</div>
+
+	<div class='text-left'>
+		<button (click)='remove()' class='btn btn-danger'>Delete this User</button>
+	</div>
 </div>
 

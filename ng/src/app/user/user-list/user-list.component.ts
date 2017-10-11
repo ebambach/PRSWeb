@@ -5,7 +5,6 @@ import 'rxjs/add/operator/toPromise';
 import {User} from '../../models/User';
 import {UserService} from '../../services/user.service';
 
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',

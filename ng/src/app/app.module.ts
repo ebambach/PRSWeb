@@ -21,10 +21,15 @@ import { ReviewComponent } from './review/review.component';
 //This is a service that can be used by multiple components, so it
 //needs to be list below, in the providers
 import {UserService} from './services/user.service';
+import {VendorService} from './services/vendor.service';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
+import { VendorListComponent } from './vendor/vendor-list/vendor-list.component';
+import { VendorEditComponent } from './vendor/vendor-edit/vendor-edit.component';
+import { VendorDetailComponent } from './vendor/vendor-detail/vendor-detail.component';
+import { VendorAddComponent } from './vendor/vendor-add/vendor-add.component';
 
 
 //In Angular, anything with @ is a decorator.  Unlike almost
@@ -34,12 +39,12 @@ import { UserAddComponent } from './user/user-add/user-add.component';
 @NgModule({
   //These declared classes are visible within the module but invisible to components in a different 
   //module unless they are exported from this module and the other module imports this one.
-  declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, UserComponent, LoginComponent, VendorComponent, ProductComponent, RequestComponent, ReviewComponent, UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent],
+  declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, UserComponent, LoginComponent, VendorComponent, ProductComponent, RequestComponent, ReviewComponent, UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent, VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 
   //component templates declared in this module.
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpModule],
   //Services go here, they are items that can be used be multiple components.
-  providers: [UserService],
+  providers: [UserService, VendorService],
   // The bootstrap components are the ones that get started automatically when the app starts
   bootstrap: [AppComponent]
 })

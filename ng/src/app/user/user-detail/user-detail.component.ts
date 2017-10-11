@@ -16,6 +16,15 @@ export class UserDetailComponent implements OnInit {
 
 	user: User;
 
+  remove(){
+    console.log("remove()");
+    this.UserSvc.remove(this.user)
+      .then(resp => {
+        console.log(resp);
+        this.router.navigate(['/Users']);
+      });
+  }
+
   // This constructor will be used to pull the user out the route, but not just any user, a particular user
   constructor(private UserSvc: UserService, private router: Router, private route: ActivatedRoute) { }
 

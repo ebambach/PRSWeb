@@ -28,7 +28,7 @@
 	</div>
 
 	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-UserName">Last Name</label>
+		<label class='col-md-3 control-label' for="user-UserName">User Name</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='UserName' type="text" id="user-UserName"			
 			[(ngModel)]='user.UserName' placeholder="User Name">	
@@ -38,9 +38,9 @@
 	</div>
 
 	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-Password">Last Name</label>
+		<label class='col-md-3 control-label' for="user-Password">Password</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='Password' type="text" id="user-Password"			
+			<input class='form-control' name='Password' type="Password" id="user-Password"			
 			[(ngModel)]='user.Password' placeholder="Password">	
 			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
 				variable that the login.component.ts uses for the UserName-->

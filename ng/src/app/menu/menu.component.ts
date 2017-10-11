@@ -19,10 +19,10 @@ export class MenuComponent implements OnInit {
 	//and the tooltip)
 	new Menu("Home", "/Home", "Home menu item"),
 	new Menu("Users", "/Users", "Users menu item"),
-	new Menu("Vendor", "/Vendor", "Vendor menu item"),
-	new Menu("Product", "/Product", "Product menu item"),
-	new Menu("Request", "/Request", "Request menu item"),
-	new Menu("Review", "/Review", "Review menu item"),
+	new Menu("Vendor", "/Vendors", "Vendor menu item"),
+	new Menu("Product", "/Products", "Product menu item"),
+	new Menu("Request", "/Requests", "Request menu item"),
+	new Menu("Review", "/Reviews", "Review menu item"),
 	new Menu("About", "/About", "About menu item"),
 	new Menu("Login", "/Login", "Login to the app")
 	];

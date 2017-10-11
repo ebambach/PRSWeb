@@ -12,6 +12,7 @@ import {UserListComponent} from './user/user-list/user-list.component';
 import {UserDetailComponent} from './user/user-detail/user-detail.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UserAddComponent} from './user/user-add/user-add.component';
+import {VendorListComponent} from './vendor/vendor-list/vendor-list.component';
 
 const routes: Routes = [
 	//Redirects to home if blank
@@ -23,10 +24,10 @@ const routes: Routes = [
 	{path:"Users/Detail/:id", component:UserDetailComponent},
 	{path:"Users/Edit/:id", component:UserEditComponent},
 	{path:"Users/Add", component:UserAddComponent},
-	{path:"Product", component:ProductComponent},
-	{path:"Request", component:RequestComponent},
-	{path:"Review", component:ReviewComponent},
-	{path:"Vendor", component:VendorComponent}
+	{path:"Products", component:ProductComponent},
+	{path:"Requests", component:RequestComponent},
+	{path:"Reviews", component:ReviewComponent},
+	{path:"Vendors", component:VendorListComponent}
 ];
 //Because the NgModule needs to now about the routing, this gets
 //exported to the NgModule, as it's class name, AppRoutingModule
