@@ -1,3 +1,92 @@
-<p>
-  vendor-add works!
-</p>
+<app-menu></app-menu>
+<div class="form-horizontal" style="margin: 20px auto; width:70%;">
+	
+	<div style="text-align: center;"><span class="PageTitle">Add a Vendor</span></div>
+	<div style="text-align: center;">
+	<!-- This tag lets the vendor hit "enter" instead of actually clicking the button -->
+	<form *ngIf="vendor" style="display: inline-block; width: 50%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<!-- This grouping of code will be used for the Code field -->
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-Code">Code</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Code' type="text" id="vendor-Code"			
+			[(ngModel)]='vendor.Code' placeholder="Code">
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-Name">Name</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Name' type="text" id="vendor-Name"			
+			[(ngModel)]='vendor.Name' placeholder="Name">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-Address">Address</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Address' type="text" id="vendor-Address"			
+			[(ngModel)]='vendor.Address' placeholder="Address">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-City">City</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='City' type="City" id="vendor-City"			
+			[(ngModel)]='vendor.City' placeholder="City">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-State">State</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='State' type="text" id="vendor-State"			
+			[(ngModel)]='vendor.State' placeholder="State">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-Zip">Zip</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Zip' type="text" id="vendor-Zip"			
+			[(ngModel)]='vendor.Zip' placeholder="Zip">	
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-Phone">Phone</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Phone' type="text" id="vendor-Phone"			
+			[(ngModel)]='vendor.Phone' placeholder="Phone">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-Email">Email</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Email' type="text" id="vendor-Email"			
+			[(ngModel)]='vendor.Email' placeholder="Email">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="vendor-PreApproved">PreApproved?</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='PreApproved' type="text" id="vendor-PreApproved"			
+			[(ngModel)]='vendor.PreApproved' placeholder="PreApproved?">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<!-- This button calls the add function in the vendor-edit.component.ts file -->
+		<button (click)='add()' id='add' class='col-md-11 col-md-offset-1 btn btn-primary'>Add this Vendor</button>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-10 col-md-offset-1 text-left'>{{message}}&nbsp;</label>
+	</div>
+
+	</form>
+</div>

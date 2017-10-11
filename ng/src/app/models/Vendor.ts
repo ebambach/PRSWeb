@@ -3,10 +3,10 @@ export class Vendor{
 	Id: number;
 	Code: string;
 	Name: string;
-	Address: number;
+	Address: string;
 	City: string;
 	State: string;
-	Zip: number;
+	Zip: string;
 	Phone: string;
 	Email: string;
 	PreApproved: boolean;
@@ -15,10 +15,10 @@ export class Vendor{
 		Id: number,
 		Code: string,
 		Name: string,
-		Address: number,
+		Address: string,
 		City: string,
 		State: string,
-		Zip: number,
+		Zip: string,
 		Phone: string,
 		Email: string,
 		PreApproved: boolean
