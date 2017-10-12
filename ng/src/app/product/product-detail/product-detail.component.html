@@ -1,3 +1,29 @@
-<p>
-  product-detail works!
-</p>
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">Product Details</span>
+	</div>
+
+	<!-- This makes an asynchronous call to the products[] in product-list.component.ts
+		If the products[] is not null, then we can do something with it -->
+	<div>
+	<table class="table" *ngIf="product">
+			<!-- These table data entries are straightforward, we are calling the product data -->
+			<tr><th>Name:</th><td>{{product.Name}}</td></tr>
+			<tr><th>Vendor Part Number:</th><td>{{product.VendorPartNumber}}</td></tr>
+			<tr><th>Price:</th><td>{{product.Price}}</td></tr>
+			<tr><th>Unit:</th><td>{{product.Unit}}</td></tr>
+			<tr><th>Photopath:</th><td><a href="{{product.Photopath}}"><img src="../../assets/image.png" height="25" width="25"></a></td></tr>
+			<tr><th>Vendor:</th><td>{{product.Vendor.Name}}</td></tr>
+			<!-- We'll use the anchors below to set up the Detail and Edit links -->
+			<tr>
+				<a routerLink="/Products/Edit/{{product.Id}}" class="col-md-1 btn btn-primary" role="button">Edit</a>
+			</tr>
+	</table>
+	</div>
+
+	<div class='text-left'>
+		<button (click)='remove()' class='btn btn-danger'>Delete this Product</button>
+	</div>
+</div>
+

@@ -41,7 +41,7 @@ const routes: Routes = [
 	{path:"Vendors/Edit/:id", component:VendorEditComponent},
 	{path:"Vendors/Add", component:VendorAddComponent},
 
-	{path:"Products", component:ProductComponent},
+	{path:"Products", component:ProductListComponent},
 	{path:"Products/Detail/:id", component:ProductDetailComponent},
 	{path:"Products/Edit/:id", component:ProductEditComponent},
 	{path:"Products/Add", component:ProductAddComponent},

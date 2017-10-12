@@ -1,3 +1,45 @@
-<p>
-  product-list works!
-</p>
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">Product List</span>
+	</div>
+
+	<div class='form-group'>
+		<a routerLink="/Products/Add" class="col-md-1 btn btn-primary" role="button">Add a Product</a>
+	</div>
+	<!-- This makes an asynchronous call to the products[] in product-list.component.ts
+		If the products[] is not null, then we can do something with it -->
+	<table class="table" *ngIf="products">
+		<tr>
+			<!-- Table headers -->
+			<th>Name</th>
+			<th>Vendor Part Number</th>
+			<th>Price</th>
+			<th>Unit</th>
+			<th>Photo</th>
+			<!-- We don't want anyone using this product to actually see the 
+			Id for the Vendor, the user wants to see the name of the Vendor instead -->
+			<!-- <th>Vendor Id</th> -->
+			<th>Vendor</th>
+		</tr>
+
+		<tr *ngFor="let product of products">
+			<!-- These table data entries are straightforward, we are calling the product data -->
+			<td>{{product.Name}}</td>
+			<td>{{product.VendorPartNumber}}</td>
+			<td>{{product.Price}}</td>
+			<td>{{product.Unit}}</td>
+			<td><a href="{{product.Photopath}}"><img src="../../assets/image.png" height="25" width="25"></a></td>
+			<!-- <td>{{product.VendorId}}</td> -->
+			<td>{{product.Vendor.Name}}</td>
+			<!-- <td>{{product.Vendor}}</td> -->
+			<!-- We'll use the anchors below to set up the Detail and Edit links -->
+			<td>
+				<a routerLink="/Products/Detail/{{product.Id}}">Detail</a>
+				<a routerLink="/Products/Edit/{{product.Id}}">Edit</a>
+			</td>
+		</tr>		
+	</table>
+</div>
+
+

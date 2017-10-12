@@ -25,7 +25,7 @@ import {VendorService} from './services/vendor.service';
 import {ProductService} from './services/product.service';
 import {RequestService} from './services/request.service';
 import {ReviewService} from './services/review.service';
-
+import {SystemService} from './services/system.service';
 
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -53,6 +53,8 @@ import { ReviewEditComponent } from './review/review-edit/review-edit.component'
 import { ReviewListComponent } from './review/review-list/review-list.component';
 
 
+
+
 //In Angular, anything with @ is a decorator.  Unlike almost
 //everything else, this does not end with a ";"
 	//Decorator->Key->Component(s)
@@ -62,7 +64,7 @@ import { ReviewListComponent } from './review/review-list/review-list.component'
   //module unless they are exported from this module and the other module imports this one.
   declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, UserComponent, LoginComponent, VendorComponent, 
   ProductComponent, RequestComponent, ReviewComponent, 
-  
+
   UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent, 
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
   ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent, 
@@ -72,7 +74,7 @@ import { ReviewListComponent } from './review/review-list/review-list.component'
   //component templates declared in this module.
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpModule],
   //Services go here, they are items that can be used be multiple components.
-  providers: [UserService, VendorService, ProductService, RequestService, ReviewService],
+  providers: [UserService, VendorService, ProductService, RequestService, ReviewService, SystemService],
   // The bootstrap components are the ones that get started automatically when the app starts
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,8 @@ import 'rxjs/add/operator/toPromise';
 import {User} from '../models/User';
 import {UserService} from '../services/user.service';
 
+import {SystemService} from '../services/system.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,14 +52,16 @@ export class LoginComponent implements OnInit {
 	checkData(users: User[]): void{
 		if(users.length > 0){
 			//this.user = users[0];
-			
+			this.user = users[0];
+			this.SystemSvc.setLoggedIn(this.user);
 			this.router.navigateByUrl("/Home");
+			console.log("The currently logged in user is ", this.SystemSvc.getLoggedIn());
 		}else{
 			this.message = "This User Name and Password combination was not found";
 		}
 	}
 
-  constructor(private UserSvc: UserService, private router: Router) { }
+  constructor(private UserSvc: UserService, private SystemSvc: SystemService, private router: Router) { }
 
   ngOnInit() {
   }

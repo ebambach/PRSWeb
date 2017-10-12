@@ -1,3 +1,68 @@
-<p>
-  product-add works!
-</p>
+<app-menu></app-menu>
+<div class="form-horizontal" style="margin: 20px auto; width:70%;">
+	
+	<div style="text-align: center;"><span class="PageTitle">Add a Product</span></div>
+	<div style="text-align: center;">
+	<!-- This tag lets the product hit "enter" instead of actually clicking the button -->
+	<form *ngIf="product" style="display: inline-block; width: 50%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="product-Name">Name</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Name' type="text" id="product-Name"			
+			[(ngModel)]='product.Name' placeholder="Name">	
+		</div>
+	</div>
+
+	<!-- This grouping of code will be used for the VendorPartNumber field -->
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="product-VendorPartNumber">Vendor Part Number</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='VendorPartNumber' type="text" id="product-VendorPartNumber"			
+			[(ngModel)]='product.VendorPartNumber' placeholder="VendorPartNumber">
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="product-Price">Price</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Price' type="text" id="product-Price"			
+			[(ngModel)]='product.Price' placeholder="Price">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="product-Unit">Unit</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Unit' type="text" id="product-Unit"			
+			[(ngModel)]='product.Unit' placeholder="Unit">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="product-Photopath">Photopath</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Photopath' type="text" id="product-Photopath"			
+			[(ngModel)]='product.Photopath' placeholder="../../assets">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-3 control-label' for="product-VendorName">Vendor</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='VendorName' type="text" id="product-VendorName"			
+			[(ngModel)]='product.Vendor.Name' placeholder="VendorName">	
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<!-- This button calls the add function in the product-edit.component.ts file -->
+		<button (click)='add()' id='add' class='col-md-11 col-md-offset-1 btn btn-primary'>Add this Product</button>
+	</div>
+
+	<div class='form-group'>
+		<label class='col-md-10 col-md-offset-1 text-left'>{{message}}&nbsp;</label>
+	</div>
+
+	</form>
+</div>
