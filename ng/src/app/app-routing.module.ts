@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { ProductComponent } from './product/product.component';
 import { PurchaseRequestComponent } from './purchase-request/purchase-request.component';
-import { ReviewComponent } from './review/review.component';
 import { VendorComponent } from './vendor/vendor.component';
 
 import {UserListComponent} from './user/user-list/user-list.component';
@@ -27,12 +26,7 @@ import {ProductAddComponent} from './product/product-add/product-add.component';
 import {PurchaseRequestListComponent} from './purchase-request/purchase-request-list/purchase-request-list.component';
 import {PurchaseRequestDetailComponent} from './purchase-request/purchase-request-detail/purchase-request-detail.component';
 // import {PurchaseRequestEditComponent} from './purchase-request/purchase-request-edit/purchase-request-edit.component';
-// import {PurchaseRequestAddComponent} from './purchase-request/purchase-request-add/purchase-request-add.component';
-
-import {ReviewListComponent} from './review/review-list/review-list.component';
-import {ReviewDetailComponent} from './review/review-detail/review-detail.component';
-import {ReviewEditComponent} from './review/review-edit/review-edit.component';
-import {ReviewAddComponent} from './review/review-add/review-add.component';
+import {PurchaseRequestAddComponent} from './purchase-request/purchase-request-add/purchase-request-add.component';
 
 const routes: Routes = [
 	//Redirects to home if blank
@@ -59,12 +53,7 @@ const routes: Routes = [
 	{path:"Requests", component:PurchaseRequestListComponent},
 	{path:"Requests/Detail/:id", component:PurchaseRequestDetailComponent},
 	// {path:"Requests/Edit/:id", component:PurchaseRequestEditComponent},
-	// {path:"Requests/Add", component:PurchaseRequestAddComponent},
-
-	{path:"Reviews", component:ReviewListComponent},
-	{path:"Reviews/Detail/:id", component:ReviewDetailComponent},
-	{path:"Reviews/Edit/:id", component:ReviewEditComponent},
-	{path:"Reviews/Add", component:ReviewAddComponent}
+	{path:"Requests/Add", component:PurchaseRequestAddComponent}
 ];
 //Because the NgModule needs to now about the routing, this gets
 //exported to the NgModule, as it's class name, AppRoutingModule

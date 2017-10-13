@@ -33,10 +33,11 @@
 			<td>{{purchaserequest.SubmittedDate}}</td>
 			<td>{{purchaserequest.User.UserName}}</td>
 			<!-- We'll use the anchors below to set up the Detail and Edit links -->
-			<td>
-				<a routerLink="/Requests/Detail/{{purchaserequest.Id}}">Detail</a>
-				<a routerLink="/Requests/Edit/{{purchaserequest.Id}}">Approve</a>
+			<div class='form-group'>
+			<td>			
+				<a routerLink="/Requests/Detail/{{purchaserequest.Id}}" class="btn btn-info" role="button">Details</a>
 			</td>
+			</div>
 		</tr>		
 	</table>
 </div>

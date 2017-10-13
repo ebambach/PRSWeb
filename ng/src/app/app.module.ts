@@ -16,7 +16,6 @@ import { LoginComponent } from './login/login.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { ProductComponent } from './product/product.component';
 import { PurchaseRequestComponent } from './purchase-request/purchase-request.component';
-import { ReviewComponent } from './review/review.component';
 
 //These are services that can be used by multiple components, so they
 //needs to be listed below, in the providers
@@ -24,7 +23,6 @@ import {UserService} from './services/user.service';
 import {VendorService} from './services/vendor.service';
 import {ProductService} from './services/product.service';
 import {PurchaseRequestService} from './services/purchase-request.service';
-import {ReviewService} from './services/review.service';
 import {SystemService} from './services/system.service';
 
 import { UserListComponent } from './user/user-list/user-list.component';
@@ -42,16 +40,10 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 
-// import { PurchaseRequestAddComponent } from './purchase-request/purchase-request-add/purchase-request-add.component';
+import { PurchaseRequestAddComponent } from './purchase-request/purchase-request-add/purchase-request-add.component';
 import { PurchaseRequestDetailComponent } from './purchase-request/purchase-request-detail/purchase-request-detail.component';
 // import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
 import { PurchaseRequestListComponent } from './purchase-request/purchase-request-list/purchase-request-list.component';
-
-import { ReviewAddComponent } from './review/review-add/review-add.component';
-import { ReviewDetailComponent } from './review/review-detail/review-detail.component';
-import { ReviewEditComponent } from './review/review-edit/review-edit.component';
-import { ReviewListComponent } from './review/review-list/review-list.component';
-
 
 
 
@@ -63,19 +55,18 @@ import { ReviewListComponent } from './review/review-list/review-list.component'
   //These declared classes are visible within the module but invisible to components in a different 
   //module unless they are exported from this module and the other module imports this one.
   declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, UserComponent, LoginComponent, VendorComponent, 
-  ProductComponent, PurchaseRequestComponent, ReviewComponent, 
+  ProductComponent, PurchaseRequestComponent,
 
   UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent, 
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
   ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent, 
-  PurchaseRequestDetailComponent,// PurchaseRequestAddComponent, PurchaseRequestEditComponent, 
-  PurchaseRequestListComponent, 
-  ReviewListComponent, ReviewEditComponent, ReviewDetailComponent, ReviewAddComponent],
+  PurchaseRequestDetailComponent, PurchaseRequestAddComponent, //PurchaseRequestEditComponent, 
+  PurchaseRequestListComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 
   //component templates declared in this module.
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpModule],
   //Services go here, they are items that can be used be multiple components.
-  providers: [UserService, VendorService, ProductService, PurchaseRequestService, ReviewService, SystemService],
+  providers: [UserService, VendorService, ProductService, PurchaseRequestService, SystemService],
   // The bootstrap components are the ones that get started automatically when the app starts
   bootstrap: [AppComponent]
 })
