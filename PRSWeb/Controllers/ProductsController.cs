@@ -83,7 +83,6 @@ namespace PRSWeb.Controllers
 			tempProduct.Unit = product.Unit;
 			tempProduct.Photopath = product.Photopath;
 			tempProduct.VendorId = product.VendorId;
-			tempProduct.Vendor = product.Vendor;
 
 			//After we make entity framework track all of the fields we may or may not be
 			//changing, we use SaveChanges().

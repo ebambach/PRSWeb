@@ -14,8 +14,8 @@ import {ProductService} from '../../services/product.service';
 })
 export class ProductAddComponent implements OnInit {
 
-  vendor: Vendor;
-  product: Product = new Product(0, '', '', 0, '', 'photo', 0, this.vendor);
+  product: Product = new Product(0, '', '', 0, 'Each', '', 0);
+  vendors: Vendor[];
 
 	add(){
 		this.ProductSvc.add(this.product).then(
@@ -25,9 +25,15 @@ export class ProductAddComponent implements OnInit {
 			})
 	}
 
-  constructor(private ProductSvc: ProductService, private router: Router) { }
+	getVendors(): void {
+		this.VendorSvc.list()
+			.then(resp => this.vendors = resp);
+	}
+
+  constructor(private ProductSvc: ProductService, private VendorSvc: VendorService, private router: Router) { }
 
   ngOnInit() {
+  	this.getVendors();
   }
 
 }

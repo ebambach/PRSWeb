@@ -95,7 +95,6 @@ namespace PRSWeb.Controllers
 			tempPurchaseRequest.Total = purchaserequest.Total;
 			tempPurchaseRequest.SubmittedDate = purchaserequest.SubmittedDate;
 			tempPurchaseRequest.UserId = purchaserequest.UserId;
-			tempPurchaseRequest.User = purchaserequest.User;
 
 			//After we make entity framework track all of the fields we may or may not be
 			//changing, we use SaveChanges().

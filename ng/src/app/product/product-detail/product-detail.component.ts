@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
-import {Vendor} from '../../models/Vendor';
-import {VendorService} from '../../services/vendor.service';
-
 import {Product} from '../../models/Product';
 import {ProductService} from '../../services/product.service';
 
@@ -14,7 +11,6 @@ import {ProductService} from '../../services/product.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-	vendor: Vendor;
 	product: Product;
 
   remove(){

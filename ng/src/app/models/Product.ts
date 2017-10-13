@@ -1,4 +1,3 @@
-import {Vendor} from './Vendor';
 
 export class Product{
 
@@ -9,7 +8,6 @@ export class Product{
 	Unit: string;
 	Photopath: string;
 	VendorId: number;
-	Vendor: Vendor;
 
 	constructor(
 		Id: number,
@@ -19,7 +17,6 @@ export class Product{
 		Unit: string,
 		Photopath: string,
 		VendorId: number,
-		Vendor: Vendor
 	){
 		this.Id = Id;
 		this.VendorPartNumber = VendorPartNumber;
@@ -28,6 +25,5 @@ export class Product{
 		this.Unit = Unit;
 		this.Photopath = Photopath;
 		this.VendorId = VendorId;
-		this.Vendor = Vendor;
 	}
 }

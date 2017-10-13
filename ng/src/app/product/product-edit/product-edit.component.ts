@@ -18,7 +18,7 @@ export class ProductEditComponent implements OnInit {
 
 	//As with the the other components, we will create an instance
 	//of the class that we are working with.
-	vendor:Vendor;
+	vendors: Vendor[];
 	product:Product;
 
 	update(){
@@ -28,7 +28,13 @@ export class ProductEditComponent implements OnInit {
 		)
 	}
 
-  constructor(private ProductSvc: ProductService, private route: ActivatedRoute, private router: Router) { }
+	getVendors(): void {
+		this.VendorSvc.list()
+			.then(resp => this.vendors = resp);
+	}
+
+  constructor(private ProductSvc: ProductService, private VendorSvc: VendorService, 
+  	private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   	this.route.paramMap
@@ -36,6 +42,7 @@ export class ProductEditComponent implements OnInit {
   	 		this.ProductSvc.get(params.get('id')))
   	 	//Subscribe reads the data currently held by Product, and stores it in the product variable above
            .subscribe((product: Product) => this.product = product);
+    this.getVendors();
   }
 
 }

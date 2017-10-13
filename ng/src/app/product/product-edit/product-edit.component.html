@@ -47,11 +47,14 @@
 		</div>
 	</div>
 
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="product-VendorName">Vendor</label>
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="product-Vendor">Vendor</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='VendorName' type="text" id="product-VendorName"			
-			[(ngModel)]='product.Vendor.Name' placeholder="VendorName">	
+			<!-- Instead of allowing the user to type in a Vendor, here we use the VendorId
+			to display the each "vendor of vendors" in a drop down list -->
+			<select [(ngModel)]='product.VendorId' class='form-control' name='Vendor' id='product-Vendor'>
+				<option *ngFor="let vendor of vendors" [ngValue]="vendor.Id">{{vendor.Name}}</option>
+			</select>
 		</div>
 	</div>
 
@@ -65,4 +68,5 @@
 	</div>
 
 	</form>
+	</div>
 </div>
