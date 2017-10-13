@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">Purchase Request Details</span>
+	</div>
+
+	<!-- This makes an asynchronous call to the purchaserequests[] in purchaserequest-list.component.ts
+		If the purchaserequests[] is not null, then we can do something with it -->
+	<div>
+	<table class="table" *ngIf="purchaserequest">
+			<!-- These table data entries are straightforward, we are calling the purchaserequest data -->
+			<tr><th>Description:</th><td>{{purchaserequest.Description}}</td></tr>
+			<tr><th>Justification:</th><td>{{purchaserequest.Justification}}</td></tr>
+			<tr><th>Date Needed:</th><td>{{purchaserequest.DateNeeded}}</td></tr>
+			<tr><th>Delivery Mode:</th><td>{{purchaserequest.DeliveryMode}}</td></tr>
+			<tr><th>Status:</th><td>{{purchaserequest.Status}}</td></tr>
+			<tr><th>Total:</th><td>{{purchaserequest.Total}}</td></tr>
+			<tr><th>Submitted Date:</th><td>{{purchaserequest.SubmittedDate}}</td></tr>
+			<tr><th>User:</th><td>{{purchaserequest.User.UserName}}</td></tr>
+			
+	</table>
+	</div>
+
+	<div class='text-left'>
+		<!-- Need to change what (click) does, both here and in the service -->
+		<button (click)='remove()' class='btn btn-primary'>Approve this Purchase Request</button>
+		<button (click)='remove()' class='btn btn-danger'>Reject this Purchase Request</button>
+	</div>
+</div>
+

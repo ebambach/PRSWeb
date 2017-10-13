@@ -1,0 +1,44 @@
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">Request List</span>
+	</div>
+
+	<div class='form-group'>
+		<a routerLink="/Requests/Add" class="col-md-1 btn btn-primary" role="button">Add a Request</a>
+	</div>
+	<!-- This makes an asynchronous call to the purchaserequests[] in purchaserequest-list.component.ts
+		If the purchaserequests[] is not null, then we can do something with it -->
+	<table class="table" *ngIf="purchaserequests">
+		<tr>
+			<!-- Table headers -->
+			<th>Description</th>
+			<th>Justification</th>
+			<th>Date Needed</th>
+			<th>Delivery Mode</th>
+			<th>Status</th>
+			<th>Total</th>
+			<th>Submitted Date</th>
+			<th>User</th>
+		</tr>
+
+		<tr *ngFor="let purchaserequest of purchaserequests">
+			<!-- These table data entries are straightforward, we are calling the purchaserequest data -->
+			<td>{{purchaserequest.Description}}</td>
+			<td>{{purchaserequest.Justification}}</td>
+			<td>{{purchaserequest.DateNeeded}}</td>
+			<td>{{purchaserequest.DeliveryMode}}</td>
+			<td>{{purchaserequest.Status}}</td>			
+			<td>{{purchaserequest.Total}}</td>
+			<td>{{purchaserequest.SubmittedDate}}</td>
+			<td>{{purchaserequest.User.UserName}}</td>
+			<!-- We'll use the anchors below to set up the Detail and Edit links -->
+			<td>
+				<a routerLink="/Requests/Detail/{{purchaserequest.Id}}">Detail</a>
+				<a routerLink="/Requests/Edit/{{purchaserequest.Id}}">Approve</a>
+			</td>
+		</tr>		
+	</table>
+</div>
+
+
