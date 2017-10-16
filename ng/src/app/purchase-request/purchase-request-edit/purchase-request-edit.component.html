@@ -61,18 +61,29 @@
 				[(ngModel)]='purchaserequest.SubmittedDate' placeholder="SubmittedDate">
 		</div>
 	</div>
-
+	
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-User">User</label>
 		<div class='col-md-9'>
 			<input class='form-control' readonly name='User' type='text' id='purchaserequest-User' 
-				value='{{loggedInUser.UserName}}' placeholder="User">
+				[(ngModel)]='purchaserequest.User.UserName' placeholder="User">
 		</div>
 	</div>
 
-	<div class='form-group'>
-		<button (click)='add()' id='approve' class='col-md-5 col-md-offset-1 btn btn-primary'>Approve</button>
-		<button (click)='add()' id='reject' class='col-md-5 col-md-offset-1 btn btn-danger'>Reject</button>
+	<!-- To use *ngIf="purchaserequest.User.UserName != loggedInUser.UserName" we had to take several steps.
+	
+	First, we had to make sure we gave this div a name.  
+	
+	We needed to make sure that purchaserequest.User.UserName meant something by using [(ngModel)]='purchaserequest.User.UserName'
+
+	Finally, we needed to use ngDefaultControl.
+
+	Without doing all of these things, we would get errors in the console (need to look up why
+	step 1 and 3 were needed, as of writing, the reasoning is not understood).
+	 -->
+	<div class='form-group' name="UserName" [(ngModel)]='purchaserequest.User.UserName' ngDefaultControl *ngIf="purchaserequest.User.UserName != loggedInUser.UserName" >
+		<button (click)='update()' id='approve' class='col-md-5 col-md-offset-1 btn btn-primary'>Approve</button>
+		<button (click)='update()' id='reject' class='col-md-5 col-md-offset-1 btn btn-danger'>Reject</button>
 	</div>
 
 	<div class='form-group' >
@@ -84,7 +95,9 @@
 	</div>
 </div>
 
-<div *ngIf='loggedInUser.IsReviewer == false'>
-	<p>This page will only display information for a user with Reviewer priveleges.<br>
+<!-- With all of the checks in the Typescript, and in the check in the purchase-request-list.component.html,
+someone who is not logged in, or a Reviewer, should never see this, but we will put this here, just in case. -->
+<div *ngIf="loggedInUser.IsReviewer == false">
+	<p>This page will only display information for a Reviewer account.<br>
 	Please confirm that you are logged in with the correct account.</p>
 </div>
