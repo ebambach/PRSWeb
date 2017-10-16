@@ -3,6 +3,8 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 import {Vendor} from '../../models/Vendor';
 import {VendorService} from '../../services/vendor.service';
+import {User} from '../../models/User';
+import {SystemService} from '../../services/system.service';
 
 @Component({
   selector: 'app-vendor-add',
@@ -10,6 +12,7 @@ import {VendorService} from '../../services/vendor.service';
   styleUrls: ['./vendor-add.component.css']
   })
 export class VendorAddComponent implements OnInit {
+  loggedInUser: User;
 
   //Unlike when we added blank fields to a new user, there are more fields,
   //and there is only one boolean.
@@ -23,9 +26,16 @@ export class VendorAddComponent implements OnInit {
 			})
 	}
 
-  constructor(private VendorSvc: VendorService, private router: Router) { }
+  constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, private router: Router) { }
 
   ngOnInit() {
+    if(!this.SystemSvc.IsLoggedIn()) {
+       this.router.navigateByUrl("\Login");
+    } else {
+      this.loggedInUser = this.SystemSvc.getLoggedIn();
+      console.log("The logged in User is " + this.loggedInUser.UserName);
+    }
+    
   }
 
 }

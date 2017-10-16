@@ -35,7 +35,7 @@ export class PurchaseRequestDetailComponent implements OnInit {
        this.router.navigateByUrl("\Login");
     } else {
       this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser);
+      console.log("The logged in User is " + this.loggedInUser.UserName);
     }
 
   	 this.route.paramMap

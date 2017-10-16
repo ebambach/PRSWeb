@@ -3,6 +3,8 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 import {User} from '../../models/User';
 import {UserService} from '../../services/user.service';
+import {SystemService} from '../../services/system.service';
+
 
 @Component({
   selector: 'app-user-add',
@@ -10,7 +12,7 @@ import {UserService} from '../../services/user.service';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-
+	loggedInUser: User;
 	//Fills in the add() fields with blank spaces, and sets the IsReviewer and IsAdmin
 	//false by default
 	user: User = new User(0, '', '', '', '', '', '', false, false);
@@ -23,9 +25,15 @@ export class UserAddComponent implements OnInit {
 			})
 	}
 
-  constructor(private UserSvc: UserService, private router: Router) { }
+  constructor(private SystemSvc: SystemService, private UserSvc: UserService, private router: Router) { }
 
   ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+       this.router.navigateByUrl("\Login");
+    } else {
+      this.loggedInUser = this.SystemSvc.getLoggedIn();
+      console.log("The logged in User is " + this.loggedInUser.UserName);
+    }
   }
 
 }

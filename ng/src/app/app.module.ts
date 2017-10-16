@@ -42,7 +42,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 
 import { PurchaseRequestAddComponent } from './purchase-request/purchase-request-add/purchase-request-add.component';
 import { PurchaseRequestDetailComponent } from './purchase-request/purchase-request-detail/purchase-request-detail.component';
-// import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
+import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
 import { PurchaseRequestListComponent } from './purchase-request/purchase-request-list/purchase-request-list.component';
 
 
@@ -60,7 +60,7 @@ import { PurchaseRequestListComponent } from './purchase-request/purchase-reques
   UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent, 
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
   ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent, 
-  PurchaseRequestDetailComponent, PurchaseRequestAddComponent, //PurchaseRequestEditComponent, 
+  PurchaseRequestDetailComponent, PurchaseRequestAddComponent, PurchaseRequestEditComponent, 
   PurchaseRequestListComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 
   //component templates declared in this module.

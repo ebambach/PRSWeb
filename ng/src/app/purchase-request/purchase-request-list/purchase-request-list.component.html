@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<div *ngIf='loggedInUser.IsReviewer == true'>
+<div>
 	<div>
 		<span class="PageTitle">Request List</span>
 	</div>
@@ -36,6 +36,7 @@
 			<div class='form-group'>
 			<td>			
 				<a routerLink="/Requests/Detail/{{purchaserequest.Id}}" class="btn btn-info" role="button">Details</a>
+				<a div *ngIf='loggedInUser.IsReviewer == true' routerLink="/Requests/Edit/{{purchaserequest.Id}}">Review</a>
 			</td>
 			</div>
 		</tr>		

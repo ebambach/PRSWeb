@@ -25,12 +25,12 @@ import {ProductAddComponent} from './product/product-add/product-add.component';
 
 import {PurchaseRequestListComponent} from './purchase-request/purchase-request-list/purchase-request-list.component';
 import {PurchaseRequestDetailComponent} from './purchase-request/purchase-request-detail/purchase-request-detail.component';
-// import {PurchaseRequestEditComponent} from './purchase-request/purchase-request-edit/purchase-request-edit.component';
+import {PurchaseRequestEditComponent} from './purchase-request/purchase-request-edit/purchase-request-edit.component';
 import {PurchaseRequestAddComponent} from './purchase-request/purchase-request-add/purchase-request-add.component';
 
 const routes: Routes = [
 	//Redirects to home if blank
-	{path:"", redirectTo:"/Home,", pathMatch:"full"},
+	{path:"", redirectTo:"/Home", pathMatch:"full"},
 	{path:"Home", component:HomeComponent},
 	{path:"About", component:AboutComponent},
 	{path:"Login", component:LoginComponent},
@@ -52,7 +52,7 @@ const routes: Routes = [
 
 	{path:"Requests", component:PurchaseRequestListComponent},
 	{path:"Requests/Detail/:id", component:PurchaseRequestDetailComponent},
-	// {path:"Requests/Edit/:id", component:PurchaseRequestEditComponent},
+	{path:"Requests/Edit/:id", component:PurchaseRequestEditComponent},
 	{path:"Requests/Add", component:PurchaseRequestAddComponent}
 ];
 //Because the NgModule needs to now about the routing, this gets

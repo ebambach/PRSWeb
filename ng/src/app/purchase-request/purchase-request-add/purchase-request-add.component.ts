@@ -22,7 +22,7 @@ export class PurchaseRequestAddComponent implements OnInit {
     this.PurchaseRequestSvc.add(this.purchaserequest).then(
       resp => { 
         // console.log(resp); 
-        this.router.navigate(["/purchaserequests"]); 
+        this.router.navigate(["/Requests"]); 
       }
     );
   }
@@ -40,8 +40,7 @@ export class PurchaseRequestAddComponent implements OnInit {
       return date;
   }
 
-  constructor(private PurchaseRequestSvc: PurchaseRequestService, 
-        private SystemSvc: SystemService,
+  constructor(private PurchaseRequestSvc: PurchaseRequestService, private SystemSvc: SystemService,
         private router: Router) { }
 
   ngOnInit() {
@@ -49,7 +48,7 @@ export class PurchaseRequestAddComponent implements OnInit {
        this.router.navigateByUrl("\Login");
     } else {
       this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser);
+      console.log("The logged in User is " + this.loggedInUser.UserName);
       this.purchaserequest.UserId = this.loggedInUser.Id;
     }
   }
