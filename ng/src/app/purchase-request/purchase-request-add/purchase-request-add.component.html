@@ -1,4 +1,5 @@
 <app-menu></app-menu>
+
 <div class="form-horizontal" style="margin: 20px auto; width:70%;">
 	
 	<div style="text-align: center;"><span class="PageTitle">Add a Purchase Request</span></div>
@@ -41,7 +42,7 @@
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-Status">Status</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='Status' type='text' id='purchaserequest-Status' 
+			<input class='form-control' readonly="New" name='Status' type='text' id='purchaserequest-Status' 
 				[(ngModel)]='purchaserequest.Status' placeholder="Status">
 		</div>
 	</div>
@@ -62,12 +63,12 @@
 		</div>
 	</div>
 
+	<!-- Needs to be switched to logged in User, readonly -->
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-User">User</label>
 		<div class='col-md-9'>
-			<select [(ngModel)]='purchaserequest.UserId' class='form-control' name='User' id='purchaserequest-User'>
-				<option *ngFor="let user of users" [ngValue]="user.Id">{{user.UserName}}</option>
-			</select>
+			<input class='form-control' readonly name='User' type='text' id='purchaserequest-User' 
+				value='{{loggedInUser.UserName}}' placeholder="User">
 		</div>
 	</div>
 

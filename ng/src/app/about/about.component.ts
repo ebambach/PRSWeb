@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+
+
+import {SystemService} from '../services/system.service';
+import {User} from '../models/User';
+
 
 @Component({
   selector: 'app-about',
@@ -7,9 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+loggedInUser: User;
+
+
+  constructor(private SystemSvc: SystemService, private router: Router) { }
 
   ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+       this.router.navigateByUrl("\Login");
+    } else {
+      this.loggedInUser = this.SystemSvc.getLoggedIn();
+      console.log("The logged in User is " + this.loggedInUser);
+    }
   }
 
 }

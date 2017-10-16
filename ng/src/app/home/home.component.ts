@@ -19,10 +19,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   	//This code reroutes the user to the Login page if a specific user is
   	//not currently logged in.  UNCOMMENT when testing is done!
-  	// if (!this.SystemSvc.IsLoggedIn()){
-  	// 	this.router.navigateByUrl('/Login');
-  	// }
-  	this.loggedInUser = this.SystemSvc.getLoggedIn();
-  }
+  	if(!this.SystemSvc.IsLoggedIn()) {
+       this.router.navigateByUrl("\Login");
+    } else {
+      this.loggedInUser = this.SystemSvc.getLoggedIn();
+      console.log("The logged in User is " + this.loggedInUser);
+    }
 
+  }
 }
