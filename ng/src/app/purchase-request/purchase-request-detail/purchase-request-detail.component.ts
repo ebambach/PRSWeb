@@ -17,14 +17,14 @@ export class PurchaseRequestDetailComponent implements OnInit {
 	purchaserequest: PurchaseRequest;
   loggedInUser: User;
 
-  // remove(){
-  //   console.log("remove()");
-  //   this.PurchaseRequestSvc.remove(this.purchaserequest)
-  //     .then(resp => {
-  //       console.log(resp);
-  //       this.router.navigate(['/PurchaseRequests']);
-  //     });
-  // }
+  remove(){
+    console.log("remove()");
+    this.PurchaseRequestSvc.remove(this.purchaserequest)
+      .then(resp => {
+        console.log(resp);
+        this.router.navigate(['/Requests']);
+      });
+  }
 
   // This constructor will be used to pull the purchaserequest out the route, but not just any purchaserequest, a particular purchaserequest
   constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 

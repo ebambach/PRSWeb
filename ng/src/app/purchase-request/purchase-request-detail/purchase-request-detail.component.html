@@ -17,13 +17,12 @@
 			<tr><th>Total:</th><td>{{purchaserequest.Total}}</td></tr>
 			<tr><th>Submitted Date:</th><td>{{purchaserequest.SubmittedDate}}</td></tr>
 			<tr><th>User:</th><td>{{purchaserequest.User.UserName}}</td></tr>
-			
+			<div class='form-group'>
+				<a routerLink="/Requests/Edit/{{purchaserequest.Id}}" class="col-md-3 btn btn-primary" role="button">Edit</a>
+				<button (click)='remove()' class='col-md-3 btn btn-danger'>Delete this Request</button>
+			</div>
 	</table>
 	</div>
-
-	<div class='text-left'>
-		<!-- Need to change what (click) does, both here and in the service -->
-		<!-- <button (click)='remove()' class='btn btn-primary'>Review this Purchase Request</button> -->
-	</div>
+	
 </div>
 

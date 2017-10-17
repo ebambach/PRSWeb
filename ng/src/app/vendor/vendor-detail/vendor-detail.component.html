@@ -19,15 +19,12 @@
 			<tr><th>Email:</th><td>{{vendor.Email}}</td></tr>
 			<!-- If the vendor is, or is not, a PreApproved Vendor, this will determine what is shown under those headers-->
 			<tr><th>PreApproved?</th><td>{{vendor.PreApproved}}</td></tr>
-			<!-- We'll use the anchors below to set up the Detail and Edit links -->
-			<tr>
-				<a routerLink="/Vendors/Edit/{{vendor.Id}}" class="col-md-1 btn btn-primary" role="button">Edit</a>
-			</tr>
+			<div class='form-group'>
+				<a routerLink="/Vendors/Edit/{{vendor.Id}}" class="col-md-3 btn btn-primary" role="button">Edit</a>
+				<button (click)='remove()' class='col-md-3 btn btn-danger'>Delete this Vendor</button>
+			</div>
 	</table>
 	</div>
 
-	<div class='text-left'>
-		<button (click)='remove()' class='btn btn-danger'>Delete this Vendor</button>
-	</div>
 </div>
 

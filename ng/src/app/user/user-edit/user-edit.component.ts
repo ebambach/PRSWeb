@@ -24,7 +24,12 @@ export class UserEditComponent implements OnInit {
 		)
 	}
 
-  constructor(private SystemSvc: SystemService, private UserSvc: UserService, private route: ActivatedRoute, private router: Router) { }
+  cancel(){
+    this.router.navigate(['/Users'])
+  }
+
+  constructor(private SystemSvc: SystemService, private UserSvc: UserService, 
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     if(!this.SystemSvc.IsLoggedIn()) {

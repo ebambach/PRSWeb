@@ -52,12 +52,12 @@ export class PurchaseRequestService {
   		.catch(this.handleError);
   }
 
-  // remove(purchaserequest: PurchaseRequest): Promise<any>{
-  // 	return this.http.post(url+'Remove', purchaserequest)
-  // 		.toPromise()
-  // 		.then(resp => resp.json() || {})
-  // 		.catch(this.handleError);
-  // }
+  remove(purchaserequest: PurchaseRequest): Promise<any>{
+  	return this.http.post(url+'Remove', purchaserequest)
+  		.toPromise()
+  		.then(resp => resp.json() || {})
+  		.catch(this.handleError);
+  }
   
   //This private function takes a parameter called error, of type
   //any (a generic type, because we don't know what it could be).

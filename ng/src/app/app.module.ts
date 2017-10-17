@@ -63,11 +63,14 @@ import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-
   ProductComponent, PurchaseRequestComponent,
 
   UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent, 
+  
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
-  ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent, 
-  PurchaseRequestDetailComponent, PurchaseRequestAddComponent, PurchaseRequestEditComponent, 
-  PurchaseRequestReviewComponent, 
-  PurchaseRequestListComponent, 
+
+  ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent,
+
+  PurchaseRequestAddComponent, PurchaseRequestDetailComponent, PurchaseRequestEditComponent, 
+  PurchaseRequestReviewComponent,  PurchaseRequestListComponent,
+  
   PurchaseRequestLineItemListComponent, PurchaseRequestLineItemEditComponent,
   PurchaseRequestLineItemReviewComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 

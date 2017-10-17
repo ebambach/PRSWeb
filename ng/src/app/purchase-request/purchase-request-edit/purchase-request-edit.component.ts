@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { PurchaseRequestService } from '../../services/purchase-request.service';
 
 import 'rxjs/add/operator/switchMap';
 
 import {PurchaseRequest} from '../../models/PurchaseRequest';
-
-import {User} from '../../models/User';
+import {PurchaseRequestService} from '../../services/purchase-request.service';
 import {SystemService} from '../../services/system.service';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-purchase-request-edit',
@@ -16,17 +15,17 @@ import {SystemService} from '../../services/system.service';
 })
 export class PurchaseRequestEditComponent implements OnInit {
 
-	purchaseRequest: PurchaseRequest; 
+	purchaserequest: PurchaseRequest; 
 	loggedInUser: User;
 
 	update() {
-		this.PurchaseRequestSvc.change(this.purchaseRequest).then(
+		this.PurchaseRequestSvc.change(this.purchaserequest).then(
 			resp => { 
 				console.log(resp); 
-				this.router.navigate(['/purchaseRequests']) 
+				this.router.navigate(['/Requests']) 
 			}
 		)
-	}	
+	}
 
   constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
   			private route: ActivatedRoute, private router: Router) { }
@@ -42,7 +41,7 @@ export class PurchaseRequestEditComponent implements OnInit {
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.PurchaseRequestSvc.get(params.get('id')))
-		.subscribe((purchaseRequest: PurchaseRequest) => this.purchaseRequest = purchaseRequest);  
+		.subscribe((purchaserequest: PurchaseRequest) => this.purchaserequest = purchaserequest);  
 
 	}
 
