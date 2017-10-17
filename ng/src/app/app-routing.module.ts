@@ -26,6 +26,7 @@ import {ProductAddComponent} from './product/product-add/product-add.component';
 import {PurchaseRequestListComponent} from './purchase-request/purchase-request-list/purchase-request-list.component';
 import {PurchaseRequestDetailComponent} from './purchase-request/purchase-request-detail/purchase-request-detail.component';
 import {PurchaseRequestEditComponent} from './purchase-request/purchase-request-edit/purchase-request-edit.component';
+import {PurchaseRequestReviewComponent} from './purchase-request/purchase-request-review/purchase-request-review.component';
 import {PurchaseRequestAddComponent} from './purchase-request/purchase-request-add/purchase-request-add.component';
 
 import {PurchaseRequestLineItemAddComponent} from './purchase-request-line-items/purchase-request-line-item-add/purchase-request-line-item-add.component';
@@ -58,6 +59,7 @@ const routes: Routes = [
 	{path:"Requests", component:PurchaseRequestListComponent},
 	{path:"Requests/Detail/:id", component:PurchaseRequestDetailComponent},
 	{path:"Requests/Edit/:id", component:PurchaseRequestEditComponent},
+	{path:"Requests/Review/:id", component:PurchaseRequestReviewComponent},
 	{path:"Requests/Add", component:PurchaseRequestAddComponent}
 ];
 //Because the NgModule needs to now about the routing, this gets

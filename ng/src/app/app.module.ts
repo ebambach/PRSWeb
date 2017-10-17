@@ -44,6 +44,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { PurchaseRequestAddComponent } from './purchase-request/purchase-request-add/purchase-request-add.component';
 import { PurchaseRequestDetailComponent } from './purchase-request/purchase-request-detail/purchase-request-detail.component';
 import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
+import { PurchaseRequestReviewComponent } from './purchase-request/purchase-request-review/purchase-request-review.component';
 import { PurchaseRequestListComponent } from './purchase-request/purchase-request-list/purchase-request-list.component';
 
 import { PurchaseRequestLineItemAddComponent } from './purchase-request-line-items/purchase-request-line-item-add/purchase-request-line-item-add.component';
@@ -65,6 +66,7 @@ import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
   ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent, 
   PurchaseRequestDetailComponent, PurchaseRequestAddComponent, PurchaseRequestEditComponent, 
+  PurchaseRequestReviewComponent, 
   PurchaseRequestListComponent, 
   PurchaseRequestLineItemListComponent, PurchaseRequestLineItemEditComponent,
   PurchaseRequestLineItemReviewComponent],

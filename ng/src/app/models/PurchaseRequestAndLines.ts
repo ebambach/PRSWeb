@@ -3,5 +3,5 @@ import { PurchaseRequestLineItem } from './PurchaseRequestLineItem';
 
 export class PurchaseRequestAndLines{
 	PurchaseRequest: PurchaseRequest;
-	PurchaseRequestLinesItems: PurchaseRequestLinesItem[];
+	PurchaseRequestLineItems: PurchaseRequestLineItem[];
 }

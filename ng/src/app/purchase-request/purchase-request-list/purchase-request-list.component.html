@@ -32,11 +32,19 @@
 			<td>{{purchaserequest.Total}}</td>
 			<td>{{purchaserequest.SubmittedDate}}</td>
 			<td>{{purchaserequest.User.UserName}}</td>
-			<!-- We'll use the anchors below to set up the Detail and Edit links -->
+			<!-- We'll use the anchors below to set up the Detail, Edit and Review links -->
 			<div class='form-group'>
 			<td>			
-				<a routerLink="/Requests/Detail/{{purchaserequest.Id}}" class="btn btn-info" role="button">Details</a>
-				<a div *ngIf='loggedInUser.IsReviewer == true' routerLink="/Requests/Edit/{{purchaserequest.Id}}">Review</a>
+				<a routerLink="/Requests/Detail/{{purchaserequest.Id}}">Details</a>
+				<a routerLink="/Requests/Edit/{{purchaserequest.Id}}">Edit</a>
+				<!-- There are two things we check before letting a user click on the anchor that lets them
+				review a request.  Number one, are they the same user that placed a request?  If so, they
+				are not allowed to review that request, so we don't let them click the anchor.  Number two,
+				does their account have reviewer rights?  If not, they still don't need to be able to click
+				the anchor. -->
+				<div name="UserName" [(ngModel)]='purchaserequest.User.UserName' ngDefaultControl *ngIf="purchaserequest.User.UserName != loggedInUser.UserName">
+					<a div *ngIf='loggedInUser.IsReviewer == true' routerLink="/Requests/Review/{{purchaserequest.Id}}">Review</a>
+				</div>
 			</td>
 			</div>
 		</tr>		

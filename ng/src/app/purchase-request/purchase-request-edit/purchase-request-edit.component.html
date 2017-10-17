@@ -1,15 +1,15 @@
 <app-menu></app-menu>
-<div *ngIf='loggedInUser.IsReviewer == true' class="form-horizontal" style="margin: 20px auto; width:70%;">
-	
-	<div style="text-align: center;"><span class="PageTitle">Review a Purchase Request</span></div>
+<div class="form-horizontal">
+	<div><span class="PageTitle">Purchase Request Edit</span></div>
+
 	<div style="text-align: center;">
-	<!-- This tag lets the purchaserequest hit "enter" instead of actually clicking the button -->
-	<form *ngIf="purchaserequest" style="display: inline-block; width: 50%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<form *ngIf="purchaserequest" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-Description">Description</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='Description' type='text' id='purchaserequest-Description' 
+			<input class='form-control' name='Description' type='text' id='purchaserequest-Description' 
 				[(ngModel)]='purchaserequest.Description' placeholder="Description">
 		</div>
 	</div>
@@ -17,73 +17,61 @@
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-Justification">Justification</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='Justification' type='text' id='purchaserequest-Justification' 
+			<input class='form-control' name='Justification' type='text' id='purchaserequest-Justification' 
 				[(ngModel)]='purchaserequest.Justification' placeholder="Justification">
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-DateNeeded">Date Needed</label>
+		<label class='col-md-3  control-label' for="purchaserequest-RejectionReason">RejectionReason</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='DateNeeded' type='text' id='purchaserequest-DateNeeded' 
-				[(ngModel)]='purchaserequest.DateNeeded' placeholder="Date Needed">
+			<input class='form-control' name='RejectionReason' type='text' id='purchaserequest-RejectionReason' 
+				[(ngModel)]='purchaserequest.RejectionReason' placeholder="RejectionReason">
 		</div> 
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-DeliveryMode">Delivery Mode</label>
+		<label class='col-md-3  control-label' for="purchaserequest-DateNeeded">DateNeeded</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='DeliveryMode' type='text' id='purchaserequest-DeliveryMode' 
-				[(ngModel)]='purchaserequest.DeliveryMode' placeholder="Delivery Mode">
+			<input class='form-control' name='DateNeeded' type='text' id='purchaserequest-DateNeeded' 
+				[(ngModel)]='purchaserequest.DateNeeded' placeholder="DateNeeded">
 		</div>
 	</div>
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-Status">Status</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='Status' type='text' id='purchaserequest-Status' 
-				[(ngModel)]='purchaserequest.Status' placeholder="Status">
+			<input class='form-control' name='Status' type='text' id='purchaserequest-Status' 
+				[(ngModel)]='purchaserequest.Status' placeholder="Status" disabled>
 		</div>
 	</div>
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-Total">Total</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='Total' type='text' id='purchaserequest-Total' 
+			<input class='form-control' name='Total' type='text' id='purchaserequest-Total' 
 				[(ngModel)]='purchaserequest.Total' placeholder="Total">
-		</div> 
+		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-SubmittedDate">SubmittedDate</label>
+		<label class='col-md-3  control-label' for="purchaserequest-DateSubmitted">DateSubmitted</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='SubmittedDate' type='text' id='purchaserequest-SubmittedDate' 
-				[(ngModel)]='purchaserequest.SubmittedDate' placeholder="SubmittedDate">
+			<input class='form-control' name='DateSubmitted' type='text' id='purchaserequest-DateSubmitted' 
+				[(ngModel)]='purchaserequest.DateSubmitted' placeholder="DateSubmitted" disabled>
 		</div>
 	</div>
-	
+
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaserequest-User">User</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='User' type='text' id='purchaserequest-User' 
-				[(ngModel)]='purchaserequest.User.UserName' placeholder="User">
+			<input class='form-control' name='User' type='text' id='purchaserequest-User' 
+				[(ngModel)]='purchaserequest.User.LastName' placeholder="User" disabled>
 		</div>
 	</div>
 
-	<!-- To use *ngIf="purchaserequest.User.UserName != loggedInUser.UserName" we had to take several steps.
-	
-	First, we had to make sure we gave this div a name.  
-	
-	We needed to make sure that purchaserequest.User.UserName meant something by using [(ngModel)]='purchaserequest.User.UserName'
-
-	Finally, we needed to use ngDefaultControl.
-
-	Without doing all of these things, we would get errors in the console (need to look up why
-	step 1 and 3 were needed, as of writing, the reasoning is not understood).
-	 -->
-	<div class='form-group' name="UserName" [(ngModel)]='purchaserequest.User.UserName' ngDefaultControl *ngIf="purchaserequest.User.UserName != loggedInUser.UserName" >
-		<button (click)='update()' id='approve' class='col-md-5 col-md-offset-1 btn btn-primary'>Approve</button>
-		<button (click)='update()' id='reject' class='col-md-5 col-md-offset-1 btn btn-danger'>Reject</button>
+	<div class='form-group'>
+		<button (click)='update()' id='update' class='col-md-11 col-md-offset-1 btn btn-primary'>Update</button>
 	</div>
 
 	<div class='form-group' >
@@ -93,11 +81,4 @@
 	</form>
 
 	</div>
-</div>
-
-<!-- With all of the checks in the Typescript, and in the check in the purchase-request-list.component.html,
-someone who is not logged in, or a Reviewer, should never see this, but we will put this here, just in case. -->
-<div *ngIf="loggedInUser.IsReviewer == false">
-	<p>This page will only display information for a Reviewer account.<br>
-	Please confirm that you are logged in with the correct account.</p>
 </div>
