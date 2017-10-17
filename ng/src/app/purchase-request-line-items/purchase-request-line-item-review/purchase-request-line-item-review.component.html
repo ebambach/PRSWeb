@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">Purchase Request Review</span>
+	</div>
+
+	<table class="table" *ngIf="purchaseRequestAndLines">
+		<tr>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Description}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Status}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Total | currency:'USD':true}}</td>
+		</tr>
+		<tr>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Subtotal</th>
+		</tr>
+		<tr *ngFor="let purchaseRequestLineItem of purchaseRequestAndLines.PurchaseRequestLineItems">
+			<td>{{purchaseRequestLineItem.Product.Name}}</td>
+			<td>{{purchaseRequestLineItem.Quantity}}</td>
+			<td>{{purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+			<td>{{purchaseRequestLineItem.Quantity * purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+		</tr>
+		<table class="table">
+			<tr>
+				<td><button (click)="approved()" class="btn btn-success">Approve</button></td>
+				<td><button (click)="rejected()" class="btn btn-warning">Reject</button></td>
+			</tr>
+		</table>
+
+	</table>
+</div>

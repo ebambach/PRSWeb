@@ -23,6 +23,7 @@ import {UserService} from './services/user.service';
 import {VendorService} from './services/vendor.service';
 import {ProductService} from './services/product.service';
 import {PurchaseRequestService} from './services/purchase-request.service';
+import {PurchaseRequestLineItemService} from './services/purchase-request-line-item.service';
 import {SystemService} from './services/system.service';
 
 import { UserListComponent } from './user/user-list/user-list.component';
@@ -45,7 +46,10 @@ import { PurchaseRequestDetailComponent } from './purchase-request/purchase-requ
 import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
 import { PurchaseRequestListComponent } from './purchase-request/purchase-request-list/purchase-request-list.component';
 
-
+import { PurchaseRequestLineItemAddComponent } from './purchase-request-line-items/purchase-request-line-item-add/purchase-request-line-item-add.component';
+import { PurchaseRequestLineItemListComponent } from './purchase-request-line-items/purchase-request-line-item-list/purchase-request-line-item-list.component';
+import { PurchaseRequestLineItemEditComponent } from './purchase-request-line-items/purchase-request-line-item-edit/purchase-request-line-item-edit.component';
+import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-items/purchase-request-line-item-review/purchase-request-line-item-review.component';
 
 //In Angular, anything with @ is a decorator.  Unlike almost
 //everything else, this does not end with a ";"
@@ -61,12 +65,15 @@ import { PurchaseRequestListComponent } from './purchase-request/purchase-reques
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
   ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent, 
   PurchaseRequestDetailComponent, PurchaseRequestAddComponent, PurchaseRequestEditComponent, 
-  PurchaseRequestListComponent],
+  PurchaseRequestListComponent, 
+  PurchaseRequestLineItemListComponent, PurchaseRequestLineItemEditComponent,
+  PurchaseRequestLineItemReviewComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 
   //component templates declared in this module.
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpModule],
   //Services go here, they are items that can be used be multiple components.
-  providers: [UserService, VendorService, ProductService, PurchaseRequestService, SystemService],
+  providers: [UserService, VendorService, ProductService, PurchaseRequestService, PurchaseRequestLineItemService, 
+  SystemService],
   // The bootstrap components are the ones that get started automatically when the app starts
   bootstrap: [AppComponent]
 })

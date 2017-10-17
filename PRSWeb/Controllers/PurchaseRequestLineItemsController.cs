@@ -16,6 +16,11 @@ namespace PRSWeb.Controllers
     {
         private PRSWebContext db = new PRSWebContext();
 
+		struct prliType {
+			public PurchaseRequest PurchaseRequest;
+			public IEnumerable<PurchaseRequestLineItem> PurchaseRequestLineItems;
+		}
+
 		private void CalcuateTotal(int prid) {
 			//This method will be used to calculate the total for a purchase request, when the line
 			//items are updated via an Add(), a Change(), or a Remove().
@@ -85,12 +90,13 @@ namespace PRSWeb.Controllers
 
 				//If the id used for the purchaserequestlineitem variable is incorrect, return an error message saying so
 				if (purchaserequest == null) {
-					return Json(new Msg { Result = "Failure", Message = $"The entered id, {id}, was not found." }, JsonRequestBehavior.AllowGet);
+					return Json(new Msg { Result = "Failure", Message = $"The entered purchase request id, {id}, was not found." }, JsonRequestBehavior.AllowGet);
 				}
 				else {
-					//everylineitem is "every line item that belongs to the purchase request"
-					var everylineitem = db.PurchaseRequestLineItems.Where(p => p.PurchaseRequestId == id);
-					return new JsonNetResult { Data = everylineitem };
+					//lineitems is "every line item that belongs to the purchase request"
+					var lineitems = db.PurchaseRequestLineItems.Where(p => p.PurchaseRequestId == id).ToList();
+					var prli = new prliType { PurchaseRequest = purchaserequest, PurchaseRequestLineItems = lineitems };
+					return new JsonNetResult { Data = prli };
 				}
 			}
 		}

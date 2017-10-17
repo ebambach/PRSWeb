@@ -23,7 +23,8 @@ export class PurchaseRequestListComponent implements OnInit {
   	.then(resp => this.purchaserequests = resp);
   }
 
-  constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, private router: Router) { }
+  constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
+    private router: Router) { }
 
   ngOnInit() {
     if(!this.SystemSvc.IsLoggedIn()) {

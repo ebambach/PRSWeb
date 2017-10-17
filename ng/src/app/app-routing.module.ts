@@ -28,6 +28,11 @@ import {PurchaseRequestDetailComponent} from './purchase-request/purchase-reques
 import {PurchaseRequestEditComponent} from './purchase-request/purchase-request-edit/purchase-request-edit.component';
 import {PurchaseRequestAddComponent} from './purchase-request/purchase-request-add/purchase-request-add.component';
 
+import {PurchaseRequestLineItemAddComponent} from './purchase-request-line-items/purchase-request-line-item-add/purchase-request-line-item-add.component';
+import {PurchaseRequestLineItemListComponent} from './purchase-request-line-items/purchase-request-line-item-list/purchase-request-line-item-list.component';
+import {PurchaseRequestLineItemEditComponent} from './purchase-request-line-items/purchase-request-line-item-edit/purchase-request-line-item-edit.component';
+import {PurchaseRequestLineItemReviewComponent} from './purchase-request-line-items/purchase-request-line-item-review/purchase-request-line-item-review.component';
+
 const routes: Routes = [
 	//Redirects to home if blank
 	{path:"", redirectTo:"/Home", pathMatch:"full"},

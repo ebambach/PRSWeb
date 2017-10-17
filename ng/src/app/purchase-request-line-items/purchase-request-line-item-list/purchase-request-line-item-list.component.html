@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<div>
+	<div>
+		<span class="PageTitle">Purchase Request Lines</span>
+		<span class="CreateNew"><a routerLink="/purchaseRequestLineItems/add">Add New</a></span>
+	</div>
+
+	<table class="table" *ngIf="purchaseRequestAndLines">
+		<tr>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Description}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Status}}</td>
+			<!-- The prices provided were in United States Dollars, so we need to make sure
+			that our code knows that by setting "currency:'USD':true" -->
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Total | currency:'USD':true}}</td>
+		</tr>
+		<tr>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Subtotal</th>
+		</tr>
+		<tr *ngFor="let purchaseRequestLineItem of purchaseRequestAndLines.PurchaseRequestLineItems">
+			<td>{{purchaseRequestLineItem.Product.Name}}</td>
+			<td>{{purchaseRequestLineItem.Quantity}}</td>
+			<td>{{purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+			<!-- We want to make sure we have the correct price, so "I'm afraid we'll have to use...
+				Math!"  Let's take the quantity, multiply by the price, and again, make sure that
+				our code knows to use United States currency -->
+			<td>{{purchaseRequestLineItem.Quantity * purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+			<td>
+				<a routerLink="/purchaseRequestLineItems/detail/{{purchaseRequestLineItem.PurchaseRequest.Id}}">Detail</a>
+				<a routerLink="/purchaseRequestLineItems/edit/{{purchaseRequestLineItem.PurchaseRequest.Id}}">Edit</a>
+			</td>
+		</tr>
+	</table>
+</div>
