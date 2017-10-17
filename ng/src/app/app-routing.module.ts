@@ -60,7 +60,12 @@ const routes: Routes = [
 	{path:"Requests/Detail/:id", component:PurchaseRequestDetailComponent},
 	{path:"Requests/Edit/:id", component:PurchaseRequestEditComponent},
 	{path:"Requests/Review/:id", component:PurchaseRequestReviewComponent},
-	{path:"Requests/Add", component:PurchaseRequestAddComponent}
+	{path:"Requests/Add", component:PurchaseRequestAddComponent},
+
+	{path:"LineItems", component:PurchaseRequestLineItemListComponent},
+	{path:"LineItems/Review/:id", component:PurchaseRequestLineItemReviewComponent},
+	{path:"LineItems/Edit/:id", component:PurchaseRequestLineItemEditComponent},
+	{path:"LineItems/Add", component:PurchaseRequestLineItemAddComponent}
 ];
 //Because the NgModule needs to now about the routing, this gets
 //exported to the NgModule, as it's class name, AppRoutingModule

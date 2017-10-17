@@ -63,7 +63,7 @@ import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-
   ProductComponent, PurchaseRequestComponent,
 
   UserListComponent, UserDetailComponent, UserEditComponent, UserAddComponent, 
-  
+
   VendorListComponent, VendorEditComponent, VendorDetailComponent, VendorAddComponent, 
 
   ProductAddComponent, ProductDetailComponent, ProductEditComponent, ProductListComponent,
@@ -71,8 +71,8 @@ import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-
   PurchaseRequestAddComponent, PurchaseRequestDetailComponent, PurchaseRequestEditComponent, 
   PurchaseRequestReviewComponent,  PurchaseRequestListComponent,
   
-  PurchaseRequestLineItemListComponent, PurchaseRequestLineItemEditComponent,
-  PurchaseRequestLineItemReviewComponent],
+  PurchaseRequestLineItemListComponent, PurchaseRequestLineItemAddComponent,
+  PurchaseRequestLineItemEditComponent, PurchaseRequestLineItemReviewComponent],
   //The list of modules whose exported components, directives, or pipes are referenced by the 
   //component templates declared in this module.
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpModule],

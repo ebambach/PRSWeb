@@ -1,1 +1,34 @@
-<p> The Purchase Request Line Item page works</p>
+<app-menu></app-menu>
+<div>
+	<div><span class="PageTitle">Add a Line Item</span></div>
+	<div style="text-align: center;">
+
+	<form *ngIf="purchaseRequestLineItem" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="purchaseRequest-DateSubmitted">DateSubmitted</label>
+		<div class='col-md-9'>
+			<select [(ngModel)]='purchaseRequestLineItem.ProductId' class='form-control' name='ProductId' id='purchaseRequest-ProductId'>
+				<option *ngFor="let product of products" [ngValue]="product.Id">{{product.Name}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="purchaseRequest-Quantity">Quantity</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Quantity' type='number' id='purchaseRequest-Quantity' 
+				[(ngModel)]='purchaseRequestLineItem.Quantity' placeholder="Quantity">		</div>
+	</div>
+
+	<div class='form-group'>
+		<button (click)='add()' id='add' class='col-md-11 col-md-offset-1 btn btn-primary'>Add</button>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-10 col-md-offset-1 text-left'>{{message}}&nbsp;</label>
+	</div>
+
+	</form>
+	</div>
+</div>
