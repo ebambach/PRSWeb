@@ -59,7 +59,7 @@ namespace PRSWeb.Controllers
 			}
 			//A purchaserequest has a foreign key tying it into a user, let's make sure that a valid
 			//key was assigned.
-			User user = db.Users.Find(purchaserequest.User);
+			var user = db.Users.Find(purchaserequest.UserId);
 			if (user == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
 			}
@@ -76,7 +76,7 @@ namespace PRSWeb.Controllers
 			}
 			//A purchaserequest has a foreign key tying it into a user, let's make sure that a valid
 			//key was assigned.
-			User user = db.Users.Find(purchaserequest.User);
+			var user = db.Users.Find(purchaserequest.UserId);
 			if (user == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
 			}
