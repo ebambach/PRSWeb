@@ -59,10 +59,9 @@ namespace PRSWeb.Controllers
 			}
 			//A purchaserequest has a foreign key tying it into a user, let's make sure that a valid
 			//key was assigned.
-			Vendor vendor = db.Vendors.Find(purchaserequest.User
-				);
-			if (vendor == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid vendor." }, JsonRequestBehavior.AllowGet);
+			User user = db.Users.Find(purchaserequest.User);
+			if (user == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
 			}
 			//If we have a valid purchaserequest, we can add the purchaserequest to the PurchaseRequests table in the database.
 			db.PurchaseRequests.Add(purchaserequest);
@@ -77,9 +76,9 @@ namespace PRSWeb.Controllers
 			}
 			//A purchaserequest has a foreign key tying it into a user, let's make sure that a valid
 			//key was assigned.
-			Vendor vendor = db.Vendors.Find(purchaserequest.UserId);
-			if (vendor == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid vendor." }, JsonRequestBehavior.AllowGet);
+			User user = db.Users.Find(purchaserequest.User);
+			if (user == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
 			}
 			//As with the Add(), provided we have valid data, it is time to update the purchaserequest
 			//First, we'll make a temporary copy of the purchaserequest we are changing

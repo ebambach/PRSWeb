@@ -18,17 +18,28 @@ export class PurchaseRequestReviewComponent implements OnInit {
 	purchaserequest: PurchaseRequest; 
 	loggedInUser: User;
 
-	update() {
-		this.PurchaseRequestSvc.change(this.purchaserequest).then(
-			resp => { 
-				console.log(resp); 
-				this.router.navigate(['/Requests']) 
-			}
-		)
-	}	
+	//For approved() and rejected, we will use simple methods that use one line to
+	//call a private method that only this component may use (purchase-request-line-item-review
+	//will use almost exactly the same methods, but per line-item, instead of the whole request)
+	approved(): void {
+    this.setStatus("Approved");
+  	}
 
-  constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, private route: ActivatedRoute, 
-  			private router: Router) { }
+  	rejected(): void {
+    this.setStatus("Rejected");
+  	}
+  
+  private setStatus(newStatus: string): void {
+    this.purchaserequest.Status = newStatus;
+    this.PurchaseRequestSvc.change(this.purchaserequest)
+      .then(resp => {
+        console.log(resp);
+        this.router.navigateByUrl("/Requests");
+      })
+  }
+
+  constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
+  			private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {

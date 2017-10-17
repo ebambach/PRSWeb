@@ -86,8 +86,8 @@
 		step 1 and 3 were needed, as of writing, the reasoning is not understood).
 	 	-->
 	<div class='form-group' name="UserName" [(ngModel)]='purchaserequest.User.UserName' ngDefaultControl *ngIf="purchaserequest.User.UserName != loggedInUser.UserName" >
-		<button (click)='update()' id='approve' class='col-md-5 col-md-offset-1 btn btn-primary'>Approve</button>
-		<button (click)='update()' id='reject' class='col-md-5 col-md-offset-1 btn btn-danger'>Reject</button>
+		<button (click)='approved()' id='approved' class='col-md-5 col-md-offset-1 btn btn-primary'>Approve</button>
+		<button (click)='rejected()' id='rejected' class='col-md-5 col-md-offset-1 btn btn-danger'>Reject</button>
 	</div>
 
 	<div class='form-group' >

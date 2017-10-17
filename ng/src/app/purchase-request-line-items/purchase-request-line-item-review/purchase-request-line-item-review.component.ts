@@ -29,12 +29,12 @@ export class PurchaseRequestLineItemReviewComponent implements OnInit {
     this.setStatus("Rejected");
   }
   private setStatus(newStatus: string): void {
-    let purchaseRequest: PurchaseRequest = this.purchaseRequestAndLines.PurchaseRequest;
-    purchaseRequest.Status = newStatus;
-    this.PurchaseRequestSvc.change(purchaseRequest)
+    let purchaserequest: PurchaseRequest = this.purchaseRequestAndLines.PurchaseRequest;
+    purchaserequest.Status = newStatus;
+    this.PurchaseRequestSvc.change(purchaserequest)
       .then(resp => {
         console.log(resp);
-        this.router.navigateByUrl("/purchaseRequests/review");
+        this.router.navigateByUrl("/Requests");
       })
   }
 
