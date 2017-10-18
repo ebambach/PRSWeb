@@ -3,11 +3,10 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-// import { Observable } from 'rxjs';
 import { PurchaseRequestLineItem } from '../models/PurchaseRequestLineItem';
 import { PurchaseRequestAndLines } from '../models/PurchaseRequestAndLines';
 
-const urlBase = 'http://localhost:61487/';
+const urlBase = 'http://localhost:62140/';
 const mvcCtrl = 'PurchaseRequestLineItems/';
 const url: string = urlBase + mvcCtrl;
 
@@ -23,7 +22,7 @@ export class PurchaseRequestLineItemService {
   constructor(private http: Http) { }
 
   	getById(id): Promise<PurchaseRequestAndLines> {
-  		return this.http.get(url+'GetByPurchaseRequestId/'+id)
+  		return this.http.get(url+'GetById/'+id)
   			.toPromise()
   			.then(resp => resp.json() as PurchaseRequestAndLines)
   			.catch(this.handleError);

@@ -6,6 +6,12 @@ import 'rxjs/add/operator/switchMap';
 
 import { PurchaseRequestLineItem } from '../../models/PurchaseRequestLineItem';
 
+import {Product} from '../../models/Product';
+import {ProductService} from '../../services/product.service';
+
+import {PurchaseRequest} from '../../models/PurchaseRequest';
+import {PurchaseRequestService} from '../../services/purchase-request.service';
+
 import {User} from '../../models/User';
 import {SystemService} from '../../services/system.service';
 
@@ -16,6 +22,8 @@ import {SystemService} from '../../services/system.service';
 })
 export class PurchaseRequestLineItemEditComponent implements OnInit {
 	loggedInUser: User;
+	products: Product[];
+	purchaserequest: PurchaseRequest;
 
 	purchaseRequestLineItem: PurchaseRequestLineItem; 
 
@@ -23,13 +31,19 @@ export class PurchaseRequestLineItemEditComponent implements OnInit {
 		this.PurchaseRequestLineItemSvc.change(this.purchaseRequestLineItem).then(
 			resp => { 
 				console.log(resp); 
-				this.router.navigate(['/LineItems']) 
+				this.router.navigate(['/Requests/'+ this.purchaserequest.Id + '/LineItems']) 
 			}
 		)
 	}	
 
+	getProducts(): void {
+		this.ProductSvc.list()
+			.then(resp => this.products = resp);
+	}
+
   constructor(private SystemSvc: SystemService, private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
-  			private route: ActivatedRoute, private router: Router) { }
+  			private route: ActivatedRoute, private router: Router, private ProductSvc: ProductService,
+  			private PurchaseRequestSvc: PurchaseRequestService) { }
 
   ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {
@@ -42,8 +56,14 @@ export class PurchaseRequestLineItemEditComponent implements OnInit {
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.PurchaseRequestLineItemSvc.get(params.get('id')))
-		.subscribe((purchaseRequestLineItem: PurchaseRequestLineItem) => this.purchaseRequestLineItem = purchaseRequestLineItem);  
+		.subscribe((purchaseRequestLineItem: PurchaseRequestLineItem) => this.purchaseRequestLineItem = purchaseRequestLineItem); 
+	
+    this.route.paramMap
+		.switchMap((params: ParamMap) =>
+			this.PurchaseRequestSvc.get(params.get('id')))
+		.subscribe((purchaserequest: PurchaseRequest) => this.purchaserequest = purchaserequest);
 
+	this.getProducts();
 	}
 
 }
