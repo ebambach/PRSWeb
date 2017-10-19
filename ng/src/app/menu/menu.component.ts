@@ -19,22 +19,19 @@ export class MenuComponent implements OnInit {
 	name:string = "Menu Component";
 
   menus: Menu[] = [
-    new Menu("PURCHASE REQUEST SYSTEM", "/home", "System name"),
-  	new Menu("HOME", "/home", "Home menu item"),
-    new Menu("USERS", "/users", "User list"),
-    new Menu("VENDORS", "/vendors", "Vendor list"),
-    new Menu("PRODUCTS", "/products", "Product list"),
-    new Menu("REQUESTS", "/purchaseRequests", "Purchase Request list"),
-    new Menu("REVIEW", "/purchaseRequests/review", "Purchase Request Review"),
-    new Menu("ABOUT", "/about", "About menu item"),
-    new Menu("LOGIN", "/login", "Login to the app")
+  	new Menu("Home", "/home", "Home menu item"),
+    new Menu("Users", "/users", "User list"),
+    new Menu("Vendors", "/vendors", "Vendor list"),
+    new Menu("Products", "/products", "Product list"),
+    new Menu("Requests", "/purchaseRequests", "Purchase Request list"),
+    new Menu("About", "/about", "About menu item"),
+    new Menu("Login", "/login", "Login to the app")
   ];
 
   constructor(private SystemSvc: SystemService) {
   }
 
   ngOnInit() {
-    // this.showMenu = this.SystemSvc.ShowMenu;
   }
 
 }

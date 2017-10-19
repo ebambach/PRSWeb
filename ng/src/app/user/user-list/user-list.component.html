@@ -2,7 +2,7 @@
 <div class="MainContent form-horizontal">
 
 	<div>
-		<span class="PageTitle">User List</span>
+		<span class="PageTitle">Users</span>
 		<span class="CreateNew"><a routerLink="/users/add">Add New</a></span>
 	</div>
 
@@ -26,8 +26,8 @@
 			<td *ngIf="user.IsAdmin">Yes</td>
 			<td *ngIf="!user.IsAdmin">&nbsp;</td>
 			<td>
-				<span><a routerLink="/users/detail/{{user.Id}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
-				<span><a routerLink="/users/edit/{{user.Id}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
+				<span><a routerLink="/users/detail/{{user.Id}}">Details</a></span>
+				<span><a routerLink="/users/edit/{{user.Id}}">Edit</a></span>
 			</td>
 		</tr>
 	</table>

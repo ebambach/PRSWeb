@@ -39,14 +39,11 @@ import { PurchaseRequestDetailComponent } from './purchase-request/purchase-requ
 import { PurchaseRequestAddComponent } from './purchase-request/purchase-request-add/purchase-request-add.component';
 import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
 
-import { PurchaseRequestReviewListComponent } from './purchase-request/purchase-request-review-list/purchase-request-review-list.component';
 import { PurchaseRequestLineItemListComponent } from './purchase-request-line-items/purchase-request-line-item-list/purchase-request-line-item-list.component';
 import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-items/purchase-request-line-item-review/purchase-request-line-item-review.component';
 import { PurchaseRequestLineItemEditComponent } from './purchase-request-line-items/purchase-request-line-item-edit/purchase-request-line-item-edit.component';
 import { PurchaseRequestLineItemAddComponent } from './purchase-request-line-items/purchase-request-line-item-add/purchase-request-line-item-add.component';
 import { PurchaseRequestLineItemDetailComponent } from './purchase-request-line-items/purchase-request-line-item-detail/purchase-request-line-item-detail.component';
-
-import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [AppComponent, MenuComponent, HomeComponent, AboutComponent, LoginComponent,
@@ -58,7 +55,7 @@ import { TestComponent } from './test/test.component';
     ProductListComponent, ProductDetailComponent, ProductAddComponent, ProductEditComponent,
 
     PurchaseRequestListComponent, PurchaseRequestDetailComponent, PurchaseRequestAddComponent,
-    PurchaseRequestEditComponent, PurchaseRequestReviewListComponent,
+    PurchaseRequestEditComponent,
 
     PurchaseRequestLineItemListComponent, PurchaseRequestLineItemReviewComponent,
     PurchaseRequestLineItemEditComponent, PurchaseRequestLineItemAddComponent,

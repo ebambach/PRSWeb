@@ -2,7 +2,7 @@
 <div class="MainContent form-horizontal">
 
 	<div>
-		<span class="PageTitle">Purchase Request Lines</span>
+		<span class="PageTitle">Purchase Request Items</span>
 		<span class="CreateNew" *ngIf="purchaseRequestAndLines">
 			<a routerLink="/purchaseRequestLineItems/add/{{purchaseRequestAndLines.PurchaseRequest.Id}}">Add New</a>
 		</span>
@@ -31,8 +31,8 @@
 			<td>{{purchaseRequestLineItem.Product.Price | currency:'USD':true}}
 			<td>{{purchaseRequestLineItem.Quantity * purchaseRequestLineItem.Product.Price | currency:'USD':true}}
 			<td>
-				<span><a routerLink="/purchaseRequestLineItems/detail/{{purchaseRequestLineItem.Id}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
-				<span><a routerLink="/purchaseRequestLineItems/edit/{{purchaseRequestLineItem.Id}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
+				<span><a routerLink="/purchaseRequestLineItems/detail/{{purchaseRequestLineItem.Id}}">Details</a></span>
+				<span><a routerLink="/purchaseRequestLineItems/edit/{{purchaseRequestLineItem.Id}}">Edit</a></span>
 			</td>
 		</tr>
 	</table>

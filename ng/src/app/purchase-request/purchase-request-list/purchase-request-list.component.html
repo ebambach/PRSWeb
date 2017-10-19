@@ -2,7 +2,7 @@
 <div class="MainContent form-horizontal">
 
 	<div>
-		<span class="PageTitle">Purchase Request List</span>
+		<span class="PageTitle">Purchase Requests</span>
 		<span class="CreateNew"><a routerLink="/purchaseRequests/add">Add New</a></span>
 	</div>
 
@@ -26,9 +26,9 @@
 			<td>{{purchaseRequest.User.LastName}}</td>
 			<td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
 			<td>
-				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
-				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
-				<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-list" title="Lines"></span></a></span>
+				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
+				<span><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
+				<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
 			</td>
 		</tr>
 	</table>
