@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import {Vendor} from '../../models/Vendor';
-import {VendorService} from '../../services/vendor.service';
-import {User} from '../../models/User';
-import {SystemService} from '../../services/system.service';
+import { Vendor } from '../../models/Vendor';
+import { VendorService } from '../../services/vendor.service';
+import { SystemService } from '../../services/system.service';
+import { User } from '../../models/User';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -15,35 +14,50 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./vendor-detail.component.css']
 })
 export class VendorDetailComponent implements OnInit {
-  loggedInUser: User;
+
+	loggedInUser: User;
 
 	vendor: Vendor;
+	verifyDelete: boolean = false;
 
-  remove(){
-    console.log("remove()");
-    this.VendorSvc.remove(this.vendor)
-      .then(resp => {
-        console.log(resp);
-        this.router.navigate(['/Vendors']);
-      });
-  }
+	remove() {
+		this.toggleVerifyDelete();
+		console.log("remove()");
+		this.VendorSvc.remove(this.vendor)
+			.then(resp => { 
+				console.log(resp); 
+				this.router.navigate(["/vendors"]); 
+			});
+	}
 
-  // This constructor will be used to pull the vendor out the route, but not just any vendor, a particular vendor
-  constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, private router: Router, 
-    private route: ActivatedRoute) { }
+	toggleVerifyDelete() {
+		this.verifyDelete = !this.verifyDelete;
+	}
+
+	edit() {
+		this.router.navigate(['/vendors/edit/'+this.vendor.Id]);
+	}
+
+  constructor(private VendorSvc: VendorService, 
+            private SystemSvc: SystemService,
+            private router: Router, 
+  			private route: ActivatedRoute) { }
 
   ngOnInit() {
+
     if(!this.SystemSvc.IsLoggedIn()) {
-       this.router.navigateByUrl("\Login");
+      //this.router.navigateByUrl("/login");
     } else {
       this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser.UserName);
     }
 
-  	 this.route.paramMap
-  	 	.switchMap((params: ParamMap) =>
-  	 		this.VendorSvc.get(params.get('id')))
-           .subscribe((vendor: Vendor) => this.vendor = vendor);
-  }
+	this.route.paramMap
+		.switchMap((params: ParamMap) =>
+			this.VendorSvc.get(params.get('id')))
+		.subscribe((vendor: Vendor) => this.vendor = vendor);  
+		
+		// this.route.paramMap.switchMap((params: ParamMap) => this.id = params.get('id'));
+		// this.VendorSvc.get(this.id).then(resp => this.vendor = resp);
+	}
 
 }

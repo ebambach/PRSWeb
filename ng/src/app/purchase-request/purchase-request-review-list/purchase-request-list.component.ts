@@ -6,11 +6,11 @@ import { PurchaseRequest } from '../../models/PurchaseRequest';
 import { PurchaseRequestService } from '../../services/purchase-request.service';
 
 @Component({
-  selector: 'purchase-request-list',
-  templateUrl: './purchase-request-list.component.html',
-  styleUrls: ['./purchase-request-list.component.css']
+  selector: 'purchase-request-review-list',
+  templateUrl: './purchase-request-review-list.component.html',
+  styleUrls: ['./purchase-request-review-list.component.css']
 })
-export class PurchaseRequestListComponent implements OnInit {
+export class PurchaseRequestReviewListComponent implements OnInit {
 
 	purchaseRequests: PurchaseRequest[];
 

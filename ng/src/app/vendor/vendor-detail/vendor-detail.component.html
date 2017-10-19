@@ -1,30 +1,31 @@
-<app-menu></app-menu>
-<div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
 	<div>
-		<span class="PageTitle">Vendor Details</span>
+		<span class="PageTitle">Vendir Detail</span>
+		<span class="CreateNew"><a routerLink="/vendors/add">Add New</a></span>
 	</div>
 
-	<!-- This makes an asynchronous call to the vendors[] in vendor-list.component.ts
-		If the vendors[] is not null, then we can do something with it -->
-	<div>
-	<table class="table" *ngIf="vendor">
-			<!-- These table data entries are straightforward, we are calling the vendor data -->
-			<tr><th>Code:</th><td>{{vendor.Code}}</td></tr>
-			<tr><th>Name:</th><td>{{vendor.Name}}</td></tr>
-			<tr><th>Address:</th><td>{{vendor.Address}}</td></tr>
-			<tr><th>City:</th><td>{{vendor.City}}</td></tr>
-			<tr><th>State:</th><td>{{vendor.State}}</td></tr>
-			<tr><th>Zip:</th><td>{{vendor.Zip}}</td></tr>
-			<tr><th>Phone:</th><td>{{vendor.Phone}}</td></tr>
-			<tr><th>Email:</th><td>{{vendor.Email}}</td></tr>
-			<!-- If the vendor is, or is not, a PreApproved Vendor, this will determine what is shown under those headers-->
-			<tr><th>PreApproved?</th><td>{{vendor.PreApproved}}</td></tr>
-			<div class='form-group'>
-				<a routerLink="/Vendors/Edit/{{vendor.Id}}" class="col-md-3 btn btn-primary" role="button">Edit</a>
-				<button (click)='remove()' class='col-md-3 btn btn-danger'>Delete this Vendor</button>
-			</div>
-	</table>
+	<div *ngIf="vendor == null">Searching...</div>
+
+	<div *ngIf="vendor">
+
+		<table class="table">
+			<tr><th>Code</th><td>{{vendor.Code}}</td></tr>
+			<tr><th>Name</th><td>{{vendor.Name}}</td></tr>
+			<tr><th>Address</th><td>{{vendor.Address}}</td></tr>
+			<tr><th>City/St/Zip</th><td>{{vendor.City}}, {{vendor.State}} {{vendor.Zip}}</td></tr>
+			<tr><th>Phone</th><td>{{vendor.Phone}}</td></tr>
+			<tr><th>Email</th><td>{{vendor.Email}}</td></tr>
+			<tr><th>PreApproved?</th><td>{{vendor.PreApproved ? "Yes" : ""}}</td></tr>
+		</table>
+
+		<div class="text-center">
+			<button class="btn btn-warning" (click)="edit()">Edit</button> |
+			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
+			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>
+		</div>
+
 	</div>
 
 </div>
-

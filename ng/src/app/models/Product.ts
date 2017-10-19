@@ -1,29 +1,29 @@
-
-export class Product{
-
+export class Product {
+	
 	Id: number;
 	VendorPartNumber: string;
 	Name: string;
 	Price: number;
 	Unit: string;
-	Photopath: string;
+	PhotoPath: string;
 	VendorId: number;
 
-	constructor(
+	constructor(	
 		Id: number,
 		VendorPartNumber: string,
 		Name: string,
 		Price: number,
 		Unit: string,
-		Photopath: string,
-		VendorId: number,
-	){
+		PhotoPath: string,
+		VendorId: number
+	) {
 		this.Id = Id;
 		this.VendorPartNumber = VendorPartNumber;
 		this.Name = Name;
 		this.Price = Price;
 		this.Unit = Unit;
-		this.Photopath = Photopath;
+		this.PhotoPath = PhotoPath;
 		this.VendorId = VendorId;
 	}
+
 }

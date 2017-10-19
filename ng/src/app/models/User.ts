@@ -1,4 +1,4 @@
-export class User{
+export class User {
 	
 	Id: number;
 	UserName: string;
@@ -19,8 +19,8 @@ export class User{
 		Phone: string,
 		Email: string,
 		IsReviewer: boolean,
-		IsAdmin: boolean
-	){
+		IsAdmin: boolean	
+	) {
 		this.Id = Id;
 		this.UserName = UserName;
 		this.Password = Password;
@@ -30,6 +30,9 @@ export class User{
 		this.Email = Email;
 		this.IsReviewer = IsReviewer;
 		this.IsAdmin = IsAdmin;
+	}
 
+	fullName(): string {
+		return this.FirstName + " " + this.LastName;
 	}
 }

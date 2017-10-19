@@ -86,7 +86,7 @@ namespace PRSWeb.Controllers
 			}
 			else {
 				//The id was not null, time to set up a purchaserequestlineitem variable
-				PurchaseRequest purchaserequest = db.PurchaseRequests.Find(id);
+				var purchaserequest = db.PurchaseRequests.Find(id);
 
 				//If the id used for the purchaserequestlineitem variable is incorrect, return an error message saying so
 				if (purchaserequest == null) {
@@ -139,8 +139,8 @@ namespace PRSWeb.Controllers
 			
 			//A purchase request line item has a foreign key tying it into a purchase request and a product, let's make sure that valid
 			//keys were assigned.
-			PurchaseRequest purchaserequest = db.PurchaseRequests.Find(purchaserequestlineitem.PurchaseRequestId);
-			Product product = db.Products.Find(purchaserequestlineitem.ProductId);
+			var purchaserequest = db.PurchaseRequests.Find(purchaserequestlineitem.PurchaseRequestId);
+			var product = db.Products.Find(purchaserequestlineitem.ProductId);
 
 			if (purchaserequest == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered purchase request line item lacks a valid purchase request." }, JsonRequestBehavior.AllowGet);
@@ -155,6 +155,8 @@ namespace PRSWeb.Controllers
 			if (temppurchaserequestlineitem == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered purchase request line item was invalid." }, JsonRequestBehavior.AllowGet);
 			}
+			temppurchaserequestlineitem.ProductId = purchaserequestlineitem.ProductId;
+			temppurchaserequestlineitem.PurchaseRequestId = purchaserequestlineitem.PurchaseRequestId;
 			temppurchaserequestlineitem.Quantity = purchaserequestlineitem.Quantity;
 
 			//After we make entity framework track all of the fields we may or may not be

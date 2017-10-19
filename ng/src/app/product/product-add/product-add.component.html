@@ -1,24 +1,25 @@
-<app-menu></app-menu>
-<div class="form-horizontal" style="margin: 20px auto; width:70%;">
-	
-	<div style="text-align: center;"><span class="PageTitle">Add a Product</span></div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
+	<div><span class="PageTitle">Product Edit</span></div>
+
 	<div style="text-align: center;">
-	<!-- This tag lets the product hit "enter" instead of actually clicking the button -->
-	<form *ngIf="product" style="display: inline-block; width: 50%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<form *ngIf="product" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="product-vendor-part-number">Vendor Part Number</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Vendor-Part-Number' type='text' id='product-vendor-part-number' 
+				[(ngModel)]='product.VendorPartNumber' placeholder="Vendor-Part-Number">
+		</div>
+	</div>
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="product-name">Name</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Name' type='text' id='product-name' 
 				[(ngModel)]='product.Name' placeholder="Name">
-		</div>
-	</div>
-
-	<div class='form-group' >
-		<label class='col-md-3  control-label' for="product-vendor-part-number">Vendor Part Number</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='Vendor-Part-Number' type='text' id='product-vendor-part-number' 
-				[(ngModel)]='product.VendorPartNumber' placeholder="Vendor Part Number">
 		</div>
 	</div>
 
@@ -39,18 +40,16 @@
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="product-Photopath">Photopath</label>
+		<label class='col-md-3  control-label' for="product-PhotoPath">PhotoPath</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='Photopath' type='text' id='product-Photopath' 
-				[(ngModel)]='product.Photopath' placeholder="Photopath">
+			<input class='form-control' name='PhotoPath' type='text' id='product-PhotoPath' 
+				[(ngModel)]='product.PhotoPath' placeholder="PhotoPath">
 		</div>
 	</div>
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="product-Vendor">Vendor</label>
 		<div class='col-md-9'>
-			<!-- Instead of allowing the user to type in a Vendor, here we use the VendorId
-			to display the each "vendor of vendors" in a drop down list -->
 			<select [(ngModel)]='product.VendorId' class='form-control' name='Vendor' id='product-Vendor'>
 				<option *ngFor="let vendor of vendors" [ngValue]="vendor.Id">{{vendor.Name}}</option>
 			</select>

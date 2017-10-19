@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
   //If we want to use a small amount of text, we can use
   //template:'<h1>Etiam porta sem malesuada magna mollis euismod.</h1>',
   //to insert text.
-
   //Where the styles are stored
   styleUrls: ['./app.component.css']
 })

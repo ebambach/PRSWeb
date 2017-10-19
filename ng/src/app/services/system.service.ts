@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import {User} from '../models/User';
+import { User } from '../models/User';
 
 @Injectable()
 export class SystemService {
-	LoggedInUser: User;	
 
+	LoggedInUser: User;	
 	getLoggedIn(): User {
 		console.log("SystemService", "getLoggedIn()", this.LoggedInUser);
 		return this.LoggedInUser;
@@ -18,7 +19,8 @@ export class SystemService {
 		console.log("SystemService", "IsLoggedIn()", this.LoggedInUser != null);
 		return this.LoggedInUser != null;
 	}
+	// ShowMenu: boolean = false;
 
-  constructor() { }
+  	constructor() { }
 
 }

@@ -1,10 +1,6 @@
 <nav>
-  <ul>
-  	<!-- Uses a foreach type loop to generate an unordered list of list elements, consisting of
-  	an anchor and display for each menu of menus -->
-  	<li *ngFor="let menu of menus"><a routerLink = "{{menu.href}}">{{menu.display}}</a></li>
-  </ul>
+	<ul style="display:inline-block;">
+		<li *ngFor="let menu of menus"><a routerLink="{{menu.href}}">{{menu.display}}</a></li>
+	</ul>
+	<span style="color: white;" *ngIf="loggedInUser">{{loggedInUser.FirstName}}</span>
 </nav>
-<!-- <p>
-	{{hello}}
-</p> -->

@@ -1,0 +1,21 @@
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
+	<div>
+		<span class="PageTitle">Purchase Request Line Item Detail</span>
+		<span class="CreateNew"><a routerLink="/purchaseRequestLineItems/add">Add New</a></span>
+	</div>
+
+	<div *ngIf="purchaseRequestLineItem == null">Searching...</div>
+
+	<div *ngIf="purchaseRequestLineItem">
+
+		<table class="table">
+			<tr><th>Product</th><td><a routerLink="/products/detail/{{purchaseRequestLineItem.ProductId}}">{{purchaseRequestLineItem.Product.Name}}</a></td></tr>
+			<tr><th>Quantity</th><td>{{purchaseRequestLineItem.Quantity}}</td></tr>
+			<tr><td colspan="2" style="text-align: center;"><button (click)="remove()" class="btn btn-danger">Delete</button></td></tr>
+		</table>
+
+	</div>
+
+</div>

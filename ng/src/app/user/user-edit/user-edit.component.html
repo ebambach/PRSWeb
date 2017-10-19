@@ -1,100 +1,85 @@
-<app-menu></app-menu>
-<div class="form-horizontal" style="margin: 20px auto; width:70%;">
-	
-	<div style="text-align: center;"><span class="PageTitle">User Edit</span></div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
+	<div><span class="PageTitle">User Edit</span></div>
+
 	<div style="text-align: center;">
-	<!-- This tag lets the user hit "enter" instead of actually clicking the button -->
-	<form *ngIf="user" style="display: inline-block; width: 50%; padding: 30px 30px 0 0; border: 1px solid silver;">
 
-	<!-- This grouping of code will be used for the FirstName field -->
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-FirstName">First Name</label>
+	<form *ngIf="user" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-firstname">First Name</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='FirstName' type="text" id="user-FirstName"			
-			[(ngModel)]='user.FirstName' placeholder="First Name">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
+			<input class='form-control' name='FirstName' type='text' id='user-firstname' 
+				[(ngModel)]='user.FirstName' placeholder="First Name">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-lastname">Last Name</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='LastName' type='text' id='user-lastname' 
+				[(ngModel)]='user.LastName' placeholder="Last Name">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-username">User Name</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='UserName' type='text' id='user-username' 
+				[(ngModel)]='user.UserName' placeholder="User Name">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-password">Password</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Password' type='Password' id='user-password' 
+				[(ngModel)]='user.Password' placeholder="Password">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-phone">Phone</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Phone' type='text' id='user-phone' 
+				[(ngModel)]='user.Phone' placeholder="Phone">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-email">Email</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Email' type='text' id='user-email' 
+				[(ngModel)]='user.Email' placeholder="Email">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-isreviewer">Reviewer</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Reviewer' type='checkbox' id='user-isreviewer' 
+				[(ngModel)]='user.IsReviewer' placeholder="Reviewer">
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="user-isadmin">Admin</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Admin' type='checkbox' id='user-isadmin' 
+				[(ngModel)]='user.IsAdmin' placeholder="Admin">
 		</div>
 	</div>
 
 	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-LastName">Last Name</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='LastName' type="text" id="user-LastName"			
-			[(ngModel)]='user.LastName' placeholder="Last Name">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-UserName">User Name</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='UserName' type="text" id="user-UserName"			
-			[(ngModel)]='user.UserName' placeholder="User Name">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-Password">Password</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='Password' type="Password" id="user-Password"			
-			[(ngModel)]='user.Password' placeholder="Password">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-	
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-Phone">Phone</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='Phone' type="text" id="user-Phone"			
-			[(ngModel)]='user.Phone' placeholder="Phone">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-Email">Email</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='Email' type="text" id="user-Email"			
-			[(ngModel)]='user.Email' placeholder="Email">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-IsReviewer">Reviewer?</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='IsReviewer' type="text" id="user-IsReviewer"			
-			[(ngModel)]='user.IsReviewer' placeholder="Reviewer?">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-
-	<div class='form-group'>
-		<label class='col-md-3 control-label' for="user-IsAdmin">Admin?</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='IsAdmin' type="text" id="user-IsAdmin"			
-			[(ngModel)]='user.IsAdmin' placeholder="Admin?">	
-			<!-- username has to be lower case for the [(ngModel)]='username', because it is the  
-				variable that the login.component.ts uses for the UserName-->
-		</div>
-	</div>
-
-	<div class='form-group'>
-		<!-- This button calls the update function in the user-edit.component.ts file -->
 		<button (click)='update()' id='update' class='col-md-11 col-md-offset-1 btn btn-primary'>Update</button>
 	</div>
 
-	<div class='form-group'>
+	<div class='form-group' >
 		<label class='col-md-10 col-md-offset-1 text-left'>{{message}}&nbsp;</label>
 	</div>
 
 	</form>
+
+	</div>
 </div>

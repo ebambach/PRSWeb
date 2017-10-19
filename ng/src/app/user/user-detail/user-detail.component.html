@@ -1,26 +1,34 @@
-<app-menu></app-menu>
-<div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
 	<div>
-		<span class="PageTitle">User Details</span>
+		<span class="PageTitle">User Detail</span>
+		<span class="CreateNew"><a routerLink="/users/add">Add New</a></span>
 	</div>
 
-	<!-- This makes an asynchronous call to the users[] in user-list.component.ts
-		If the users[] is not null, then we can do something with it -->
-	<div>
-	<table class="table" *ngIf="user">
-			<!-- These table data entries are straightforward, we are calling the user data -->
-			<tr><th>Name:</th><td>{{user.FirstName}} {{user.LastName}}</td></tr>
-			<tr><th>User name:</th><td>{{user.UserName}}</td></tr>
-			<tr><th>Phone:</th><td>{{user.Phone}}</td></tr>
-			<tr><th>Email:</th><td>{{user.Email}}</td></tr>
-			<!-- If the user is, or is not, a reviewer/admin will determine what is shown under those headers-->
+	<div *ngIf="user == null">Searching...</div>
+
+	<div *ngIf="user">
+
+		<table class="table">
+			<tr><th>Name</th><td>{{user.FirstName}} {{user.LastName}}</td></tr>
+			<tr><th>User Name</th><td>{{user.UserName}}</td></tr>
+			<tr><th>Phone</th><td>{{user.Phone}}</td></tr>
+			<tr><th>Email</th><td>{{user.Email}}</td></tr>
 			<tr><th>Reviewer?</th><td>{{user.IsReviewer}}</td></tr>
 			<tr><th>Admin?</th><td>{{user.IsAdmin}}</td></tr>
-			<div class='form-group'>
-				<a routerLink="/Users/Edit/{{user.Id}}" class="col-md-3 btn btn-primary" role="button">Edit</a>
-				<button (click)='remove()' class='col-md-3 btn btn-danger'>Delete this User</button>
-			</div>
-	</table>
-	</div>	
-</div>
+		</table>
 
+		<div class="text-center">
+			<!-- The "|" is there to give us a little bit of space between the buttons,
+			it could have been anything (like "Fred") -->
+			<button class="btn btn-primary" (click)="edit()">Edit</button> |
+			<!-- Because the Delete button will totally remove the User, we emphasize this with
+			the bootstrap danger button -->
+			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
+			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>
+		</div>
+
+	</div>
+
+</div>

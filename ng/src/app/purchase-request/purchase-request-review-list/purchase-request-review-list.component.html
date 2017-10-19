@@ -2,8 +2,7 @@
 <div class="MainContent form-horizontal">
 
 	<div>
-		<span class="PageTitle">Purchase Request List</span>
-		<span class="CreateNew"><a routerLink="/purchaseRequests/add">Add New</a></span>
+		<span class="PageTitle">Purchase Request Review</span>
 	</div>
 
 	<table class="table" *ngIf="purchaseRequests">
@@ -24,11 +23,9 @@
 			<td>{{purchaseRequest.Status}}</td>
 			<td>{{purchaseRequest.Total | currency:"USD":true}}</td>
 			<td>{{purchaseRequest.User.LastName}}</td>
-			<td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
+			<td>{{purchaseRequest.DateSubmitted | date:'M/d/y'}}</td>
 			<td>
-				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
-				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
-				<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-list" title="Lines"></span></a></span>
+				<span><a routerLink="/purchaseRequestLineItemReview/{{purchaseRequest.Id}}"><span class="glyphicon glyphicon-zoom-in" title="Select"></span></a></span>
 			</td>
 		</tr>
 	</table>

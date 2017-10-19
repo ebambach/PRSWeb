@@ -1,48 +1,36 @@
-<app-menu></app-menu>
-<div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
 	<div>
 		<span class="PageTitle">Vendor List</span>
+		<span class="CreateNew"><a routerLink="/vendors/add">Add New</a></span>
 	</div>
 
-	<div class='form-group'>
-		<a routerLink="/Vendors/Add" class="col-md-1 btn btn-primary" role="button">Add a Vendor</a>
-	</div>
-	<!-- This makes an asynchronous call to the vendors[] in vendor-list.component.ts
-		If the vendors[] is not null, then we can do something with it -->
 	<table class="table" *ngIf="vendors">
 		<tr>
-			<!-- Table headers -->
 			<th>Code</th>
 			<th>Name</th>
 			<th>Address</th>
-			<th>City</th>
-			<th>State</th>
-			<th>Zip</th>
+			<th>City/St/Zip</th>
 			<th>Phone</th>
 			<th>Email</th>
-			<th>PreApproved?</th>
+			<th>PreApproved</th>
+			<th>Actions</th>
 		</tr>
-
 		<tr *ngFor="let vendor of vendors">
-			<!-- These table data entries are straightforward, we are calling the vendor data -->
 			<td>{{vendor.Code}}</td>
 			<td>{{vendor.Name}}</td>
 			<td>{{vendor.Address}}</td>
-			<td>{{vendor.City}}</td>
-			<td>{{vendor.State}}</td>
-			<td>{{vendor.Zip}}</td>
+			<td>{{vendor.City}}, {{vendor.State}} {{vendor.Zip}}</td>
 			<td>{{vendor.Phone}}</td>
 			<td>{{vendor.Email}}</td>
 			<!-- If the vendor is, or is not, a PreApproved Vendor, this will determine what is shown under those headers-->
 			<td *ngIf="vendor.PreApproved">Yes</td>
 			<td *ngIf="!vendor.PreApproved">&nbsp;</td>
-			<!-- We'll use the anchors below to set up the Detail and Edit links -->
 			<td>
-				<a routerLink="/Vendors/Detail/{{vendor.Id}}">Detail</a>
-				<a routerLink="/Vendors/Edit/{{vendor.Id}}">Edit</a>
+				<span><a routerLink="/vendors/detail/{{vendor.Id}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
+				<span><a routerLink="/vendors/edit/{{vendor.Id}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
 			</td>
-		</tr>		
+		</tr>
 	</table>
 </div>
-
-

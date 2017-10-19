@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import {PurchaseRequest} from '../../models/PurchaseRequest';
-import {PurchaseRequestService} from '../../services/purchase-request.service';
+import { PurchaseRequest } from '../../models/PurchaseRequest';
+import { PurchaseRequestService } from '../../services/purchase-request.service';
+import { SystemService } from '../../services/system.service';
 
-import {User} from '../../models/User';
-import {SystemService} from '../../services/system.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-purchase-request-detail',
@@ -14,34 +14,50 @@ import {SystemService} from '../../services/system.service';
 })
 export class PurchaseRequestDetailComponent implements OnInit {
 
-	purchaserequest: PurchaseRequest;
-  loggedInUser: User;
+	purchaseRequest: PurchaseRequest;
+	verifyDelete: boolean = false;
 
-  remove(){
-    console.log("remove()");
-    this.PurchaseRequestSvc.remove(this.purchaserequest)
-      .then(resp => {
-        console.log(resp);
-        this.router.navigate(['/Requests']);
-      });
-  }
+	review() : void {
+		this.purchaseRequest.Status = this.purchaseRequest.Total <= 50 ? "APPROVED" : "REVIEW";
+		this.PurchaseRequestSvc.change(this.purchaseRequest)
+			.then(
+				resp => {
+					console.log(resp);
+					this.router.navigateByUrl("/login");
+				}
+			);
+	}
 
-  // This constructor will be used to pull the purchaserequest out the route, but not just any purchaserequest, a particular purchaserequest
-  constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
-    private router: Router, private route: ActivatedRoute) { }
+	remove(): void {
+		this.toggleVerifyDelete();
+		console.log("remove()");
+		this.PurchaseRequestSvc.remove(this.purchaseRequest)
+			.then(resp => { 
+				console.log(resp); 
+				this.router.navigate(["/purchaseRequests"]); 
+			});
+	}
+
+	toggleVerifyDelete() {
+		this.verifyDelete = !this.verifyDelete;
+	}
+
+	edit() {
+		this.router.navigate(['/purchaseRequests/edit/'+this.purchaseRequest.Id]);
+	}
+
+  constructor(private PurchaseRequestSvc: PurchaseRequestService, 
+  				private SystemSvc: SystemService,
+  				private router: Router, 
+  				private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if(!this.SystemSvc.IsLoggedIn()) {
-       this.router.navigateByUrl("\Login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser.UserName);
-    }
+	this.route.paramMap
+		.switchMap((params: ParamMap) =>
+			this.PurchaseRequestSvc.get(params.get('id')))
+		.subscribe((purchaseRequest: PurchaseRequest) => this.purchaseRequest = purchaseRequest);  
 
-  	 this.route.paramMap
-  	 	.switchMap((params: ParamMap) =>
-  	 		this.PurchaseRequestSvc.get(params.get('id')))
-           .subscribe((purchaserequest: PurchaseRequest) => this.purchaserequest = purchaserequest);
-  }
+			
+	}
 
 }

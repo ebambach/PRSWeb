@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import {Product} from '../../models/Product';
-import {ProductService} from '../../services/product.service';
+import { Product } from '../../models/Product';
+import { ProductService } from '../../services/product.service';
 
-import {SystemService} from '../../services/system.service';
-
-import {User} from '../../models/User';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,33 +14,36 @@ import {User} from '../../models/User';
 export class ProductDetailComponent implements OnInit {
 
 	product: Product;
-  loggedInUser: User;
+	verifyDelete: boolean = false;
 
-  remove(){
-    console.log("remove()");
-    this.ProductSvc.remove(this.product)
-      .then(resp => {
-        console.log(resp);
-        this.router.navigate(['/Products']);
-      });
-  }
+	remove() {
+		this.toggleVerifyDelete();
+		console.log("remove()");
+		this.ProductSvc.remove(this.product)
+			.then(resp => { 
+				console.log(resp); 
+				this.router.navigate(["/products"]); 
+			});
+	}
 
-  // This constructor will be used to pull the product out the route, but not just any product, a particular product
-  constructor(private SystemSvc: SystemService, private ProductSvc: ProductService, 
-    private router: Router, private route: ActivatedRoute) { }
+	toggleVerifyDelete() {
+		this.verifyDelete = !this.verifyDelete;
+	}
+
+	edit() {
+		this.router.navigate(['/products/edit/'+this.product.Id]);
+	}
+
+  constructor(private ProductSvc: ProductService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if(!this.SystemSvc.IsLoggedIn()) {
-       this.router.navigateByUrl("\Login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser.UserName);
-    }
-  	 
-     this.route.paramMap
-  	 	.switchMap((params: ParamMap) =>
-  	 		this.ProductSvc.get(params.get('id')))
-           .subscribe((product: Product) => this.product = product);
-  }
+		this.route.paramMap
+			.switchMap((params: ParamMap) =>
+				this.ProductSvc.get(params.get('id')))
+			.subscribe((product: Product) => this.product = product);  
+		
+		// this.route.paramMap.switchMap((params: ParamMap) => this.id = params.get('id'));
+		// this.ProductSvc.get(this.id).then(resp => this.product = resp);
+	}
 
 }

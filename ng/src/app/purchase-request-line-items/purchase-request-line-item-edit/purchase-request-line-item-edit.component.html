@@ -1,6 +1,8 @@
-<app-menu></app-menu>
-<div>
-	<div><span class="PageTitle">Edit a Line Item</span></div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
+	<div><span class="PageTitle">Purchase Request Line Item Edit</span></div>
+
 	<div style="text-align: center;">
 
 	<form *ngIf="purchaseRequestLineItem" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
@@ -30,5 +32,6 @@
 	</div>
 
 	</form>
+
 	</div>
 </div>

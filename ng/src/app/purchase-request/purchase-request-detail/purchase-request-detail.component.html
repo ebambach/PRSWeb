@@ -1,28 +1,34 @@
-<app-menu></app-menu>
-<div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
 	<div>
-		<span class="PageTitle">Purchase Request Details</span>
+		<span class="PageTitle">Purchase Request Detail</span>
+		<span class="CreateNew"><a routerLink="/purchaseRequests/add">Add New</a></span>
 	</div>
 
-	<!-- This makes an asynchronous call to the purchaserequests[] in purchaserequest-list.component.ts
-		If the purchaserequests[] is not null, then we can do something with it -->
-	<div>
-	<table class="table" *ngIf="purchaserequest">
-			<!-- These table data entries are straightforward, we are calling the purchaserequest data -->
-			<tr><th>Description:</th><td>{{purchaserequest.Description}}</td></tr>
-			<tr><th>Justification:</th><td>{{purchaserequest.Justification}}</td></tr>
-			<tr><th>Date Needed:</th><td>{{purchaserequest.DateNeeded}}</td></tr>
-			<tr><th>Delivery Mode:</th><td>{{purchaserequest.DeliveryMode}}</td></tr>
-			<tr><th>Status:</th><td>{{purchaserequest.Status}}</td></tr>
-			<tr><th>Total:</th><td>{{purchaserequest.Total}}</td></tr>
-			<tr><th>Submitted Date:</th><td>{{purchaserequest.SubmittedDate}}</td></tr>
-			<tr><th>User:</th><td>{{purchaserequest.User.UserName}}</td></tr>
-			<div class='form-group'>
-				<a routerLink="/Requests/Edit/{{purchaserequest.Id}}" class="col-md-3 btn btn-primary" role="button">Edit</a>
-				<button (click)='remove()' class='col-md-3 btn btn-danger'>Delete this Request</button>
-			</div>
-	</table>
+	<div *ngIf="purchaseRequest == null">Searching...</div>
+
+	<div *ngIf="purchaseRequest">
+
+		<table class="table">
+			<tr><th>Description</th><td>{{purchaseRequest.Description}}</td></tr>
+			<tr><th>Justification</th><td>{{purchaseRequest.Justification}}</td></tr>
+			<tr><th>Rejection Reason</th><td>{{purchaseRequest.RejectionReason}}</td></tr>
+			<tr><th>Delivery Mode</th><td>{{purchaseRequest.DeliveryMode}}</td></tr>
+			<tr><th>Date Needed</th><td>{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td></tr>
+			<tr><th>Status</th><td>{{purchaseRequest.Status}}</td></tr>
+			<tr><th>Total</th><td>{{purchaseRequest.Total}}</td></tr>
+			<tr><th>User</th><td>{{purchaseRequest.User.LastName}}</td></tr>
+			<tr><th>Submitted Date:</th><td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td></tr>
+		</table>
+
+		<div class="text-center">
+			<span *ngIf="purchaseRequest.Status == 'New' || purchaseRequest.Status === 'Rejected'"><button class="btn btn-success" (click)="review()">Review</button> |</span>
+			<button class="btn btn-warning" (click)="edit()">Edit</button> |
+			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
+			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>
+		</div>
+
 	</div>
-	
+
 </div>
-

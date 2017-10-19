@@ -3,68 +3,62 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs';
+// import { Observable } from 'rxjs';
 
-import {Product} from '../models/Product';
+import { Product } from '../models/Product';
 
-//Because we will reuse the address information, we'll set it
-//up here as a set of variables
-const urlBase = "http://localhost:62140/";
+const urlBase = 'http://localhost:62140/';
 const mvcCtrl = 'Products/';
 const url: string = urlBase + mvcCtrl;
 
 @Injectable()
 export class ProductService {
 
- constructor(private http: Http) { }
+	private headers = new Headers({
+		'Access-Control-Allow-Origin': '*', 
+		'Accepts': 'application/json', 
+		'Content-Type': 'application/json'
+	});
 
-  list():Promise<Product[]>{
-  	return this.http.get(url+'List')
-  		.toPromise()
-  		//This .then returns a list of the users
-  		.then(resp => resp.json() as Product[])
-  		.catch(this.handleError);
-  }
+  constructor(private http: Http) { }
 
-  get(id): Promise<Product>{
-  	return this.http.get(url+'Get/'+ id)
-  		.toPromise()
-  		//The .then determines what a Promise returns, in this case, a specified product
-  		.then(resp => resp.json() as Product)
-  		.catch(this.handleError);
-  }
+	list(): Promise<Product[]> {
+		return this.http.get(url+'List')
+			.toPromise()
+			.then(resp => resp.json() as Product[])
+			.catch(this.handleError);	
+	}
 
-  change(product: Product): Promise<any>{
-  	// This function requires the product to be passed in, so we can change it
-  		//Because we are making a change, just like when we use the Postman app,
-  		//we need to use "post" instead of "get"
-	return this.http.post(url+'Change', product)
-  		.toPromise()
-  		//The .then determines what a Promise returns, in this case, a specified product
-  		.then(resp => resp.json() || {})
-  		.catch(this.handleError);
-  }
+	get(id): Promise<Product> {
+		return this.http.get(url+'Get/'+id)
+			.toPromise()
+			.then(resp => resp.json() as Product)
+			.catch(this.handleError);	
+	}
 
-  add(product: Product): Promise<any>{
-  	return this.http.post(url+'Add', product)
-  		.toPromise()
-  		.then(resp => resp.json() || {})
-  		.catch(this.handleError);
-  }
+	add(product: Product): Promise<any> {
+		return this.http.post(url+'Add', product)
+			.toPromise()
+			.then(resp => resp.json() || {})
+			.catch(this.handleError);
+	}
 
-  remove(product: Product): Promise<any>{
-  	return this.http.post(url+'Remove', product)
-  		.toPromise()
-  		.then(resp => resp.json() || {})
-  		.catch(this.handleError);
-  }
-  
-  //This private function takes a parameter called error, of type
-  //any (a generic type, because we don't know what it could be).
-  	//The return type is a Promise, also of type any.
-  private handleError(error:any):Promise<any>{
-  		console.error('An error has occurred', error);
-  		//When the Promise fails, it sends the error message.
-  		return Promise.reject(error.message || error);
-  }
+	change(product: Product): Promise<any> {
+		return this.http.post(url+'Change', product)
+			.toPromise()
+			.then(resp => resp.json() || {})
+			.catch(this.handleError);
+	}
+
+	remove(product: Product): Promise<any> {
+		return this.http.post(url+'Remove', product)
+			.toPromise()
+			.then(resp => resp.json() || {})
+			.catch(this.handleError);	
+	}
+	private handleError(error: any): Promise<any> {
+		console.error('An error has occurred', error);
+		return Promise.reject(error.message || error);
+	}	  
+
 }

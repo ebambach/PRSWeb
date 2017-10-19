@@ -1,73 +1,82 @@
-<app-menu></app-menu>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
 
-<div class="form-horizontal" style="margin: 20px auto; width:70%;">
-	
-	<div style="text-align: center;"><span class="PageTitle">Add a Purchase Request</span></div>
+	<div><span class="PageTitle">Purchase Request Add</span></div>
+
 	<div style="text-align: center;">
-	<!-- This tag lets the purchaserequest hit "enter" instead of actually clicking the button -->
-	<form *ngIf="purchaserequest" style="display: inline-block; width: 50%; padding: 30px 30px 0 0; border: 1px solid silver;">
+
+	<form *ngIf="purchaseRequest && loggedInUser" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-Description">Description</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-Description">Description</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='Description' type='text' id='purchaserequest-Description' 
-				[(ngModel)]='purchaserequest.Description' placeholder="Description">
+			<input class='form-control' name='Description' type='text' id='purchaseRequest-Description' 
+				[(ngModel)]='purchaseRequest.Description' placeholder="Description">
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-Justification">Justification</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-Justification">Justification</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='Justification' type='text' id='purchaserequest-Justification' 
-				[(ngModel)]='purchaserequest.Justification' placeholder="Justification">
+			<input class='form-control' name='Justification' type='text' id='purchaseRequest-Justification' 
+				[(ngModel)]='purchaseRequest.Justification' placeholder="Justification">
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-DateNeeded">Date Needed</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-RejectionReason">RejectionReason</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='DateNeeded' type='text' id='purchaserequest-DateNeeded' 
-				[(ngModel)]='purchaserequest.DateNeeded' placeholder="Date Needed">
-		</div> 
-	</div>
-
-	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-DeliveryMode">Delivery Mode</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='DeliveryMode' type='text' id='purchaserequest-DeliveryMode' 
-				[(ngModel)]='purchaserequest.DeliveryMode' placeholder="Delivery Mode">
+			<input class='form-control' name='RejectionReason' type='text' id='purchaseRequest-RejectionReason' 
+				[(ngModel)]='purchaseRequest.RejectionReason' placeholder="RejectionReason">
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-Status">Status</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-DeliveryMode">Delivery Mode</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly="New" name='Status' type='text' id='purchaserequest-Status' 
-				[(ngModel)]='purchaserequest.Status' placeholder="Status">
+			<input class='form-control' name='DeliveryMode' type='text' id='purchaseRequest-DeliveryMode' 
+				[(ngModel)]='purchaseRequest.DeliveryMode' placeholder="DeliveryMode">
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-Total">Total</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-DateNeeded">Date Needed</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='Total' type='text' id='purchaserequest-Total' 
-				[(ngModel)]='purchaserequest.Total' placeholder="Total">
-		</div> 
-	</div>
-
-	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-SubmittedDate">SubmittedDate</label>
-		<div class='col-md-9'>
-			<input class='form-control' name='SubmittedDate' type='text' id='purchaserequest-SubmittedDate' 
-				[(ngModel)]='purchaserequest.SubmittedDate' placeholder="SubmittedDate">
+			<!-- <date-picker ngModel name='DateNeeded'></date-picker> -->
+			<input class='form-control' name='DateNeeded' type='text' id='purchaseRequest-DateNeeded' 
+				[(ngModel)]='purchaseRequest.DateNeeded' placeholder="DateNeeded">
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaserequest-User">User</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-Status">Status</label>
 		<div class='col-md-9'>
-			<input class='form-control' readonly name='User' type='text' id='purchaserequest-User' 
-				value='{{loggedInUser.UserName}}' placeholder="User">
+			<input class='form-control' name='Status' type='text' id='purchaseRequest-Status' 
+				[(ngModel)]='purchaseRequest.Status' placeholder="Status" disabled>
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="purchaseRequest-Total">Total</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='Total' type='text' id='purchaseRequest-Total' 
+				[(ngModel)]='purchaseRequest.Total' placeholder="Total" disabled>
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="purchaseRequest-User">User</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='User' type='text' id='purchaseRequest-User' 
+				value='{{loggedInUser.LastName}}' placeholder="User" disabled>
+		</div>
+	</div>
+
+	<div class='form-group' >
+		<label class='col-md-3  control-label' for="purchaseRequest-DateSubmitted">DateSubmitted</label>
+		<div class='col-md-9'>
+			<input class='form-control' name='DateSubmitted' type='text' id='purchaseRequest-DateSubmitted' 
+				value='{{purchaseRequest.DateSubmitted | date:"M/d/y"}}' placeholder="DateSubmitted" disabled>
 		</div>
 	</div>
 

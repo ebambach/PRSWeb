@@ -1,20 +1,20 @@
-
-export class PurchaseRequestLineItem{
-
+export class PurchaseRequestLineItem {
+	
 	Id: number;
-	Quantity: number;
-	PurchaseRequestId: number;
 	ProductId: number;
+	PurchaseRequestId: number;
+	Quantity: number;
 
 	constructor(
 		Id: number,
-		Quantity: number,
-		PurchaseRequestId: number,
 		ProductId: number,
-	){
+		PurchaseRequestId: number,
+		Quantity: number
+	) {
 		this.Id = Id;
-		this.Quantity = Quantity;
-		this.PurchaseRequestId = PurchaseRequestId;
 		this.ProductId = ProductId;
+		this.PurchaseRequestId = PurchaseRequestId;
+		this.Quantity = Quantity;
 	}
+	
 }

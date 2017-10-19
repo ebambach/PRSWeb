@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PurchaseRequestAddComponent } from './purchase-request-add.component';
 
-describe('RequestAddComponent', () => {
+describe('PurchaseRequestAddComponent', () => {
   let component: PurchaseRequestAddComponent;
   let fixture: ComponentFixture<PurchaseRequestAddComponent>;
 

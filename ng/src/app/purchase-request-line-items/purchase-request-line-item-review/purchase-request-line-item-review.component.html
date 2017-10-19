@@ -1,5 +1,6 @@
-<app-menu></app-menu>
-<div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
 	<div>
 		<span class="PageTitle">Purchase Request Review</span>
 	</div>
@@ -26,6 +27,9 @@
 			<td>{{purchaseRequestLineItem.Quantity}}</td>
 			<td>{{purchaseRequestLineItem.Product.Price | currency:'USD':true}}
 			<td>{{purchaseRequestLineItem.Quantity * purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+			<td>
+				<!-- <a routerLink="/purchaseRequestLineItems/detail/{{purchaseRequestLineItem.PurchaseRequest.Id}}">Select</a> -->
+			</td>
 		</tr>
 		<table class="table">
 			<tr>
@@ -33,6 +37,5 @@
 				<td><button (click)="rejected()" class="btn btn-warning">Reject</button></td>
 			</tr>
 		</table>
-
 	</table>
 </div>

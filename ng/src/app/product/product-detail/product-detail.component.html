@@ -1,27 +1,30 @@
-<app-menu></app-menu>
-<div>
+<app-menu [loggedInUser]="loggedInUser"></app-menu>
+<div class="MainContent form-horizontal">
+
 	<div>
-		<span class="PageTitle">Product Details</span>
+		<span class="PageTitle">Product Detail</span>
+		<span class="CreateNew"><a routerLink="/products/add">Add New</a></span>
 	</div>
 
-	<!-- This makes an asynchronous call to the products[] in product-list.component.ts
-		If the products[] is not null, then we can do something with it -->
-	<div>
-	<table class="table" *ngIf="product">
-			<!-- These table data entries are straightforward, we are calling the product data -->
-			<tr><th>Name:</th><td>{{product.Name}}</td></tr>
-			<tr><th>Vendor Part Number:</th><td>{{product.VendorPartNumber}}</td></tr>
-			<tr><th>Price:</th><td>{{product.Price}}</td></tr>
-			<tr><th>Unit:</th><td>{{product.Unit}}</td></tr>
+	<div *ngIf="product == null">Searching...</div>
+
+	<div *ngIf="product">
+
+		<table class="table">
+			<tr><th>Name</th><td>{{product.Name}}</td></tr>
+			<tr><th>Vendor Part Number</th><td>{{product.VendorPartNumber}}</td></tr>
+			<tr><th>Price</th><td>{{product.Price | currency:"USD":true }}</td></tr>
+			<tr><th>Unit</th><td>{{product.Unit}}</td></tr>
 			<tr><th>Photopath:</th><td><a href="{{product.Photopath}}"><img src="../../assets/image.png" height="25" width="25"></a></td></tr>
-			<tr><th>Vendor:</th><td>{{product.Vendor.Name}}</td></tr>
-			<div class='form-group'>
-				<a routerLink="/Products/Edit/{{product.Id}}" class="col-md-3 btn btn-primary" role="button">Edit</a>
-				<button (click)='remove()' class='col-md-3 btn btn-danger'>Delete this Product</button>
-			</div>
-	</table>
-	</div>
+			<tr><th>Vendor</th><td>{{product.Vendor.Name}}</td></tr>
+		</table>
 
+		<div class="text-center">
+			<button class="btn btn-warning" (click)="edit()">Edit</button> |
+			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
+			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>
+		</div>
+
+	</div>
 
 </div>
-

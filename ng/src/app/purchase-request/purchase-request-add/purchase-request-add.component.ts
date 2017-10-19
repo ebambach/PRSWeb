@@ -14,43 +14,30 @@ import { User } from '../../models/User';
 })
 export class PurchaseRequestAddComponent implements OnInit {
 
-  purchaserequest: PurchaseRequest = new PurchaseRequest(0, '', '', this.addDays(new Date(), "7"), '', 'New', 0, new Date(), 0);
+	purchaseRequest: PurchaseRequest = new PurchaseRequest(0, '', '', '', 'USPS', new Date(), new Date(), "NEW", 0, 0);
 
-  loggedInUser: User;
-  
-  add() {
-    this.PurchaseRequestSvc.add(this.purchaserequest).then(
-      resp => { 
-        // console.log(resp); 
-        this.router.navigate(["/Requests"]); 
-      }
-    );
-  }
+	loggedInUser: User;
+	
+	add() {
+		this.PurchaseRequestSvc.add(this.purchaseRequest).then(
+			resp => { 
+				// console.log(resp); 
+				this.router.navigate(["/purchaseRequests"]); 
+			}
+		);
+	}
 
-  //The purpose of this function is to take a Date, and add days to it.  To do this,
-  //the function takes a Date, in this case "new Date()," which is the current date.
-  //The second parameter is the number of days we want to add, written as a string.
-  addDays(date: Date, days: string): Date {
-      console.log('adding ' + days + ' days');
-      console.log(date);
-
-      date.setDate(date.getDate() + parseInt(days));
-      console.log(date);
-
-      return date;
-  }
-
-  constructor(private PurchaseRequestSvc: PurchaseRequestService, private SystemSvc: SystemService,
-        private router: Router) { }
+  constructor(private PurchaseRequestSvc: PurchaseRequestService, 
+  			private SystemSvc: SystemService,
+  			private router: Router) { }
 
   ngOnInit() {
-    if(!this.SystemSvc.IsLoggedIn()) {
-       this.router.navigateByUrl("\Login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser.UserName);
-      this.purchaserequest.UserId = this.loggedInUser.Id;
-    }
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  		this.purchaseRequest.UserId = this.loggedInUser.Id;
+  	}
   }
 
 }

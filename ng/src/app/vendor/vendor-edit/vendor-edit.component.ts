@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
-
-import {Vendor} from '../../models/Vendor';
-import {VendorService} from '../../services/vendor.service';
-import {User} from '../../models/User';
-import {SystemService} from '../../services/system.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+// import { Observable } from 'rxjs/Observable';
+import { VendorService } from '../../services/vendor.service';
+import { SystemService } from '../../services/system.service';
+import { User } from '../../models/User';
 
 import 'rxjs/add/operator/switchMap';
+
+import { Vendor } from '../../models/Vendor';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -14,36 +15,37 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./vendor-edit.component.css']
 })
 export class VendorEditComponent implements OnInit {
-  loggedInUser: User;
 
-	//As with the the other components, we will create an instance
-	//of the class that we are working with.
-	vendor:Vendor;
+	loggedInUser: User;
 
-	update(){
+	vendor: Vendor; 
+
+	update() {
 		this.VendorSvc.change(this.vendor).then(
-			resp => {console.log(resp);
-				this.router.navigate(['/Vendors'])}
+			resp => { 
+				console.log(resp); 
+				this.router.navigate(['/vendors']) 
+			}
 		)
-	}
+	}	
 
 
-  constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, private route: ActivatedRoute, 
-    private router: Router) { }
+  constructor(private VendorSvc: VendorService, 
+            private SystemSvc: SystemService,
+  			private route: ActivatedRoute, 
+  			private router: Router) { }
 
   ngOnInit() {
+
     if(!this.SystemSvc.IsLoggedIn()) {
-       this.router.navigateByUrl("\Login");
+      //this.router.navigateByUrl("/login");
     } else {
       this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser.UserName);
     }
-
-  	this.route.paramMap
-  	 	.switchMap((params: ParamMap) =>
-  	 		this.VendorSvc.get(params.get('id')))
-  	 	//Subscribe reads the data currently held by Vendor, and stores it in the vendor variable above
-           .subscribe((vendor: Vendor) => this.vendor = vendor);
-  }
+  	
+	this.route.paramMap
+		.switchMap((params: ParamMap) =>
+			this.VendorSvc.get(params.get('id')))
+		.subscribe((vendor: Vendor) => this.vendor = vendor);  }
 
 }

@@ -1,34 +1,37 @@
-export class PurchaseRequest{
-
+export class PurchaseRequest {
+	
 	Id: number;
 	Description: string;
 	Justification: string;
-	DateNeeded: Date;
+	RejectionReason: string;
 	DeliveryMode: string;
+	DateNeeded: Date;
+	DateSubmitted: Date;
 	Status: string;
 	Total: number;
-	SubmittedDate: Date;
 	UserId: number;
 
 	constructor(
 		Id: number,
 		Description: string,
 		Justification: string,
-		DateNeeded: Date,
+		RejectionReason: string,
 		DeliveryMode: string,
+		DateNeeded: Date,
+		DateSubmitted: Date,
 		Status: string,
 		Total: number,
-		SubmittedDate: Date,
-		UserId: number,
-	){
+		UserId: number
+	) {
 		this.Id = Id;
 		this.Description = Description;
 		this.Justification = Justification;
-		this.DateNeeded = DateNeeded;
+		this.RejectionReason = RejectionReason;
 		this.DeliveryMode = DeliveryMode;
+		this.DateNeeded = DateNeeded;
+		this.DateSubmitted = DateSubmitted;
 		this.Status = Status;
 		this.Total = Total;
-		this.SubmittedDate = SubmittedDate;
 		this.UserId = UserId;
 	}
 }
