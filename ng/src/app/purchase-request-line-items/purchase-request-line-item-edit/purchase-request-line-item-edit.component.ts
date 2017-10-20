@@ -7,6 +7,8 @@ import 'rxjs/add/operator/switchMap';
 import { PurchaseRequestLineItem } from '../../models/PurchaseRequestLineItem';
 import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
+import {SystemService} from '../../services/system.service';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-purchase-request-line-item-edit',
@@ -14,7 +16,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./purchase-request-line-item-edit.component.css']
 })
 export class PurchaseRequestLineItemEditComponent implements OnInit {
-
+	loggedInUser:User;
 	purchaseRequestLineItem: PurchaseRequestLineItem; 
 	Product:Product;
 	products: Product[];
@@ -33,11 +35,16 @@ export class PurchaseRequestLineItemEditComponent implements OnInit {
 		)
 	}
 
-  constructor(private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
+ constructor(private SystemSvc: SystemService, private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
   			private ProductSvc: ProductService, private route: ActivatedRoute, 
   			private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 		this.route.paramMap
 			.switchMap((params: ParamMap) =>
 				this.PurchaseRequestLineItemSvc.get(params.get('id')))

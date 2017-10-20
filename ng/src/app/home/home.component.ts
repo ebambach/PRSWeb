@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
 
   loggedInUser: User;
 
-  constructor(private SystemSvc: SystemService, private router: Router) { 
+ constructor(private SystemSvc: SystemService, private router: Router) { 
   }
 
-  ngOnInit() {
+ ngOnInit() {
     if(!this.SystemSvc.IsLoggedIn()) {
       this.router.navigateByUrl("/login");
     }

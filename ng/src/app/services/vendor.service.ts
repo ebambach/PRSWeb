@@ -13,7 +13,7 @@ const url: string = urlBase + mvcCtrl;
 @Injectable()
 export class VendorService {
 
-  constructor(private http: Http) { }
+ constructor(private http: Http) { }
 
 	list(): Promise<Vendor[]> {
 		return this.http.get(url+'List')

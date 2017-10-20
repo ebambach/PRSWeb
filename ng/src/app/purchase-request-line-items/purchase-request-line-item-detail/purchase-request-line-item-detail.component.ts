@@ -3,7 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { PurchaseRequestLineItem } from '../../models/PurchaseRequestLineItem';
 import { PurchaseRequestLineItemService } from '../../services/purchase-request-line-item.service';
-import { SystemService } from '../../services/system.service';
+import {SystemService} from '../../services/system.service';
+import {User} from '../../models/User';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -13,7 +14,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./purchase-request-line-item-detail.component.css']
 })
 export class PurchaseRequestLineItemDetailComponent implements OnInit {
-
+	loggedInUser:User;
 	purchaseRequestLineItem: PurchaseRequestLineItem;
 
 	remove(): void {
@@ -26,12 +27,16 @@ export class PurchaseRequestLineItemDetailComponent implements OnInit {
 	}
 
 
-  constructor(private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
-  				private SystemSvc: SystemService,
-  				private router: Router, 
+ constructor(private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
+  				private SystemSvc: SystemService, private router: Router, 
   				private route: ActivatedRoute) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.PurchaseRequestLineItemSvc.get(params.get('id')))

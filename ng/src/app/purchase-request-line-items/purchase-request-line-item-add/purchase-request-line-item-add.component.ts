@@ -40,14 +40,12 @@ export class PurchaseRequestLineItemAddComponent implements OnInit {
 		);
 	}
 
-  constructor(private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
+ constructor(private SystemSvc: SystemService, private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService, 
   			private PurchaseRequestSvc: PurchaseRequestService,
-  			private ProductSvc: ProductService,
-  			private SystemSvc: SystemService,
-  			private route: ActivatedRoute,
+  			private ProductSvc: ProductService, private route: ActivatedRoute,
   			private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {
   		this.router.navigateByUrl("\login");
   	} else {

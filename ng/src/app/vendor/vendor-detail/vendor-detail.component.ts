@@ -38,26 +38,22 @@ export class VendorDetailComponent implements OnInit {
 		this.router.navigate(['/vendors/edit/'+this.vendor.Id]);
 	}
 
-  constructor(private VendorSvc: VendorService, 
-            private SystemSvc: SystemService,
+ constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, 
             private router: Router, 
   			private route: ActivatedRoute) { }
 
-  ngOnInit() {
-
-    if(!this.SystemSvc.IsLoggedIn()) {
-      //this.router.navigateByUrl("/login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-    }
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.VendorSvc.get(params.get('id')))
 		.subscribe((vendor: Vendor) => this.vendor = vendor);  
-		
-		// this.route.paramMap.switchMap((params: ParamMap) => this.id = params.get('id'));
-		// this.VendorSvc.get(this.id).then(resp => this.vendor = resp);
+
 	}
 
 }

@@ -23,7 +23,7 @@
 		</table>
 
 		<div class="text-center">
-			<span *ngIf="purchaseRequest.Status == 'New' || purchaseRequest.Status === 'Rejected'"><button class="btn btn-success" (click)="review()">Review</button> |</span>
+			<span *ngIf="purchaseRequest.Status === 'New' || purchaseRequest.Status === 'Review'"><button class="btn btn-success" (click)="review()">Review</button> |</span>
 			<button class="btn btn-warning" (click)="edit()">Edit</button> |
 			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
 			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>

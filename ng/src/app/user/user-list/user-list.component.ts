@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -21,12 +22,16 @@ export class UserListComponent implements OnInit {
 			.then(resp => this.users = resp);
 	}
 
-  constructor(private SystemSvc: SystemService, private UserSvc: UserService) { }
+ constructor(private SystemSvc: SystemService, private UserSvc: UserService,
+             private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
   	this.getUsers();
-    this.loggedInUser = this.SystemSvc.getLoggedIn();
-
   }
 
 }

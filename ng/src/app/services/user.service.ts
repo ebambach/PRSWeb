@@ -20,7 +20,7 @@ export class UserService {
 		'Content-Type': 'application/json'
 	});
 
-  constructor(private http: Http) { }
+ constructor(private http: Http) { }
 
   	login(username: string, password: string): Promise<User[]> {
   		let parms = "UserName=" + username + "&Password=" + password;

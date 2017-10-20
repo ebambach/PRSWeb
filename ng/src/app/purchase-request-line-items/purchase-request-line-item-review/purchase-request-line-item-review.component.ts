@@ -8,6 +8,8 @@ import { PurchaseRequestLineItem } from '../../models/PurchaseRequestLineItem';
 import { PurchaseRequestLineItemService } from '../../services/purchase-request-line-item.service';
 import { PurchaseRequestAndLines } from '../../models/PurchaseRequestAndLines';
 import { PurchaseRequest } from '../../models/PurchaseRequest';
+import {SystemService} from '../../services/system.service';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'purchase-request-line-item-review',
@@ -15,14 +17,14 @@ import { PurchaseRequest } from '../../models/PurchaseRequest';
   styleUrls: ['./purchase-request-line-item-review.component.css']
 })
 export class PurchaseRequestLineItemReviewComponent implements OnInit {
-
+  loggedInUser:User;
 	purchaseRequestAndLines: PurchaseRequestAndLines;
 
   approved(): void {
-    this.setStatus("APPROVED");
+    this.setStatus("Approved");
   }
   rejected(): void {
-    this.setStatus("REJECTED");
+    this.setStatus("Rejected");
   }
   private setStatus(newStatus: string): void {
     let purchaseRequest: PurchaseRequest = this.purchaseRequestAndLines.PurchaseRequest;
@@ -34,12 +36,17 @@ export class PurchaseRequestLineItemReviewComponent implements OnInit {
       })
   }
 
-  constructor(private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService,
+ constructor(private SystemSvc: SystemService, private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService,
               private PurchaseRequestSvc: PurchaseRequestService,
               private router: Router,
   			      private route: ActivatedRoute) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.PurchaseRequestLineItemSvc.getByPurchaseRequestId(params.get('id')))

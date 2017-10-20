@@ -33,12 +33,13 @@ import { ProductAddComponent } from './product/product-add/product-add.component
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 import { PurchaseRequestService } from './services/purchase-request.service';
-import { PurchaseRequestLineItemService } from './services/purchase-request-line-item.service';
 import { PurchaseRequestListComponent } from './purchase-request/purchase-request-list/purchase-request-list.component';
 import { PurchaseRequestDetailComponent } from './purchase-request/purchase-request-detail/purchase-request-detail.component';
 import { PurchaseRequestAddComponent } from './purchase-request/purchase-request-add/purchase-request-add.component';
 import { PurchaseRequestEditComponent } from './purchase-request/purchase-request-edit/purchase-request-edit.component';
+import { PurchaseRequestReviewComponent } from './purchase-request/purchase-request-review/purchase-request-review.component';
 
+import { PurchaseRequestLineItemService } from './services/purchase-request-line-item.service';
 import { PurchaseRequestLineItemListComponent } from './purchase-request-line-items/purchase-request-line-item-list/purchase-request-line-item-list.component';
 import { PurchaseRequestLineItemReviewComponent } from './purchase-request-line-items/purchase-request-line-item-review/purchase-request-line-item-review.component';
 import { PurchaseRequestLineItemEditComponent } from './purchase-request-line-items/purchase-request-line-item-edit/purchase-request-line-item-edit.component';
@@ -55,7 +56,7 @@ import { PurchaseRequestLineItemDetailComponent } from './purchase-request-line-
     ProductListComponent, ProductDetailComponent, ProductAddComponent, ProductEditComponent,
 
     PurchaseRequestListComponent, PurchaseRequestDetailComponent, PurchaseRequestAddComponent,
-    PurchaseRequestEditComponent,
+    PurchaseRequestEditComponent, PurchaseRequestReviewComponent,
 
     PurchaseRequestLineItemListComponent, PurchaseRequestLineItemReviewComponent,
     PurchaseRequestLineItemEditComponent, PurchaseRequestLineItemAddComponent,

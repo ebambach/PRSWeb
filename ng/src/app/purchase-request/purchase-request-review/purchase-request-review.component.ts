@@ -38,16 +38,16 @@ export class PurchaseRequestReviewComponent implements OnInit {
       })
   }
 
-  constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
+ constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
   			private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {
-       this.router.navigateByUrl("\Login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-      console.log("The logged in User is " + this.loggedInUser.UserName);
-    }
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
+
 	
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>

@@ -27,17 +27,15 @@ export class VendorAddComponent implements OnInit {
 		);
 	}
 
-  constructor(private VendorSvc: VendorService, 
-	            private SystemSvc: SystemService,
+ constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, 
   				private router: Router) { }
 
-  ngOnInit() {
-
-    if(!this.SystemSvc.IsLoggedIn()) {
-      //this.router.navigateByUrl("/login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-    }
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 
   }
 

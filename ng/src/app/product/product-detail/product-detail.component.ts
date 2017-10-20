@@ -4,6 +4,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
 
+import {SystemService} from '../../services/system.service';
+import {User} from '../../models/User';
+
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -12,7 +15,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-
+	loggedInUser: User;
 	product: Product;
 	verifyDelete: boolean = false;
 
@@ -34,16 +37,19 @@ export class ProductDetailComponent implements OnInit {
 		this.router.navigate(['/products/edit/'+this.product.Id]);
 	}
 
-  constructor(private ProductSvc: ProductService, private router: Router, private route: ActivatedRoute) { }
+ constructor(private SystemSvc: SystemService, private ProductSvc: ProductService, 
+ 	private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 		this.route.paramMap
 			.switchMap((params: ParamMap) =>
 				this.ProductSvc.get(params.get('id')))
 			.subscribe((product: Product) => this.product = product);  
-		
-		// this.route.paramMap.switchMap((params: ParamMap) => this.id = params.get('id'));
-		// this.ProductSvc.get(this.id).then(resp => this.product = resp);
 	}
 
 }

@@ -28,10 +28,14 @@ export class UserAddComponent implements OnInit {
 		);
 	}
 
-  constructor(private SystemSvc: SystemService, private UserSvc: UserService, private router: Router) { }
+ constructor(private SystemSvc: SystemService, private UserSvc: UserService, private router: Router) { }
 
-  ngOnInit() {
-  	this.loggedInUser = this.SystemSvc.getLoggedIn();
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
   }
 
 }

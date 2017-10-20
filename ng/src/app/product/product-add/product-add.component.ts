@@ -6,6 +6,9 @@ import { VendorService } from '../../services/vendor.service';
 import { Product } from '../../models/Product';
 import { Vendor } from '../../models/Vendor';
 
+import {User} from '../../models/User';
+import {SystemService} from '../../services/system.service';
+
 @Component({
 
   selector: 'app-product-add',
@@ -16,6 +19,8 @@ export class ProductAddComponent implements OnInit {
 
 	product: Product = new Product(0, '', '', 0, 'Each', '', 0);
 	vendors: Vendor[];
+
+	loggedInUser: User;
 	
 	add() {
 		this.ProductSvc.add(this.product).then(
@@ -31,11 +36,15 @@ export class ProductAddComponent implements OnInit {
 			.then(resp => this.vendors = resp);
 	}
 
-  constructor(private ProductSvc: ProductService, 
-  			private VendorSvc: VendorService,
-  			private router: Router) { }
+ constructor(private ProductSvc: ProductService, private VendorSvc: VendorService,
+  			private router: Router, private SystemSvc: SystemService) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
   	this.getVendors();
   }
 

@@ -26,9 +26,6 @@ export class LoginComponent implements OnInit {
 		this.message = "";
 		this.UserSvc.login(this.username, this.password)
 			.then(resp => this.checkData(resp));
-		// let parms = "UserName=" + this.username + "&Password=" + this.password;
-	 //  	this.http.get("http://localhost:62140/Users/Login?" + parms)
-	 //  		.subscribe(data => { this.checkData(data); });
 	}
 
 	checkData(users: User[]) : void {
@@ -39,15 +36,14 @@ export class LoginComponent implements OnInit {
 			this.router.navigateByUrl("/home");
 
 		} else {
-			this.message = "USER NAME AND/OR PASSWORD NOT FOUND";
+			this.message = "This User Name and Password combination was not found";
 		}
 	}
 
-  constructor(private UserSvc: UserService, 
-  				private SystemSvc: SystemService, 
+ constructor(private SystemSvc: SystemService, private UserSvc: UserService, 
   				private router: Router ) { }
 
-  ngOnInit() {
+ ngOnInit() {
   	console.log("In LoginComponent");
   }
 

@@ -38,15 +38,20 @@ export class UserDetailComponent implements OnInit {
 		this.router.navigate(['/users/edit/'+this.user.Id]);
 	}
 
-  constructor(private SystemSvc: SystemService, private UserSvc: UserService, private router: Router, private route: ActivatedRoute) { }
+ constructor(private SystemSvc: SystemService, private UserSvc: UserService, 
+ 	private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.UserSvc.get(params.get('id')))
 		.subscribe((user: User) => this.user = user);  
 		
-  	this.loggedInUser = this.SystemSvc.getLoggedIn();
 	}
 
 }

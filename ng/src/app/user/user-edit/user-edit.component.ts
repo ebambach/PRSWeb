@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import { Observable } from 'rxjs/Observable';
 import { UserService } from '../../services/user.service';
 import { SystemService } from '../../services/system.service';
 
@@ -28,18 +27,20 @@ export class UserEditComponent implements OnInit {
 	}	
 
 
-  constructor(private SystemSvc: SystemService, 
-  			private UserSvc: UserService, 
-  			private route: ActivatedRoute, 
-  			private router: Router) { }
+ constructor(private SystemSvc: SystemService, private UserSvc: UserService, 
+  			private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
 			this.UserSvc.get(params.get('id')))
 		.subscribe((user: User) => this.user = user);  
 
-  	this.loggedInUser = this.SystemSvc.getLoggedIn();
   }
 
 }

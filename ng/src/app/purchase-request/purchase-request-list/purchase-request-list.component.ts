@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
 import { PurchaseRequest } from '../../models/PurchaseRequest';
 import { PurchaseRequestService } from '../../services/purchase-request.service';
+
+import {SystemService} from '../../services/system.service';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'purchase-request-list',
@@ -11,20 +15,25 @@ import { PurchaseRequestService } from '../../services/purchase-request.service'
   styleUrls: ['./purchase-request-list.component.css']
 })
 export class PurchaseRequestListComponent implements OnInit {
-
+  loggedInUser: User;
 	purchaseRequests: PurchaseRequest[];
 
 	getPurchaseRequests(): void {
 		this.PurchaseRequestSvc.list()
 			.then(resp => {
-        // console.log(resp);
         this.purchaseRequests = resp
       });
 	}
 
-  constructor(private PurchaseRequestSvc: PurchaseRequestService) { }
+ constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService,
+   private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
   	this.getPurchaseRequests();
   }
 

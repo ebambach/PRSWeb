@@ -21,7 +21,7 @@ export class PurchaseRequestLineItemService {
 		'Content-Type': 'application/json'
 	});
 
-  constructor(private http: Http) { }
+ constructor(private http: Http) { }
 
   	getByPurchaseRequestId(id): Promise<PurchaseRequestAndLines> {
   		return this.http.get(url+'GetById/'+id)

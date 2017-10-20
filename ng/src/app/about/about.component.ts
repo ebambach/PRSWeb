@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
-
 import {SystemService} from '../services/system.service';
 import {User} from '../models/User';
 
@@ -16,9 +15,9 @@ export class AboutComponent implements OnInit {
 loggedInUser: User;
 
 
-  constructor(private SystemSvc: SystemService, private router: Router) { }
+ constructor(private SystemSvc: SystemService, private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {
        this.router.navigateByUrl("\Login");
     } else {

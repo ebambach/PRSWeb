@@ -24,16 +24,16 @@ export class VendorListComponent implements OnInit {
 			.then(resp => this.vendors = resp);
 	}
 
-  constructor(private VendorSvc: VendorService, 
-            private SystemSvc: SystemService,
+ constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, 
             private router: Router) { }
 
-  ngOnInit() {
-    if(!this.SystemSvc.IsLoggedIn()) {
-      //this.router.navigateByUrl("/login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-    }
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
+
   	this.getVendors();
   }
 

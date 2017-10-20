@@ -21,17 +21,15 @@ export class PurchaseRequestAddComponent implements OnInit {
 	add() {
 		this.PurchaseRequestSvc.add(this.purchaseRequest).then(
 			resp => { 
-				// console.log(resp); 
 				this.router.navigate(["/purchaseRequests"]); 
 			}
 		);
 	}
 
-  constructor(private PurchaseRequestSvc: PurchaseRequestService, 
-  			private SystemSvc: SystemService,
+ constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
   			private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {
   		this.router.navigateByUrl("\login");
   	} else {

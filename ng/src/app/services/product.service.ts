@@ -3,7 +3,6 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-// import { Observable } from 'rxjs';
 
 import { Product } from '../models/Product';
 
@@ -20,7 +19,7 @@ export class ProductService {
 		'Content-Type': 'application/json'
 	});
 
-  constructor(private http: Http) { }
+ constructor(private http: Http) { }
 
 	list(): Promise<Product[]> {
 		return this.http.get(url+'List')

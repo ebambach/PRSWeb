@@ -28,10 +28,10 @@ export class MenuComponent implements OnInit {
     new Menu("Login", "/login", "Login to the app")
   ];
 
-  constructor(private SystemSvc: SystemService) {
+ constructor(private SystemSvc: SystemService) {
   }
 
-  ngOnInit() {
+ ngOnInit() {
   }
 
 }

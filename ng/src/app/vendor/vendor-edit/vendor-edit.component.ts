@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import { Observable } from 'rxjs/Observable';
 import { VendorService } from '../../services/vendor.service';
 import { SystemService } from '../../services/system.service';
 import { User } from '../../models/User';
@@ -30,18 +29,17 @@ export class VendorEditComponent implements OnInit {
 	}	
 
 
-  constructor(private VendorSvc: VendorService, 
-            private SystemSvc: SystemService,
+ constructor(private SystemSvc: SystemService, private VendorSvc: VendorService, 
   			private route: ActivatedRoute, 
   			private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
+  	if(!this.SystemSvc.IsLoggedIn()) {
+  		this.router.navigateByUrl("\login");
+  	} else {
+  		this.loggedInUser = this.SystemSvc.getLoggedIn();
+  	}
 
-    if(!this.SystemSvc.IsLoggedIn()) {
-      //this.router.navigateByUrl("/login");
-    } else {
-      this.loggedInUser = this.SystemSvc.getLoggedIn();
-    }
   	
 	this.route.paramMap
 		.switchMap((params: ParamMap) =>
