@@ -8,6 +8,7 @@ import { PurchaseRequest } from '../../models/PurchaseRequest';
 
 import {SystemService} from '../../services/system.service';
 import {User} from '../../models/User';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-purchase-request-edit',
@@ -15,8 +16,14 @@ import {User} from '../../models/User';
   styleUrls: ['./purchase-request-edit.component.css']
 })
 export class PurchaseRequestEditComponent implements OnInit {
+	users: User[];
 	loggedInUser:User;
 	purchaseRequest: PurchaseRequest; 
+	
+	getUsers(): void {
+		this.UserSvc.list()
+			.then(resp => this.users = resp);
+	}
 
 	update() {
 		this.PurchaseRequestSvc.change(this.purchaseRequest).then(
@@ -27,7 +34,9 @@ export class PurchaseRequestEditComponent implements OnInit {
 		)
 	}	
 
- constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
+	
+
+ constructor(private UserSvc: UserService, private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
   			private route: ActivatedRoute, 
   			private router: Router) { }
 
@@ -37,11 +46,14 @@ export class PurchaseRequestEditComponent implements OnInit {
   	} else {
   		this.loggedInUser = this.SystemSvc.getLoggedIn();
   	}
+  	this.getUsers();
+  	
 		this.route.paramMap
 			.switchMap((params: ParamMap) =>
 				this.PurchaseRequestSvc.get(params.get('id')))
 			.subscribe((purchaseRequest: PurchaseRequest) => this.purchaseRequest = purchaseRequest);  
 
+		
 	}
 
 }

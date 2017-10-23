@@ -18,12 +18,12 @@
 			<tr><th>Date Needed</th><td>{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td></tr>
 			<tr><th>Status</th><td>{{purchaseRequest.Status}}</td></tr>
 			<tr><th>Total</th><td>{{purchaseRequest.Total}}</td></tr>
-			<tr><th>User</th><td>{{purchaseRequest.User.LastName}}</td></tr>
+			<tr><th>User</th><td>{{purchaseRequest.User.UserName}}</td></tr>
 			<tr><th>Submitted Date:</th><td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td></tr>
 		</table>
 
 		<div class="text-center">
-			<span *ngIf="purchaseRequest.Status === 'New' || purchaseRequest.Status === 'Review'"><button class="btn btn-success" (click)="review()">Review</button> |</span>
+			<span *ngIf="purchaseRequest.Status === 'New' || purchaseRequest.Status === 'Rejected'"><button class="btn btn-success" (click)="review()">Mark for Review</button> |</span>
 			<button class="btn btn-warning" (click)="edit()">Edit</button> |
 			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
 			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>

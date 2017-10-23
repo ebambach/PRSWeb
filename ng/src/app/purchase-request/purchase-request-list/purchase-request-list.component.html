@@ -23,12 +23,13 @@
 			<td>{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
 			<td>{{purchaseRequest.Status}}</td>
 			<td>{{purchaseRequest.Total | currency:"USD":true}}</td>
-			<td>{{purchaseRequest.User.LastName}}</td>
+			<td>{{purchaseRequest.User.UserName}}</td>
 			<td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
 			<td>
 				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
 				<span><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
 				<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
+				<span><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
 			</td>
 		</tr>
 	</table>

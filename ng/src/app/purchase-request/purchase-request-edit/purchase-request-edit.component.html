@@ -25,7 +25,11 @@
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaseRequest-RejectionReason">RejectionReason</label>
-		<div class='col-md-9'>
+		<div class='col-md-9' *ngIf="loggedInUser.IsReviewer != true">
+			<input class='form-control' name='RejectionReason' type='text' id='purchaseRequest-RejectionReason' 
+				[(ngModel)]='purchaseRequest.RejectionReason' placeholder="RejectionReason" readonly>
+		</div>
+		<div class='col-md-9' *ngIf="loggedInUser.IsReviewer == true">
 			<input class='form-control' name='RejectionReason' type='text' id='purchaseRequest-RejectionReason' 
 				[(ngModel)]='purchaseRequest.RejectionReason' placeholder="RejectionReason">
 		</div>
@@ -52,7 +56,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Status">Status</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Status' type='text' id='purchaseRequest-Status' 
-				[(ngModel)]='purchaseRequest.Status' placeholder="Status" disabled>
+				[(ngModel)]='purchaseRequest.Status' placeholder="Status" readonly>
 		</div>
 	</div>
 
@@ -60,23 +64,28 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Total">Total</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Total' type='text' id='purchaseRequest-Total' 
-				[(ngModel)]='purchaseRequest.Total' placeholder="Total" disabled>
+				[(ngModel)]='purchaseRequest.Total' placeholder="Total" readonly>
 		</div>
 	</div>
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaseRequest-User">User</label>
-		<div class='col-md-9'>
+		<div class='col-md-9' *ngIf="loggedInUser.IsAdmin != true">
 			<input class='form-control' name='User' type='text' id='purchaseRequest-User' 
-				value='{{loggedInUser.LastName}}' placeholder="User" disabled>
+				[(ngModel)]='purchaseRequest.User.UserName' placeholder="User" readonly>
+		</div>
+		<div class='col-md-9' *ngIf="loggedInUser.IsAdmin == true">
+			<select [(ngModel)]='purchaseRequest.UserId' class='form-control' name='User' id='purchaseRequest-User'>
+				<option *ngFor="let user of users" [ngValue]="user.Id">{{user.UserName}}</option>
+			</select>
 		</div>
 	</div>
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaseRequest-DateSubmitted">DateSubmitted</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-SubmittedDate">Date Submitted</label>
 		<div class='col-md-9'>
-			<input class='form-control' name='DateSubmitted' type='text' id='purchaseRequest-DateSubmitted' 
-				value='{{purchaseRequest.DateSubmitted | date:"M/d/y"}}' placeholder="DateSubmitted" disabled>
+			<input class='form-control' name='SubmittedDate' type='text' id='purchaseRequest-SubmittedDate' 
+				value='{{purchaseRequest.SubmittedDate | date:"M/d/y"}}' placeholder="SubmittedDate" readonly>
 		</div>
 	</div>
 

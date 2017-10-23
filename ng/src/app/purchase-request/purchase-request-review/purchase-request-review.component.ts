@@ -8,6 +8,7 @@ import { SystemService } from '../../services/system.service';
 import { PurchaseRequest } from '../../models/PurchaseRequest';
 import { User } from '../../models/User';
 
+
 @Component({
   selector: 'app-purchase-request-review',
   templateUrl: './purchase-request-review.component.html',
@@ -15,7 +16,7 @@ import { User } from '../../models/User';
 })
 export class PurchaseRequestReviewComponent implements OnInit {
 
-	purchaserequest: PurchaseRequest; 
+	purchaseRequest: PurchaseRequest; 
 	loggedInUser: User;
 
 	//For approved() and rejected, we will use simple methods that use one line to
@@ -28,13 +29,15 @@ export class PurchaseRequestReviewComponent implements OnInit {
   	rejected(): void {
     this.setStatus("Rejected");
   	}
+
+  
   
   private setStatus(newStatus: string): void {
-    this.purchaserequest.Status = newStatus;
-    this.PurchaseRequestSvc.change(this.purchaserequest)
+    this.purchaseRequest.Status = newStatus;
+    this.PurchaseRequestSvc.change(this.purchaseRequest)
       .then(resp => {
         console.log(resp);
-        this.router.navigateByUrl("/Requests");
+        this.router.navigateByUrl("/purchaseRequests");
       })
   }
 
@@ -50,9 +53,9 @@ export class PurchaseRequestReviewComponent implements OnInit {
 
 	
 	this.route.paramMap
-		.switchMap((params: ParamMap) =>
-			this.PurchaseRequestSvc.get(params.get('id')))
-		.subscribe((purchaserequest: PurchaseRequest) => this.purchaserequest = purchaserequest);  
+      .switchMap((params: ParamMap) =>
+        this.PurchaseRequestSvc.get(params.get('id')))
+      .subscribe((purchaseRequest: PurchaseRequest) => this.purchaseRequest = purchaseRequest);
 
 	}
 

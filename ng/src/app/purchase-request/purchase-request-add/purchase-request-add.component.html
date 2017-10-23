@@ -52,7 +52,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Status">Status</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Status' type='text' id='purchaseRequest-Status' 
-				[(ngModel)]='purchaseRequest.Status' placeholder="Status" disabled>
+				[(ngModel)]='purchaseRequest.Status' placeholder="Status" readonly>
 		</div>
 	</div>
 
@@ -60,7 +60,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Total">Total</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Total' type='text' id='purchaseRequest-Total' 
-				[(ngModel)]='purchaseRequest.Total' placeholder="Total" disabled>
+				[(ngModel)]='purchaseRequest.Total' placeholder="Total" readonly>
 		</div>
 	</div>
 
@@ -68,7 +68,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-User">User</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='User' type='text' id='purchaseRequest-User' 
-				value='{{loggedInUser.LastName}}' placeholder="User" disabled>
+				value='{{loggedInUser.UserName}}' placeholder="User" readonly>
 		</div>
 	</div>
 
@@ -76,7 +76,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-DateSubmitted">DateSubmitted</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='DateSubmitted' type='text' id='purchaseRequest-DateSubmitted' 
-				value='{{purchaseRequest.DateSubmitted | date:"M/d/y"}}' placeholder="DateSubmitted" disabled>
+				value='{{purchaseRequest.DateSubmitted | date:"M/d/y"}}' placeholder="DateSubmitted" readonly>
 		</div>
 	</div>
 
