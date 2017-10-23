@@ -3,7 +3,6 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-// import { Observable } from 'rxjs';
 
 import { PurchaseRequest } from '../models/PurchaseRequest';
 
@@ -44,6 +43,9 @@ export class PurchaseRequestService {
 	}
 
 	add(purchaseRequest: PurchaseRequest): Promise<any> {
+		if (purchaseRequest.Total < 50){
+			purchaseRequest.Status = "Approved";
+		}
 		return this.http.post(url+'Add', purchaseRequest)
 			.toPromise()
 			.then(resp => resp.json() || {})
@@ -51,6 +53,9 @@ export class PurchaseRequestService {
 	}
 
 	change(purchaseRequest: PurchaseRequest): Promise<any> {
+		if (purchaseRequest.Total < 50){
+			purchaseRequest.Status = "Approved";
+		}
 		return this.http.post(url+'Change', purchaseRequest)
 			.toPromise()
 			.then(resp => resp.json() || {})
