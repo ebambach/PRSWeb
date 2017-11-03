@@ -6,7 +6,7 @@ export class PurchaseRequest {
 	RejectionReason: string;
 	DeliveryMode: string;
 	DateNeeded: Date;
-	DateSubmitted: Date;
+	SubmittedDate: Date;
 	Status: string;
 	Total: number;
 	UserId: number;
@@ -18,7 +18,7 @@ export class PurchaseRequest {
 		RejectionReason: string,
 		DeliveryMode: string,
 		DateNeeded: Date,
-		DateSubmitted: Date,
+		SubmittedDate: Date,
 		Status: string,
 		Total: number,
 		UserId: number
@@ -29,7 +29,7 @@ export class PurchaseRequest {
 		this.RejectionReason = RejectionReason;
 		this.DeliveryMode = DeliveryMode;
 		this.DateNeeded = DateNeeded;
-		this.DateSubmitted = DateSubmitted;
+		this.SubmittedDate = SubmittedDate;
 		this.Status = Status;
 		this.Total = Total;
 		this.UserId = UserId;

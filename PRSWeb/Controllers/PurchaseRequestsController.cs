@@ -27,98 +27,99 @@ namespace PRSWeb.Controllers
 			return new JsonNetResult { Data = db.PurchaseRequests.ToList() };
 		}
 
-		//Returns a specific, valid purchaserequest
+		//Returns a specific, valid purchaseRequest
 		public ActionResult Get(int? id) {
 			//If the id is a null value, return an error message saying so
 			if (id == null) {
 				return Json(new Msg { Result = "Failure", Message = "Id is null." }, JsonRequestBehavior.AllowGet);
 			}
 			else {
-				//The id was not null, time to set up a purchaserequest variable
-				PurchaseRequest purchaserequest = db.PurchaseRequests.Find(id);
-				//If the id used for the purchaserequest variable is incorrect, return an error message saying so
-				if (purchaserequest == null) {
+				//The id was not null, time to set up a purchaseRequest variable
+				PurchaseRequest purchaseRequest = db.PurchaseRequests.Find(id);
+				//If the id used for the purchaseRequest variable is incorrect, return an error message saying so
+				if (purchaseRequest == null) {
 					return Json(new Msg { Result = "Failure", Message = $"The entered id, {id}, was not found." }, JsonRequestBehavior.AllowGet);
 				}
 				else {
-					//Now that we have made it past the if checks, let's return the purchaserequest
-					//return Json(purchaserequest, JsonRequestBehavior.AllowGet);
+					//Now that we have made it past the if checks, let's return the purchaseRequest
+					//return Json(purchaseRequest, JsonRequestBehavior.AllowGet);
 					//^Still working with DateTime, so can't use the above again, need to
 					//call JsonNetResult instead
-					return new JsonNetResult { Data = purchaserequest };
+					return new JsonNetResult { Data = purchaseRequest };
 					}
 			}
 		}
 
 		//[FromBody] uses web api as a substitute for [Bind(Include = "Id,VendorPartNumber,Name,Price,Unit,Photopath,VendorId")]
 		//(so long as we remember to change the [HttpPost] annotations to [System.Web.Mvc.HttpPost], to show we are using Mvc
-		public ActionResult Add([FromBody] PurchaseRequest purchaserequest) {
-			//Let's make sure we have a valid purchaserequest
-			if (purchaserequest == null || purchaserequest.Description == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest was invalid." }, JsonRequestBehavior.AllowGet);
+		public ActionResult Add([FromBody] PurchaseRequest purchaseRequest) {
+			//Let's make sure we have a valid purchaseRequest
+			if (purchaseRequest == null || purchaseRequest.Description == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest was invalid." }, JsonRequestBehavior.AllowGet);
 			}
-			//A purchaserequest has a foreign key tying it into a user, let's make sure that a valid
+			//A purchaseRequest has a foreign key tying it into a user, let's make sure that a valid
 			//key was assigned.
-			var user = db.Users.Find(purchaserequest.UserId);
+			var user = db.Users.Find(purchaseRequest.UserId);
 			if (user == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
 			}
-			//If we have a valid purchaserequest, we can add the purchaserequest to the PurchaseRequests table in the database.
-			db.PurchaseRequests.Add(purchaserequest);
-			//Although we used Add() to add the purchaserequest, the changes we make don't stay changed.
+			Console.Write(purchaseRequest);
+			//If we have a valid purchaseRequest, we can add the purchaseRequest to the PurchaseRequests table in the database.
+			db.PurchaseRequests.Add(purchaseRequest);
+			//Although we used Add() to add the purchaseRequest, the changes we make don't stay changed.
 			db.SaveChanges();
-			return Json(new Msg { Result = "Success", Message = "The entered purchaserequest was added to the table of products." }, JsonRequestBehavior.AllowGet);
+			return Json(new Msg { Result = "Success", Message = "The entered purchaseRequest was added to the table of products." }, JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult Change([FromBody] PurchaseRequest purchaserequest) {
-			if (purchaserequest == null || purchaserequest.Description == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest was invalid." }, JsonRequestBehavior.AllowGet);
+		public ActionResult Change([FromBody] PurchaseRequest purchaseRequest) {
+			if (purchaseRequest == null || purchaseRequest.Description == null) {
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest was invalid." }, JsonRequestBehavior.AllowGet);
 			}
-			//A purchaserequest has a foreign key tying it into a user, let's make sure that a valid
+			//A purchaseRequest has a foreign key tying it into a user, let's make sure that a valid
 			//key was assigned.
-			var user = db.Users.Find(purchaserequest.UserId);
+			var user = db.Users.Find(purchaseRequest.UserId);
 			if (user == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest lacks a valid user." }, JsonRequestBehavior.AllowGet);
 			}
-			//As with the Add(), provided we have valid data, it is time to update the purchaserequest
-			//First, we'll make a temporary copy of the purchaserequest we are changing
-			PurchaseRequest tempPurchaseRequest = db.PurchaseRequests.Find(purchaserequest.Id);
+			//As with the Add(), provided we have valid data, it is time to update the purchaseRequest
+			//First, we'll make a temporary copy of the purchaseRequest we are changing
+			PurchaseRequest tempPurchaseRequest = db.PurchaseRequests.Find(purchaseRequest.Id);
 			if (tempPurchaseRequest == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest was invalid." }, JsonRequestBehavior.AllowGet);
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest was invalid." }, JsonRequestBehavior.AllowGet);
 			}
-			tempPurchaseRequest.Description = purchaserequest.Description;
-			tempPurchaseRequest.Justification = purchaserequest.Justification;
-			tempPurchaseRequest.DateNeeded = purchaserequest.DateNeeded;
-			tempPurchaseRequest.DeliveryMode = purchaserequest.DeliveryMode;
-			tempPurchaseRequest.Status = purchaserequest.Status;
-			tempPurchaseRequest.Total = purchaserequest.Total;
-			tempPurchaseRequest.SubmittedDate = purchaserequest.SubmittedDate;
-			tempPurchaseRequest.UserId = purchaserequest.UserId;
+			tempPurchaseRequest.Description = purchaseRequest.Description;
+			tempPurchaseRequest.Justification = purchaseRequest.Justification;
+			tempPurchaseRequest.DateNeeded = purchaseRequest.DateNeeded;
+			tempPurchaseRequest.DeliveryMode = purchaseRequest.DeliveryMode;
+			tempPurchaseRequest.Status = purchaseRequest.Status;
+			tempPurchaseRequest.Total = purchaseRequest.Total;
+			tempPurchaseRequest.SubmittedDate = purchaseRequest.SubmittedDate;
+			tempPurchaseRequest.UserId = purchaseRequest.UserId;
 
 			//After we make entity framework track all of the fields we may or may not be
 			//changing, we use SaveChanges().
 			db.SaveChanges();
-			return Json(new Msg { Result = "Success", Message = "The entered purchaserequest was changed." }, JsonRequestBehavior.AllowGet);
+			return Json(new Msg { Result = "Success", Message = "The entered purchaseRequest was changed." }, JsonRequestBehavior.AllowGet);
 		}
 
 		//To maintain consistency with the above methods, we are going to pass in the whole
-		//purchaserequest (instead of just the purchaserequest.Id, which is all we really need to delete).
-		public ActionResult Remove([FromBody] PurchaseRequest purchaserequest) {
+		//purchaseRequest (instead of just the purchaseRequest.Id, which is all we really need to delete).
+		public ActionResult Remove([FromBody] PurchaseRequest purchaseRequest) {
 			//This being a way of deleting information, we do not care about the UserName
 			//like we did in the above methods, so let's make sure that the PurchaseRequest.Id is valid.
-			if (purchaserequest == null || purchaserequest.Id <= 0) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest was invalid." }, JsonRequestBehavior.AllowGet);
+			if (purchaseRequest == null || purchaseRequest.Id <= 0) {
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest was invalid." }, JsonRequestBehavior.AllowGet);
 			}
 			//As with the Change(), we want to make sure entity framework is keeping
-			//track of the purchaserequest we want to delete (and we do just want the Id here).
-			PurchaseRequest tempPurchaseRequest = db.PurchaseRequests.Find(purchaserequest.Id);
+			//track of the purchaseRequest we want to delete (and we do just want the Id here).
+			PurchaseRequest tempPurchaseRequest = db.PurchaseRequests.Find(purchaseRequest.Id);
 			if (tempPurchaseRequest == null) {
-				return Json(new Msg { Result = "Failure", Message = "The entered purchaserequest was invalid." }, JsonRequestBehavior.AllowGet);
+				return Json(new Msg { Result = "Failure", Message = "The entered purchaseRequest was invalid." }, JsonRequestBehavior.AllowGet);
 			}
-			//Time to save the changes, and remove that purchaserequest!
+			//Time to save the changes, and remove that purchaseRequest!
 			db.PurchaseRequests.Remove(tempPurchaseRequest);
 			db.SaveChanges();
-			return Json(new Msg { Result = "Success", Message = "The entered purchaserequest was removed from the table of products." }, JsonRequestBehavior.AllowGet);
+			return Json(new Msg { Result = "Success", Message = "The entered purchaseRequest was removed from the table of products." }, JsonRequestBehavior.AllowGet);
 		}
 
 		// GET: PurchaseRequests

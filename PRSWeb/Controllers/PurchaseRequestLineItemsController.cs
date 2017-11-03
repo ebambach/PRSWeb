@@ -39,10 +39,10 @@ namespace PRSWeb.Controllers
 
 			//We did use "Where" up above to make sure we were working with the correct PurchaseRequest,
 			//but we did not store that anywhere, so we need to do that here.
-			var purchaserequest = db.PurchaseRequests.Find(prid);
+			var purchaseRequest = db.PurchaseRequests.Find(prid);
 
 			//Now that we know "Where" we are going again, we can update the Total.
-			purchaserequest.Total = Total;
+			purchaseRequest.Total = Total;
 
 			//As always, need to save the changes to make the database reflect what we did.
 			db.SaveChanges();
@@ -78,7 +78,7 @@ namespace PRSWeb.Controllers
 
 		//Unlike the above Get(), which retrieves a single purchaserequestlineitem,
 		//GetById() retrieves every purchaserequestlineitem that belong to a specified
-		//purchaserequest.
+		//purchaseRequest.
 		public ActionResult GetById(int? id) {
 			//If the id is a null value, return an error message saying so
 			if (id == null) {
@@ -86,16 +86,16 @@ namespace PRSWeb.Controllers
 			}
 			else {
 				//The id was not null, time to set up a purchaserequestlineitem variable
-				var purchaserequest = db.PurchaseRequests.Find(id);
+				var purchaseRequest = db.PurchaseRequests.Find(id);
 
 				//If the id used for the purchaserequestlineitem variable is incorrect, return an error message saying so
-				if (purchaserequest == null) {
+				if (purchaseRequest == null) {
 					return Json(new Msg { Result = "Failure", Message = $"The entered purchase request id, {id}, was not found." }, JsonRequestBehavior.AllowGet);
 				}
 				else {
 					//lineitems is "every line item that belongs to the purchase request"
 					var lineitems = db.PurchaseRequestLineItems.Where(p => p.PurchaseRequestId == id).ToList();
-					var prli = new prliType { PurchaseRequest = purchaserequest, PurchaseRequestLineItems = lineitems };
+					var prli = new prliType { PurchaseRequest = purchaseRequest, PurchaseRequestLineItems = lineitems };
 					return new JsonNetResult { Data = prli };
 				}
 			}
@@ -111,10 +111,10 @@ namespace PRSWeb.Controllers
 			
 			//A purchase request line item has a foreign key tying it into a purchase request and a product, let's make sure that valid
 			//keys were assigned.
-			PurchaseRequest purchaserequest = db.PurchaseRequests.Find(purchaserequestlineitem.PurchaseRequestId);
+			PurchaseRequest purchaseRequest = db.PurchaseRequests.Find(purchaserequestlineitem.PurchaseRequestId);
 			Product product = db.Products.Find(purchaserequestlineitem.ProductId);
 
-			if (purchaserequest == null) {
+			if (purchaseRequest == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered purchase request line item lacks a valid purchase request." }, JsonRequestBehavior.AllowGet);
 			}
 			if (product == null) {
@@ -139,10 +139,10 @@ namespace PRSWeb.Controllers
 			
 			//A purchase request line item has a foreign key tying it into a purchase request and a product, let's make sure that valid
 			//keys were assigned.
-			var purchaserequest = db.PurchaseRequests.Find(purchaserequestlineitem.PurchaseRequestId);
+			var purchaseRequest = db.PurchaseRequests.Find(purchaserequestlineitem.PurchaseRequestId);
 			var product = db.Products.Find(purchaserequestlineitem.ProductId);
 
-			if (purchaserequest == null) {
+			if (purchaseRequest == null) {
 				return Json(new Msg { Result = "Failure", Message = "The entered purchase request line item lacks a valid purchase request." }, JsonRequestBehavior.AllowGet);
 			}
 			if (product == null) {

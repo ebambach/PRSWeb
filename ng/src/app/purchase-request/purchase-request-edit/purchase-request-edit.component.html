@@ -26,6 +26,7 @@
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaseRequest-RejectionReason">RejectionReason</label>
 		<div class='col-md-9' *ngIf="loggedInUser.IsReviewer != true">
+			<!-- If the user is not a reviewer, this input field will be readonly -->
 			<input class='form-control' name='RejectionReason' type='text' id='purchaseRequest-RejectionReason' 
 				[(ngModel)]='purchaseRequest.RejectionReason' placeholder="RejectionReason" readonly>
 		</div>
@@ -48,7 +49,7 @@
 		<div class='col-md-9'>
 			<!-- <date-picker ngModel name='DateNeeded'></date-picker> -->
 			<input class='form-control' name='DateNeeded' type='text' id='purchaseRequest-DateNeeded' 
-				[(ngModel)]='purchaseRequest.DateNeeded' placeholder="DateNeeded">
+				[(ngModel)]="purchaseRequest.DateNeeded" placeholder="DateNeeded">
 		</div>
 	</div>
 
@@ -85,7 +86,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-SubmittedDate">Date Submitted</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='SubmittedDate' type='text' id='purchaseRequest-SubmittedDate' 
-				value='{{purchaseRequest.SubmittedDate | date:"M/d/y"}}' placeholder="SubmittedDate" readonly>
+				[(ngModel)]='purchaseRequest.SubmittedDate' placeholder="SubmittedDate" readonly>
 		</div>
 	</div>
 

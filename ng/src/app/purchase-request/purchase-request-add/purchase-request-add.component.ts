@@ -22,7 +22,8 @@ export class PurchaseRequestAddComponent implements OnInit {
 		this.PurchaseRequestSvc.add(this.purchaseRequest).then(
 			resp => { 
 				this.router.navigate(["/purchaseRequests"]); 
-			}
+			console.log(this.purchaseRequest);
+      }
 		);
 	}
 
