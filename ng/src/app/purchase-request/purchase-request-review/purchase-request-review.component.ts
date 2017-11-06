@@ -4,8 +4,11 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import { PurchaseRequestService } from '../../services/purchase-request.service';
+import { PurchaseRequestLineItemService } from '../../services/purchase-request-line-item.service';
 import { SystemService } from '../../services/system.service';
 import { PurchaseRequest } from '../../models/PurchaseRequest';
+import { PurchaseRequestLineItem } from '../../models/PurchaseRequestLineItem';
+import { PurchaseRequestAndLines } from '../../models/PurchaseRequestAndLines';
 import { User } from '../../models/User';
 
 
@@ -15,8 +18,9 @@ import { User } from '../../models/User';
   styleUrls: ['./purchase-request-review.component.css']
 })
 export class PurchaseRequestReviewComponent implements OnInit {
-
+  purchaseRequestLineItem: PurchaseRequestLineItem;
 	purchaseRequest: PurchaseRequest; 
+  purchaseRequestAndLines: PurchaseRequestAndLines;
 	loggedInUser: User;
 
 	//For approved() and rejected, we will use simple methods that use one line to
@@ -33,16 +37,18 @@ export class PurchaseRequestReviewComponent implements OnInit {
   
   
   private setStatus(newStatus: string): void {
-    this.purchaseRequest.Status = newStatus;
-    this.PurchaseRequestSvc.change(this.purchaseRequest)
+    this.purchaseRequestAndLines.PurchaseRequest.Status = newStatus;
+    this.PurchaseRequestSvc.change(this.purchaseRequestAndLines.PurchaseRequest)
       .then(resp => {
         console.log(resp);
         this.router.navigateByUrl("/purchaseRequests");
       })
   }
 
- constructor(private SystemSvc: SystemService, private PurchaseRequestSvc: PurchaseRequestService, 
-  			private route: ActivatedRoute, private router: Router) { }
+ constructor(private SystemSvc: SystemService, private PurchaseRequestLineItemSvc: PurchaseRequestLineItemService,
+              private PurchaseRequestSvc: PurchaseRequestService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
  ngOnInit() {
   	if(!this.SystemSvc.IsLoggedIn()) {
@@ -54,8 +60,10 @@ export class PurchaseRequestReviewComponent implements OnInit {
 	
 	this.route.paramMap
       .switchMap((params: ParamMap) =>
-        this.PurchaseRequestSvc.get(params.get('id')))
-      .subscribe((purchaseRequest: PurchaseRequest) => this.purchaseRequest = purchaseRequest);
+      this.PurchaseRequestLineItemSvc.getByPurchaseRequestId(params.get('id')))
+      .subscribe((purchaseRequestAndLines: PurchaseRequestAndLines) => this.purchaseRequestAndLines = purchaseRequestAndLines);  
+      //   this.PurchaseRequestSvc.get(params.get('id')))
+      // .subscribe((purchaseRequest: PurchaseRequest) => this.purchaseRequest = purchaseRequest);
 
 	}
 
