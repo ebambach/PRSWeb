@@ -5,13 +5,13 @@
 
 	<div style="text-align: center;">
 
-	<form *ngIf="purchaseRequest && loggedInUser" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
+	<form *ngIf="purchaseRequestAndLines && loggedInUser" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
 
 	<div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaseRequest-Description">Description</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Description' type='text' id='purchaseRequest-Description' 
-				[(ngModel)]='purchaseRequest.Description' placeholder="Description">
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.Description' placeholder="Description">
 		</div>
 	</div>
 
@@ -19,7 +19,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Justification">Justification</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Justification' type='text' id='purchaseRequest-Justification' 
-				[(ngModel)]='purchaseRequest.Justification' placeholder="Justification">
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.Justification' placeholder="Justification">
 		</div>
 	</div>
 
@@ -27,7 +27,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-RejectionReason">RejectionReason</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='RejectionReason' type='text' id='purchaseRequest-RejectionReason' 
-				[(ngModel)]='purchaseRequest.RejectionReason' placeholder="RejectionReason">
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.RejectionReason' placeholder="RejectionReason">
 		</div>
 	</div>
 
@@ -35,7 +35,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-DeliveryMode">Delivery Mode</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='DeliveryMode' type='text' id='purchaseRequest-DeliveryMode' 
-				[(ngModel)]='purchaseRequest.DeliveryMode' placeholder="DeliveryMode">
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.DeliveryMode' placeholder="DeliveryMode">
 		</div>
 	</div>
 
@@ -43,7 +43,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-DateNeeded">Date Needed</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='DateNeeded' type='text' id='purchaseRequest-DateNeeded' 
-				value='{{purchaseRequest.DateNeeded | date:"M/d/y"}}' placeholder="DateNeeded">
+				value='{{purchaseRequestAndLines.PurchaseRequest.DateNeeded | date:"M/d/y"}}' placeholder="DateNeeded">
 		</div>
 	</div>
 
@@ -51,7 +51,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Status">Status</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Status' type='text' id='purchaseRequest-Status' 
-				[(ngModel)]='purchaseRequest.Status' placeholder="Status" readonly>
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.Status' placeholder="Status" readonly>
 		</div>
 	</div>
 
@@ -59,7 +59,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-Total">Total</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Total' type='text' id='purchaseRequest-Total' 
-				[(ngModel)]='purchaseRequest.Total' placeholder="Total" readonly>
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.Total' placeholder="Total" readonly>
 		</div>
 	</div>
 
@@ -67,7 +67,7 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-UserId">User</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='User' type='text' id='purchaseRequest-User' 
-				[(ngModel)]='purchaseRequest.User.UserName' placeholder="User" readonly >			
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.User.UserName' placeholder="User" readonly >			
 		</div>
 	</div>
 
@@ -75,9 +75,34 @@
 		<label class='col-md-3  control-label' for="purchaseRequest-SubmittedDate">Date Submitted</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='SubmittedDate' type='text' id='purchaseRequest-SubmittedDate' 
-				value='{{purchaseRequest.SubmittedDate | date:"M/d/y"}}' placeholder="SubmittedDate" readonly>
+				value='{{purchaseRequestAndLines.PurchaseRequest.SubmittedDate | date:"M/d/y"}}' placeholder="SubmittedDate" readonly>
 		</div>
 	</div>
+
+	<table class="table" *ngIf="purchaseRequestAndLines">
+		<tr>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Description}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Status}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Total | currency:'USD':true}}</td>
+		</tr>
+		<tr>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Subtotal</th>
+		</tr>
+		<tr *ngFor="let purchaseRequestLineItem of purchaseRequestAndLines.PurchaseRequestLineItems">
+			<td>{{purchaseRequestLineItem.Product.Name}}</td>
+			<td>{{purchaseRequestLineItem.Quantity}}</td>
+			<td>{{purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+			<td>{{purchaseRequestLineItem.Quantity * purchaseRequestLineItem.Product.Price | currency:'USD':true}}
+		</tr>
+	</table>
 
 	<div class='form-group'>
 		<button (click)='approved()' id='approved' class='col-md-5 col-md-offset-1 btn btn-primary'>Approved</button>
