@@ -7,7 +7,7 @@
 
 	<form *ngIf="purchaseRequestAndLines && loggedInUser" style="display: inline-block; width: 70%; padding: 30px 30px 0 0; border: 1px solid silver;">
 
-	<div class='form-group' >
+	<!-- <div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaseRequest-Description">Description</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='Description' type='text' id='purchaseRequest-Description' 
@@ -21,17 +21,17 @@
 			<input class='form-control' name='Justification' type='text' id='purchaseRequest-Justification' 
 				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.Justification' placeholder="Justification">
 		</div>
-	</div>
+	</div> -->
 
 	<div class='form-group' >
-		<label class='col-md-3  control-label' for="purchaseRequest-RejectionReason">RejectionReason</label>
+		<label class='col-md-3  control-label' for="purchaseRequest-RejectionReason">Rejection Reason</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='RejectionReason' type='text' id='purchaseRequest-RejectionReason' 
-				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.RejectionReason' placeholder="RejectionReason">
+				[(ngModel)]='purchaseRequestAndLines.PurchaseRequest.RejectionReason' placeholder="Rejection Reason">
 		</div>
 	</div>
 
-	<div class='form-group' >
+	<!-- <div class='form-group' >
 		<label class='col-md-3  control-label' for="purchaseRequest-DeliveryMode">Delivery Mode</label>
 		<div class='col-md-9'>
 			<input class='form-control' name='DeliveryMode' type='text' id='purchaseRequest-DeliveryMode' 
@@ -77,16 +77,24 @@
 			<input class='form-control' name='SubmittedDate' type='text' id='purchaseRequest-SubmittedDate' 
 				value='{{purchaseRequestAndLines.PurchaseRequest.SubmittedDate | date:"M/d/y"}}' placeholder="SubmittedDate" readonly>
 		</div>
-	</div>
+	</div> -->
 
 	<table class="table" *ngIf="purchaseRequestAndLines">
 		<tr>
 			<th>Description</th>
+			<th>Justification</th>			
+		</tr>
+		<tr>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Description}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.Justification}}</td>
+		</tr>
+		<tr>
+			<th>User</th>
 			<th>Status</th>
 			<th>Total</th>
 		</tr>
 		<tr>
-			<td>{{purchaseRequestAndLines.PurchaseRequest.Description}}</td>
+			<td>{{purchaseRequestAndLines.PurchaseRequest.User.UserName}}</td>
 			<td>{{purchaseRequestAndLines.PurchaseRequest.Status}}</td>
 			<td>{{purchaseRequestAndLines.PurchaseRequest.Total | currency:'USD':true}}</td>
 		</tr>
