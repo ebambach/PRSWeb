@@ -21,7 +21,7 @@
 			<td>{{product.VendorPartNumber}}</td>
 			<td>{{product.Price | currency:'USD':true}}</td>
 			<td>{{product.Unit}}</td>
-			<td><a href="{{product.Photopath}}"><img src="../../assets/image.png" height="25" width="25"></a></td>
+			<td><a href="{{product.Photopath}}" target="_blank"><img src="../../assets/image.png" height="25" width="25" ></a></td>
 			<td>{{product.Vendor.Name}}</td>
 			<td>
 				<span><a routerLink="/products/detail/{{product.Id}}">Details</a></span>
