@@ -1,8 +1,8 @@
 <app-menu [loggedInUser]="loggedInUser"></app-menu>
-<div class="MainContent form-horizontal">
+<div class="MainContent form-horizontal" >
 
-	<div>
-		<span class="PageTitle">Purchase Request Review</span>
+	<div class="pageTitle">
+		<span>Purchase Request Review</span>
 	</div>
 
 	<table class="table" *ngIf="purchaseRequestAndLines">
@@ -31,6 +31,7 @@
 				<!-- <a routerLink="/purchaseRequestLineItems/detail/{{purchaseRequestLineItem.PurchaseRequest.Id}}">Select</a> -->
 			</td>
 		</tr>
+
 		<table class="table">
 			<tr>
 				<td><button (click)="approved()" class="btn btn-success">Approve</button></td>

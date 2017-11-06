@@ -43,7 +43,7 @@ export class PurchaseRequestService {
 	}
 
 	add(purchaseRequest: PurchaseRequest): Promise<any> {
-		if (purchaseRequest.Total < 50){
+		if (purchaseRequest.Total < 50 && purchaseRequest.Status != "NEW"){
 			purchaseRequest.Status = "Approved";
 		}
 		return this.http.post(url+'Add', purchaseRequest)
@@ -53,7 +53,7 @@ export class PurchaseRequestService {
 	}
 
 	change(purchaseRequest: PurchaseRequest): Promise<any> {
-		if (purchaseRequest.Total < 50){
+		if (purchaseRequest.Total < 50 && purchaseRequest.Status != "NEW"){
 			purchaseRequest.Status = "Approved";
 		}
 		return this.http.post(url+'Change', purchaseRequest)

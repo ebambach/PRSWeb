@@ -89,6 +89,7 @@ namespace PRSWeb.Controllers
 			}
 			tempPurchaseRequest.Description = purchaseRequest.Description;
 			tempPurchaseRequest.Justification = purchaseRequest.Justification;
+			tempPurchaseRequest.RejectionReason = purchaseRequest.RejectionReason;
 			tempPurchaseRequest.DateNeeded = purchaseRequest.DateNeeded;
 			tempPurchaseRequest.DeliveryMode = purchaseRequest.DeliveryMode;
 			tempPurchaseRequest.Status = purchaseRequest.Status;
@@ -154,7 +155,7 @@ namespace PRSWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,Description,Justification,DateNeeded,DeliveryMode,Status,Total,SubmittedDate")] PurchaseRequest purchaseRequest)
+        public ActionResult Create([Bind(Include = "Id,UserId,Description,Justification,RejectionReason,DateNeeded,DeliveryMode,Status,Total,SubmittedDate")] PurchaseRequest purchaseRequest)
         {
             if (ModelState.IsValid)
             {
@@ -186,7 +187,7 @@ namespace PRSWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,Description,Justification,DateNeeded,DeliveryMode,Status,Total,SubmittedDate")] PurchaseRequest purchaseRequest)
+        public ActionResult Edit([Bind(Include = "Id,UserId,Description,Justification,RejectionReason,DateNeeded,DeliveryMode,Status,Total,SubmittedDate")] PurchaseRequest purchaseRequest)
         {
             if (ModelState.IsValid)
             {

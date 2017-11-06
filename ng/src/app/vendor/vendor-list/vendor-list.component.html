@@ -1,8 +1,8 @@
 <app-menu [loggedInUser]="loggedInUser"></app-menu>
-<div class="MainContent form-horizontal">
+<div id="firstDivAddEditList" class="MainContent form-horizontal" >
 
-	<div>
-		<span class="PageTitle">Vendors</span>
+	<div class="pageTitle">
+		<span>Vendors</span>
 		<span class="CreateNew"><a routerLink="/vendors/add">Add New</a></span>
 	</div>
 
@@ -12,8 +12,8 @@
 			<th>Name</th>
 			<th>Address</th>
 			<th>City/St/Zip</th>
-			<th>Phone</th>
-			<th>Email</th>
+			<!-- <th>Phone</th> -->
+			<!-- <th>Email</th> -->
 			<th>PreApproved</th>
 			<th>Actions</th>
 		</tr>
@@ -22,8 +22,8 @@
 			<td>{{vendor.Name}}</td>
 			<td>{{vendor.Address}}</td>
 			<td>{{vendor.City}}, {{vendor.State}} {{vendor.Zip}}</td>
-			<td>{{vendor.Phone}}</td>
-			<td>{{vendor.Email}}</td>
+			<!-- <td>{{vendor.Phone}}</td> -->
+			<!-- <td>{{vendor.Email}}</td> -->
 			<!-- If the vendor is, or is not, a PreApproved Vendor, this will determine what is shown under those headers-->
 			<td *ngIf="vendor.PreApproved">Yes</td>
 			<td *ngIf="!vendor.PreApproved">&nbsp;</td>

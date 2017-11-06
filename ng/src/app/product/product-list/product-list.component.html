@@ -1,8 +1,8 @@
 <app-menu [loggedInUser]="loggedInUser"></app-menu>
-<div class="MainContent form-horizontal">
+<div id="firstDivAddEditList" class="MainContent form-horizontal" >
 
-	<div>
-		<span class="PageTitle">Products</span>
+	<div class="pageTitle">
+		<span>Products</span>
 		<span class="CreateNew"><a routerLink="/products/add">Add New</a></span>
 	</div>
 
@@ -11,7 +11,7 @@
 			<th>Name</th>
 			<th>Vendor Part Number</th>
 			<th>Price</th>
-			<th>Unit</th>
+			<!-- <th>Unit</th> -->
 			<th>Photo</th>
 			<th>Vendor</th>
 			<th>Actions</th>
@@ -20,7 +20,7 @@
 			<td>{{product.Name}}</td>
 			<td>{{product.VendorPartNumber}}</td>
 			<td>{{product.Price | currency:'USD':true}}</td>
-			<td>{{product.Unit}}</td>
+			<!-- <td>{{product.Unit}}</td> -->
 			<td><a href="{{product.Photopath}}" target="_blank"><img src="../../assets/image.png" height="25" width="25" ></a></td>
 			<td>{{product.Vendor.Name}}</td>
 			<td>

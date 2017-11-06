@@ -1,8 +1,8 @@
 <app-menu [loggedInUser]="loggedInUser"></app-menu>
-<div class="MainContent form-horizontal">
+<div class="MainContent form-horizontal" >
 
-	<div>
-		<span class="PageTitle">Purchase Request Detail</span>
+	<div class="pageTitle">
+		<span>Purchase Request Detail</span>
 		<span class="CreateNew"><a routerLink="/purchaseRequests/add">Add New</a></span>
 	</div>
 
@@ -23,7 +23,7 @@
 		</table>
 
 		<div class="text-center">
-			<span *ngIf="purchaseRequest.Status === 'New' || purchaseRequest.Status === 'Rejected'"><button class="btn btn-success" (click)="review()">Mark for Review</button> |</span>
+			<span *ngIf="purchaseRequest.Status === 'NEW' || purchaseRequest.Status === 'Rejected'"><button class="btn btn-success" (click)="review()">Mark for Review</button> |</span>
 			<button class="btn btn-warning" (click)="edit()">Edit</button> |
 			<button class="btn btn-danger" (click)="toggleVerifyDelete()">Delete</button>
 			<span *ngIf="verifyDelete"> | <button class="btn btn-danger" (click)="remove()">Verify</button></span>
