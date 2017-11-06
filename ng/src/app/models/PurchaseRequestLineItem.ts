@@ -1,19 +1,24 @@
+import { PurchaseRequest } from './PurchaseRequest';
+
 export class PurchaseRequestLineItem {
 	
 	Id: number;
 	ProductId: number;
-	PurchaseRequestId: number;
+	PurchaseRequest: PurchaseRequest;
+	//PurchaseRequestId: number;
 	Quantity: number;
 
 	constructor(
 		Id: number,
 		ProductId: number,
-		PurchaseRequestId: number,
+		PurchaseRequest: PurchaseRequest,
+		//PurchaseRequestId: number,
 		Quantity: number
 	) {
 		this.Id = Id;
 		this.ProductId = ProductId;
-		this.PurchaseRequestId = PurchaseRequestId;
+		this.PurchaseRequest = PurchaseRequest;
+		//this.PurchaseRequestId = PurchaseRequestId;
 		this.Quantity = Quantity;
 	}
 	

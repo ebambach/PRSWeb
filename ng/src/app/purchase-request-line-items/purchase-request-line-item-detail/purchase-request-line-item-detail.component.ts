@@ -22,7 +22,7 @@ export class PurchaseRequestLineItemDetailComponent implements OnInit {
 		this.PurchaseRequestLineItemSvc.remove(this.purchaseRequestLineItem)
 			.then(resp => { 
 				console.log(resp); 
-				this.router.navigateByUrl("/purchaseRequestLineItems/"+this.purchaseRequestLineItem.PurchaseRequestId); 
+				this.router.navigateByUrl("/purchaseRequestLineItems/"+this.purchaseRequestLineItem.PurchaseRequest.Id); 
 			});
 	}
 

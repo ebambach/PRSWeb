@@ -16,6 +16,9 @@ namespace PRSWeb.Models {
 		[Required]
 		public string Justification { get; set; }
 
+		[StringLength(160)]
+		public string RejectionReason { get; set; }
+
 		[Required]
 		public DateTime DateNeeded { get; set; }
 

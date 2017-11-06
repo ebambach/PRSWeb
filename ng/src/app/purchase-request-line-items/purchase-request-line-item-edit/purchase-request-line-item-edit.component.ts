@@ -30,7 +30,7 @@ export class PurchaseRequestLineItemEditComponent implements OnInit {
 		this.PurchaseRequestLineItemSvc.change(this.purchaseRequestLineItem).then(
 			resp => { 
 				console.log(resp); 
-				this.router.navigateByUrl('/purchaseRequestLineItems/'+this.purchaseRequestLineItem.PurchaseRequestId); 
+				this.router.navigateByUrl('/purchaseRequestLineItems/'+this.purchaseRequestLineItem.PurchaseRequest.Id); 
 			}
 		)
 	}

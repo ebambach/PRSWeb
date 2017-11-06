@@ -18,8 +18,9 @@ import { User } from '../../models/User';
 })
 export class PurchaseRequestLineItemAddComponent implements OnInit {
 
-	purchaseRequestLineItem: PurchaseRequestLineItem = new PurchaseRequestLineItem(0, 0, 0, 1);
+	
 	purchaseRequest: PurchaseRequest;
+	purchaseRequestLineItem: PurchaseRequestLineItem = new PurchaseRequestLineItem(0, 0, this.purchaseRequest, 1);
 
 	loggedInUser: User;
 	
@@ -31,7 +32,7 @@ export class PurchaseRequestLineItemAddComponent implements OnInit {
 	}
 
 	add() {
-		this.purchaseRequestLineItem.PurchaseRequestId = this.purchaseRequest.Id;
+		this.purchaseRequestLineItem.PurchaseRequest.Id = this.purchaseRequest.Id;
 		this.PurchaseRequestLineItemSvc.add(this.purchaseRequestLineItem).then(
 			resp => { 
 				console.log(resp); 
