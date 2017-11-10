@@ -6,31 +6,150 @@
 		<span class="CreateNew"><a routerLink="/purchaseRequests/add">Add New</a></span>
 	</div>
 
-	<table class="table" *ngIf="purchaseRequests">
-		<tr>
-			<th>Description</th>
-			<th>Delivery Mode</th>
-			<th>Date Needed</th>
-			<th>Status</th>
-			<th>Total</th>
-			<th>User</th>
-			<th>Date Submitted</th>
-			<th>Actions</th>
-		</tr>
-		<tr *ngFor="let purchaseRequest of purchaseRequests">
-			<td>{{purchaseRequest.Description}}</td>
-			<td>{{purchaseRequest.DeliveryMode}}</td>
-			<td>{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
-			<td>{{purchaseRequest.Status}}</td>
-			<td>{{purchaseRequest.Total | currency:"USD":true}}</td>
-			<td>{{purchaseRequest.User.UserName}}</td>
-			<td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
-			<td>
-				<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
-				<span><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
-				<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
-				<span><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
-			</td>
-		</tr>
-	</table>
+	<button class="btn btn-info" (click)="toggleAll()">Show All</button> | <button class="btn btn-info" (click)="toggleNew()">Show New</button> | <button class="btn btn-info" (click)="toggleReview()">Show Review</button> | <button class="btn btn-info" (click)="toggleRejected()">Show Rejected</button> | <button class="btn btn-info" (click)="toggleApproved()">Show Accepted</button>
+
+	<!-- We have several tables set up to appear depending on which purchaseRequests we wish to see.  This table appears when we want to see all purchaseRequests -->
+		<table class="table" *ngIf="purchaseRequests && IsAll">
+			<tr>
+				<th>Description</th>
+				<th>Delivery Mode</th>
+				<th>Date Needed</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th>User</th>
+				<th>Date Submitted</th>
+				<th>Actions</th>
+			</tr>
+			<tr *ngFor="let purchaseRequest of purchaseRequests">
+				<td>{{purchaseRequest.Description}}</td>
+				<td>{{purchaseRequest.DeliveryMode}}</td>
+				<td>{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
+				<td>{{purchaseRequest.Status}}</td>
+				<td>{{purchaseRequest.Total | currency:"USD":true}}</td>
+				<td>{{purchaseRequest.User.UserName}}</td>
+				<td>{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
+				<td>
+					<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
+					<span *ngIf="purchaseRequest.Status != 'Review'"><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
+					<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
+					<span *ngIf="purchaseRequest.Status == 'Review'"><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
+				</td>
+			</tr>
+		</table>
+
+	<!-- This table is for the "NEW" purchaseRequests -->
+		<table class="table" *ngIf="purchaseRequests && IsNew == true">
+			<tr>
+				<th>Description</th>
+				<th>Delivery Mode</th>
+				<th>Date Needed</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th>User</th>
+				<th>Date Submitted</th>
+				<th>Actions</th>
+			</tr>
+			<tr *ngFor="let purchaseRequest of purchaseRequests">
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.Description}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.DeliveryMode}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.Status}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.Total | currency:"USD":true}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.User.UserName}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'NEW'">
+					<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
+					<span *ngIf="purchaseRequest.Status != 'Review'"><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
+					<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
+					<span *ngIf="purchaseRequest.Status == 'Review'"><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
+				</td>
+			</tr>
+		</table>
+
+		<!-- This table is for the "Review" purchaseRequests -->
+		<table class="table" *ngIf="purchaseRequests && IsReview == true">
+			<tr>
+				<th>Description</th>
+				<th>Delivery Mode</th>
+				<th>Date Needed</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th>User</th>
+				<th>Date Submitted</th>
+				<th>Actions</th>
+			</tr>
+			<tr *ngFor="let purchaseRequest of purchaseRequests">
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.Description}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.DeliveryMode}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.Status}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.Total | currency:"USD":true}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.User.UserName}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Review'">
+					<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
+					<span *ngIf="purchaseRequest.Status != 'Review'"><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
+					<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
+					<span *ngIf="purchaseRequest.Status == 'Review'"><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
+				</td>
+			</tr>
+		</table>
+
+		<!-- This table is for the "Rejected" purchaseRequests -->
+		<table class="table" *ngIf="purchaseRequests && IsRejected == true">
+			<tr>
+				<th>Description</th>
+				<th>Delivery Mode</th>
+				<th>Date Needed</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th>User</th>
+				<th>Date Submitted</th>
+				<th>Actions</th>
+			</tr>
+			<tr *ngFor="let purchaseRequest of purchaseRequests">
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.Description}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.DeliveryMode}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.Status}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.Total | currency:"USD":true}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.User.UserName}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Rejected'">
+					<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
+					<span *ngIf="purchaseRequest.Status != 'Review'"><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
+					<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
+					<span *ngIf="purchaseRequest.Status == 'Review'"><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
+				</td>
+			</tr>
+		</table>
+
+		<!-- This table is for the "Accepted" purchaseRequests -->
+		<table class="table" *ngIf="purchaseRequests && IsApproved == true">
+			<tr>
+				<th>Description</th>
+				<th>Delivery Mode</th>
+				<th>Date Needed</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th>User</th>
+				<th>Date Submitted</th>
+				<th>Actions</th>
+			</tr>
+			<tr *ngFor="let purchaseRequest of purchaseRequests">
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.Description}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.DeliveryMode}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.DateNeeded | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.Status}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.Total | currency:"USD":true}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.User.UserName}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">{{purchaseRequest.SubmittedDate | date:'M/d/y'}}</td>
+				<td *ngIf="purchaseRequest.Status == 'Approved'">
+					<span><a routerLink="/purchaseRequests/detail/{{purchaseRequest.Id}}">Details</a></span>
+					<span *ngIf="purchaseRequest.Status != 'Review'"><a routerLink="/purchaseRequests/edit/{{purchaseRequest.Id}}">Edit</a></span>
+					<span><a routerLink="/purchaseRequestLineItems/{{purchaseRequest.Id}}">Items</a></span>
+					<span *ngIf="purchaseRequest.Status == 'Review'"><a routerLink="/purchaseRequests/review/{{purchaseRequest.Id}}">Review</a></span>
+				</td>
+			</tr>
+		</table>
 </div>
